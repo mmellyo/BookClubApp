@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <left>
+      <AnchorPane prefHeight="407.0" prefWidth="228.0" style="-fx-background-color: #423b31;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="-2.0" layoutY="110.0" prefHeight="18.0" prefWidth="232.0" text="NBOUKINI" textFill="#f5ecdb">
+               <font>
+                  <Font name="Verdana Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="332.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="usernamefield" layoutX="127.0" layoutY="118.0" promptText="username" />
+            <PasswordField fx:id="passwordfield" layoutX="127.0" layoutY="187.0" promptText="password" />
+            <Label layoutX="38.0" layoutY="121.0" text="Username" textFill="#423b31">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="38.0" layoutY="190.0" text="Password" textFill="#423b31">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="loginbutton" layoutX="117.0" layoutY="267.0" mnemonicParsing="false" onAction="#loginButtonOnAction" style="-fx-background-color: #423b31;" text="LOG IN" textFill="#f5ecdc" />
+            <Button fx:id="cancelbutton" layoutX="117.0" layoutY="309.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #423b31;" text="cancel" textFill="#f5ecdc" />
+            <Label fx:id="errorlabel" layoutX="130.0" layoutY="80.0" textFill="#f20000" />
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
