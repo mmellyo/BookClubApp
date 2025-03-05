@@ -7,17 +7,28 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+
 import java.io.IOException;
 
 public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
+
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+
+        //debug
+        //System.out.println(getClass().getResource("/view/login.fxml"));
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
         Parent root = fxmlLoader.load();
 
-        primaryStage.initStyle(StageStyle.UNDECORATED);
-        //primaryStage.setTitle("Login Window");
-        primaryStage.setScene(new Scene(root, 520, 400));
+        //primaryStage.setTitle("Login Window"); // Optional: set a title
+        Scene scene = new Scene(root, 1238, 700);
+        primaryStage.setScene(scene);
+
+       // primaryStage.setMaximized(true); // Start in full-screen mode
+        primaryStage.setResizable(true); // Allow window resizing
+
         primaryStage.show();
     }
 
