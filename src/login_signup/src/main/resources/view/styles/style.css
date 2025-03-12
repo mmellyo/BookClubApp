@@ -1,0 +1,66 @@
+.dark-color{
+    -fx-background-color: #d6bc99;
+}
+
+.radius {
+    -fx-background-radius: 10;
+}
+
+.radiuser {
+    -fx-background-radius: 20;
+}
+
+.textColor {
+    -fx-text-fill: #d6bc99;
+}
+
+.transparent {
+    -fx-background-color : rgba(0,0,0,0);
+}
+
+.input {
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #f6eeca;
+}
+
+.shadow {
+    -fx-effect : dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0, 0.0, 0.0, 10.0)
+}
+
+.shadowInfobox {
+    -fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.3), 15.0, 0.0, 10.0, 5.0);
+}
+
+
+.infobox {
+    -fx-background-color: #fffffd;
+    -fx-background-radius: 20px  20px 20px 20px ; /* Top-left, top-right, bottom-right, bottom-left */
+
+}
+
+.but {
+    -fx-background-color: transparent; /* Match background color */
+    -fx-border-color: #d6bc99;
+    -fx-border-width: 2px; /* Border thickness */
+    -fx-text-fill: #d6bc99; /* Text color */
+}
+
+.genre-button {
+    -fx-background-color:  #593f2d;
+    -fx-text-fill: #f5ebc7;
+    -fx-background-radius: 10px;
+}
+.genre-button:selected {
+    -fx-background-color: linear-gradient(to right, #ff7e5f, #feb47b); /* Example gradient */
+}
+
+
+.progress-bar .track {
+    -fx-background-radius: 0;
+}
+
+.progress-bar .bar {
+-fx-background-color:  #d6bc99;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0px;
+}
