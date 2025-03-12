@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import utils.DBUtils;
 
@@ -25,6 +26,8 @@ public class loginController implements Initializable {
     private TextField tf_password;
     @FXML
     private TextField tf_username;
+
+
 
 
     @Override
@@ -52,20 +55,20 @@ public class loginController implements Initializable {
         button_signup.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DBUtils.changeScene(event,"/view/signup.fxml", null, null );
+                DBUtils.prefilledSignup(event, tf_username.getText(), tf_password.getText() );
             }
         });
 
         button_signup_up.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DBUtils.changeScene(event,"/view/signup.fxml", null, null);
+                DBUtils.prefilledSignup(event, tf_username.getText(), tf_password.getText() );
             }
         });
     }
 
-//    public static void setUserInfo(String username) {
-//        tf_username.setText(username);
-//
-//    }
+    public  void setUserInfo(String username , String password) {
+        tf_username.setText(username);
+        tf_password.setText(password);
+    }
 }

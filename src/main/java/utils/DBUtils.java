@@ -118,16 +118,39 @@ public class DBUtils {
         Parent root = null;
 
 
-        // Store username for next window
-        if (username != null) {
-            Common.SessionManager.setUsername(username);
-        }
-
         // if user is switching with info entered => Load the next FXML file with valid info
         if (username != null && password!= null) {
             try {
                 FXMLLoader loader = new FXMLLoader(DBUtils.class.getResource(fxmlFile));
                 root = loader.load();  //loads the UI and assigns it to root
+
+                if (fxmlFile.equals("/view/login.fxml")) {
+                    loginController loginC = loader.getController();
+                    loginC.setUserInfo(username, password);
+                }
+
+                if (fxmlFile.equals("/view/signup.fxml")) {
+                    signupController signUpC = loader.getController();
+                    signUpC.setUserInfo(username, password);
+                }
+
+
+//                // If switching to sign-up, pre-fill the username
+//                if (fxmlFile.equals("/view/signup.fxml")) {
+//                    signupController signUpC = loader.getController();
+//                    signUpC.prefillUsername(Common.SessionManager.getUsername());
+//                }
+
+//                // If switching to login, pre-fill the username (by clicking from signup -> login)
+//                if (fxmlFile.equals("/view/login.fxml")) {
+//                    loginController loginC = loader.getController();
+//                    loginController.setUserInfo(username);
+//                }
+
+//                loginController controller = loader.getController();
+//                if (controller != null) {
+//                    controller.setUserInfo(username);
+//                }
 
 
             } catch (IOException e) {
@@ -240,6 +263,18 @@ public class DBUtils {
         }
     }
 
+
+    //login from signup
+    public static void prefilledLogin(ActionEvent event, String username, String password) {
+        //changeScene
+        changeScene(event, "/view/login.fxml", username, password);
+    }
+
+    //signup from login
+    public static void prefilledSignup(ActionEvent event, String username, String password) {
+        //changeScene
+        changeScene(event, "/view/signup.fxml", username, password);
+    }
 
     public static void loginUser(ActionEvent event, String username, String password) throws SQLException {
         //declare DB connection

@@ -71,22 +71,21 @@ public class signupController implements Initializable {
             button_login.setOnAction(new EventHandler<ActionEvent>() {
                   @Override
                   public void handle(ActionEvent event) {
-                      DBUtils.changeScene(event, "/view/login.fxml", null , null);
+                      DBUtils.prefilledLogin(event,tf_username.getText(),tf_password.getText());
                   }
             });
 
             button_login_up.setOnAction(new EventHandler<ActionEvent>() {
                   @Override
                   public void handle(ActionEvent event) {
-                        DBUtils.changeScene(event,"/view/login.fxml", null, null);
+                        DBUtils.prefilledLogin(event,tf_username.getText(),tf_password.getText());
                   }
             });
       }
 
 
-      public void prefillUsername(String username) {
-            if (username != null) {
-                  tf_username.setText(username);
-            }
+      public void setUserInfo(String username, String password ) {
+            tf_username.setText(username);
+            tf_password.setText(password);
       }
 }
