@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Region;
 import utils.DBUtils;
 
 import java.net.URL;
@@ -21,7 +22,6 @@ public class loggedinController implements Initializable {
     @FXML
     private Label label_welcome;
     @FXML
-    private Label label_password;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -34,9 +34,13 @@ public class loggedinController implements Initializable {
         });
     }
 
-    public void setUserInfo ( String username , String password ) {
-        label_welcome.setText("welcome " + username);
-        label_password.setText("your pw is" + password );
+    public void setUsername(String username) {
+        label_welcome.setText("Welcome back " + username + ", You're logged in!");
+
+        // Ensure dynamic width adjustment
+        label_welcome.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        label_welcome.setMinWidth(Region.USE_PREF_SIZE);
     }
+
 
 }

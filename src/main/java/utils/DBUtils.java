@@ -35,6 +35,8 @@ import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import model.CommonConstants;
+import model.Common;
+
 
 import java.io.IOException;
 import java.sql.*;
@@ -146,6 +148,19 @@ public class DBUtils {
                     signUp3C.setUserInfo(username,userpassword);
                 }
 
+                if (fxmlFile.equals("/view/loggedin.fxml")) {
+                    loggedinController loggedinC = loader.getController();
+                    loggedinC.setUsername(username);
+                }
+
+
+                if (fxmlFile.equals("/view/hpp.fxml")) {
+                    //DEBUG
+                    System.out.println("hpp if entered");
+                    hppController hppC = loader.getController();
+                    hppC.setUserInfo(username,userpassword);
+                }
+
 
 //                // If switching to sign-up, pre-fill the username
 //                if (fxmlFile.equals("/view/signup.fxml")) {
@@ -216,19 +231,27 @@ public class DBUtils {
                 showCustomAlert("This username is already taken. Please choose another one.");
 
             } else //username not used:
-            {
-                //quire DB to insert user
-                psInsert = connection.prepareStatement("INSERT INTO users (username, useremail,  `userpassword`) VALUES (?,?,?)");
-                psInsert.setString(1, username);
-                psInsert.setString(2, useremail);
-                psInsert.setString(3, userpassword);
-                psInsert.executeUpdate();
+                //if invalid email
+                if (!Common.isValidEmail(useremail)) {
+                    System.out.println("Invalid email");
+                    showCustomAlert("Invalid Email format! Please enter a valid Email.");
 
-                System.out.println("new user inserted");
+                }else  //if valid email
+                {
+                    //quire DB to insert user
+                    psInsert = connection.prepareStatement("INSERT INTO users (username, useremail,  `userpassword`) VALUES (?,?,?)");
+                    psInsert.setString(1, username);
+                    psInsert.setString(2, useremail);
+                    psInsert.setString(3, userpassword);
+                    psInsert.executeUpdate();
 
-                //changeScene
-                changeScene(event, "/view/signup2.fxml", username, userpassword);
-            }
+                    System.out.println("new user inserted");
+
+
+
+                    //changeScene
+                    changeScene(event, "/view/signup2.fxml", username, userpassword);
+                }
 
 
         } catch (SQLException e) {
@@ -275,16 +298,18 @@ public class DBUtils {
     }
 
 
-
-
-
-    public static void finishSignup (ActionEvent event,String userdateofbirth, String userphonenmbr, String userbio) {
+    public static void finishSignup (ActionEvent event,String username, String userpassword, String userdateofbirth, String userphonenmbr, String userbio) {
 
         //declare DB connection
         Connection connection = null;
-        PreparedStatement psInsert = null;
+        PreparedStatement psUpdate = null;
         PreparedStatement psChecknmbrExists = null;
         ResultSet resultSet = null;
+
+        boolean invalidDate = false;
+        boolean phoneUsed = false;
+        boolean invalidPhonenmbr= false;
+
 
         try {
             //connect with DB
@@ -299,28 +324,48 @@ public class DBUtils {
             psChecknmbrExists.setString(1, userphonenmbr);
             resultSet = psChecknmbrExists.executeQuery();
 
-            //the check
+            // verifications
             //if nmbr exists
             if (resultSet.isBeforeFirst()) {
                 //DEBUG
-
                 System.out.println("phonenmbr exists, cant use this phonenmbr");
                 showCustomAlert("This phone number is already in use. Please enter a different one.");
+                phoneUsed = true;
+            }
 
-            } else //nmbr not used:
+            //if invalid date
+            if(!Common.isValidDate(userdateofbirth)) {
+                System.out.println("Invalid date");
+                showCustomAlert("Invalid date format! Please enter a valid date (YYYY-MM-DD).");
+                invalidDate = true;
+            }
+
+            //if invalid phonenmbr
+            if(!Common.isValidPhoneNumber(userphonenmbr)) {
+                System.out.println("Invalid nmbr");
+                showCustomAlert("Invalid phone number! It must be 10 digits and start with 0.");
+                invalidPhonenmbr = true;
+            }
+
+            if (!phoneUsed && !invalidDate && !invalidPhonenmbr) //if nmbr not used + valid date + valid phoennmbr:
             {
-                //quire DB to insert additional info
-                psInsert = connection.prepareStatement("INSERT INTO users (username, useremail,  `userpassword`) VALUES (?,?,?)");
-                psInsert.setString(1, userdateofbirth);
-                psInsert.setString(2, userphonenmbr);
-                psInsert.setString(3, userbio);
-                psInsert.executeUpdate();
+                    //quire DB to update additional info
+                    psUpdate = connection.prepareStatement("UPDATE users SET userdateofbirth = ?, userphonenmbr = ?, userbio = ? WHERE username = ?");
+                    psUpdate.setString(1, userdateofbirth);
+                    psUpdate.setString(2, userphonenmbr);
+                    psUpdate.setString(3, userbio);
+                    psUpdate.setString(4, username);
+
+                    psUpdate.executeUpdate();
 
                 //DEBUG
-                System.out.println("new addi info inserted");
+                System.out.println("new additional info inserted");
 
-                //changeScene
-                //changeScene(event, "/view/signup2.fxml", username, userpassword);
+                //changeScene to hp
+                changeScene(event, "/view/hpp.fxml", username, userpassword);
+
+                //DEBUG
+                System.out.println("we are switcihng to hp");
             }
 
 
@@ -361,6 +406,8 @@ public class DBUtils {
     }
 
 
+
+
     //login from signup
     public static void prefilledLogin(ActionEvent event, String username, String userpassword) {
         //changeScene
@@ -372,6 +419,10 @@ public class DBUtils {
         //changeScene
         changeScene(event, "/view/signup.fxml", username, userpassword);
     }
+
+
+
+
 
     public static void loginUser(ActionEvent event, String username, String userpassword) throws SQLException {
         //declare DB connection
@@ -521,7 +572,7 @@ public class DBUtils {
     }
 
 
-        //not used but i might need it later
+        //not used but i might need it later:
     public static boolean checkUser(String username){
         try{
             Connection connection = DriverManager.getConnection(CommonConstants.DB_URL,
@@ -552,20 +603,6 @@ public class DBUtils {
         System.out.println("USER FOUND !");
         return true;
     }
-
-
-//// If switching to sign-up, pre-fill the username
-//                if (fxmlFile.equals("/view/signup.fxml")) {
-//        signupController signUpC = loader.getController();
-//        signUpC.prefillUsername(Common.SessionManager.getUsername());
-//    }
-//
-//    // If switching to login, pre-fill the username (by clicking from signup -> login)
-//                if (fxmlFile.equals("/view/login.fxml")) {
-//        loginController loginC = loader.getController();
-//        loginController.setUserInfo(username);
-//    }
-
 
 }
 

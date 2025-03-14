@@ -102,7 +102,7 @@ public class signup2Controller implements Initializable {
 
         // handle click to previous / next
         image_previousPage2.setOnMouseClicked(event ->
-                DBUtils.changeScene(event,"/view/signup.fxml", null, null )
+                DBUtils.changeScene(event,"/view/signup.fxml", username, userpassword )
 
         );
         button_next2.setOnAction(new EventHandler<ActionEvent>() {

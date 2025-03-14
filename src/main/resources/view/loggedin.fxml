@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -27,43 +28,51 @@
                         <Insets />
                      </VBox.margin>
                      <children>
-                        <Label fx:id="label_welcome" prefHeight="46.0" prefWidth="196.0" text="Welcome !" textFill="#f5ebc7">
+                        <Label fx:id="label_welcome" prefHeight="46.0" prefWidth="148.0" text="Welcome !" textAlignment="CENTER" textFill="#f5ebc7">
                            <font>
                               <Font size="30.0" />
                            </font>
                            <HBox.margin>
-                              <Insets right="2.0" top="30.0" />
+                              <Insets top="30.0" />
                            </HBox.margin>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox prefHeight="146.0" prefWidth="640.0">
+                  <HBox prefHeight="83.0" prefWidth="640.0">
                      <children>
-                        <Label fx:id="label_password" prefHeight="59.0" prefWidth="176.0" text="your ps is azer@aze" textFill="#f5ebc7">
+                        <Label prefHeight="27.0" prefWidth="273.0" text="Access your dashboard or log out." textFill="#f5ebc7">
                            <font>
-                              <Font name="Corbel" size="12.0" />
+                              <Font size="18.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="233.0" right="2.0" />
+                              <Insets left="180.0" />
                            </HBox.margin>
                         </Label>
                      </children>
                   </HBox>
-                  <Button fx:id="button_enterapp" mnemonicParsing="false" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #d6bc99; -fx-cursor: hand;" text="enter app" textFill="#4a2f1c">
+                  <Button fx:id="button_openapp" mnemonicParsing="false" prefHeight="35.0" prefWidth="178.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="Open App" textFill="#4a2f1c">
                      <font>
                         <Font name="Corbel Bold" size="18.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="200.0" />
+                        <Insets bottom="10.0" left="225.0" />
                      </VBox.margin>
+                     <styleClass>
+                        <String fx:value="dark-Beige-Color" />
+                        <String fx:value="dark-button-animation" />
+                     </styleClass>
                   </Button>
-                  <Button fx:id="button_logout" mnemonicParsing="false" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #593f2d; -fx-cursor: hand; -fx-border-color: #d6bc99;" text="logout" textFill="#d6bc99">
+                  <Button fx:id="button_logout" mnemonicParsing="false" prefHeight="35.0" prefWidth="178.0" stylesheets="@styles/style.css" text="logout" textFill="#d6bc99">
                      <font>
                         <Font name="Corbel Bold" size="18.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="200.0" />
+                        <Insets left="225.0" top="10.0" />
                      </VBox.margin>
+                     <styleClass>
+                        <String fx:value="skip-button" />
+                        <String fx:value="ghost-button-animation" />
+                     </styleClass>
                   </Button>
                </children>
             </VBox>
@@ -79,34 +88,6 @@
                   <Insets left="15.0" top="10.0" />
                </HBox.margin>
             </ImageView>
-         </children>
-      </HBox>
-      <HBox layoutX="630.0" prefHeight="131.0" prefWidth="609.0">
-         <children>
-            <ImageView fitHeight="21.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-               <HBox.margin>
-                  <Insets bottom="11.0" left="360.0" top="20.0" />
-               </HBox.margin>
-               <image>
-                  <Image url="@img/arrow-right.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="label_aboutus" prefHeight="18.0" prefWidth="61.0" style="-fx-cursor: hand;" text="About us" textFill="#d6bc99">
-               <font>
-                  <Font name="Corbel" size="16.0" />
-               </font>
-               <HBox.margin>
-                  <Insets bottom="11.0" left="5.0" right="10.0" top="18.0" />
-               </HBox.margin>
-            </Label>
-            <Button fx:id="bottun_signup_up" mnemonicParsing="false" prefHeight="34.0" prefWidth="126.0" style="-fx-background-color: transparent; -fx-border-color: #d6bc99; -fx-border-width: 1px; -fx-text-fill: #d6bc99; -fx-cursor: hand;" stylesheets="@styles/style.css" text="SIGN UP" textFill="#4a2f1c">
-               <font>
-                  <Font name="Corbel" size="15.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </HBox.margin>
-            </Button>
          </children>
       </HBox>
       <HBox layoutX="4.0" layoutY="636.0" prefHeight="58.0" prefWidth="360.0">

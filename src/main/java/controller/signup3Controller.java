@@ -23,6 +23,9 @@ public class signup3Controller implements Initializable {
     @FXML
     private Button button_FinishSignup;
     @FXML
+    private Button button_skip;
+
+    @FXML
     private TextField tf_userdateofbirth;
     @FXML
     private TextField tf_userbio;
@@ -62,10 +65,20 @@ public class signup3Controller implements Initializable {
         button_FinishSignup.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+
+                //DEBUG
                 System.out.println("you will finished");
 
-                DBUtils.finishSignup(event, tf_userdateofbirth.getText(),tf_userphonenmbr.getText() , tf_userbio.getText());
-                System.out.println("you finished");
+                DBUtils.finishSignup(event, username, userpassword, tf_userdateofbirth.getText(),tf_userphonenmbr.getText() , tf_userbio.getText());
+
+            }
+        });
+
+        button_skip.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("SKIP!!!! we are switcihng to hp");
+                DBUtils.changeScene(event,"/view/hpp.fxml",username, userpassword );
             }
         });
 
