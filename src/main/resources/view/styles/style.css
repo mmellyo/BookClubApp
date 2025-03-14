@@ -1,12 +1,11 @@
 
-/*colors*/
-.dark-Beige-Color{
-    -fx-background-color: #d6bc99;
-}
 
-.brown-Color{
-    -fx-background-color:  #4a2f1e;
-}
+
+
+
+
+
+
 
 
 .radius {
@@ -52,14 +51,7 @@
     -fx-text-fill: #d6bc99; /* Text color */
 }
 
-.genre-button {
-    -fx-background-color:  #593f2d;
-    -fx-text-fill: #f5ebc7;
-    -fx-background-radius: 10px;
-}
-.genre-button:selected {
-    -fx-background-color: linear-gradient(to right, #ff7e5f, #feb47b); /* Example gradient */
-}
+
 
 
 .progress-bar .track {
@@ -74,7 +66,26 @@
 
 
 
+
+/*colors*/
+.dark-Beige-Color{
+    -fx-background-color: #d6bc99;
+}
+
+.brown-Color{
+    -fx-background-color:  #4a2f1e;
+}
+
+
+
 /*buttons*/
+
+    .beige-button {
+        -fx-background-color: #d6bc99;
+        -fx-cursor: hand;
+        -fx-text-fill:#4a2f1c;
+    }
+
     .ghost-button {
         -fx-background-color: transparent;
         -fx-border-color: #d6bc99;
@@ -82,6 +93,32 @@
         -fx-text-fill:#d6bc99;
         -fx-cursor: hand;
     }
+
+    .skip-button {
+            -fx-background-color:  #593f2d;
+            -fx-border-color: #d6bc99;
+            -fx-text-fill:#d6bc99;
+            -fx-cursor: hand;
+        }
+
+
+    .genre-button {
+        -fx-background-color:  #593f2d;
+        -fx-text-fill: #f5ebc7;
+        -fx-background-radius: 10px;
+    }
+
+    .changePp-button {
+        -fx-background-color: transparent;
+        -fx-border-color: #d6bc99;
+        -fx-border-width: 0.5px;
+        -fx-text-fill:#d6bc99;
+        -fx-cursor: hand;
+        -fx-border-radius: 20px;
+    }
+
+
+
 
 /*buttons animations*/
     light-button-animation:hover { /*yellow / golden orange*/
@@ -96,6 +133,7 @@
     .dark-button-animation:hover { /* Light brown/sand*/
         -fx-background-color: #C6A57B;
         -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.2), 10, 0.3, 0, 2); /*A soft white glow*/
+
     }
     .dark-button-animation:pressed { /*Dark brown*/
         -fx-background-color: #8C6B47;
@@ -117,6 +155,27 @@
         -fx-scale-x: 0.95;
         -fx-scale-y: 0.95;
     }
+
+
+    .genre-button:selected {
+            -fx-background-color: linear-gradient(to right, #ff7e5f, #feb47b); /* Example gradient */
+    }
+
+
+    .changePp-button-animation:hover {
+        -fx-background-color: #d6bc99;
+        -fx-border-color: #d6bc99;
+        -fx-border-width: 0.5px;
+        -fx-border-radius: 20px;
+        -fx-text-fill: #4a2f1e;
+    }
+    .changePp-button-animation:pressed {
+        -fx-background-color: #8C6B47;
+        -fx-scale-x: 0.95;
+        -fx-scale-y: 0.95;
+    }
+
+
 
 
 

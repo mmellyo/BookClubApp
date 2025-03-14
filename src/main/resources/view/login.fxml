@@ -103,7 +103,7 @@
                               <Insets left="9.0" />
                            </HBox.margin>
                         </Label>
-                        <PasswordField fx:id="tf_password" prefHeight="30.0" prefWidth="394.0" stylesheets="/view/styles/style.css">
+                        <PasswordField fx:id="tf_userpassword" prefHeight="30.0" prefWidth="394.0" stylesheets="/view/styles/style.css">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

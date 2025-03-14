@@ -25,7 +25,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import static model.Common.SessionManager.username;
 
 
 public class signupController implements Initializable {
@@ -42,9 +41,9 @@ public class signupController implements Initializable {
       @FXML
       private TextField tf_useremail;
       @FXML
-      private TextField tf_password;
+      private TextField tf_userpassword;
       @FXML
-      private TextField tf_passwordC;
+      private TextField tf_userpasswordC;
 
 
 
@@ -56,10 +55,10 @@ public class signupController implements Initializable {
                        //handle no white space
                        if (!tf_username.getText().trim().isEmpty() &&
                            !tf_useremail.getText().trim().isEmpty() &&
-                           !tf_password.getText().trim().isEmpty() &&
-                           !tf_passwordC.getText().trim().isEmpty())
+                           !tf_userpassword.getText().trim().isEmpty() &&
+                           !tf_userpasswordC.getText().trim().isEmpty())
                        {
-                             DBUtils.signUpUser(event, tf_username.getText(), tf_useremail.getText(), tf_password.getText(), tf_passwordC.getText());
+                             DBUtils.signUpUser(event, tf_username.getText(), tf_useremail.getText(), tf_userpassword.getText(), tf_userpasswordC.getText());
                        } else {
                              System.out.println("please fill in all info to sign up");
                              DBUtils.showCustomAlert("Please fill in all required fields to sign up.");
@@ -71,21 +70,21 @@ public class signupController implements Initializable {
             button_login.setOnAction(new EventHandler<ActionEvent>() {
                   @Override
                   public void handle(ActionEvent event) {
-                      DBUtils.prefilledLogin(event,tf_username.getText(),tf_password.getText());
+                      DBUtils.prefilledLogin(event,tf_username.getText(),tf_userpassword.getText());
                   }
             });
 
             button_login_up.setOnAction(new EventHandler<ActionEvent>() {
                   @Override
                   public void handle(ActionEvent event) {
-                        DBUtils.prefilledLogin(event,tf_username.getText(),tf_password.getText());
+                        DBUtils.prefilledLogin(event,tf_username.getText(),tf_userpassword.getText());
                   }
             });
       }
 
 
-      public void setUserInfo(String username, String password ) {
+      public void setUserInfo(String username, String userpassword ) {
             tf_username.setText(username);
-            tf_password.setText(password);
+            tf_userpassword.setText(userpassword);
       }
 }

@@ -1,8 +1,12 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -16,6 +20,25 @@ public class signup3Controller implements Initializable {
 
     @FXML
     private ImageView image_previousPage3;
+    @FXML
+    private Button button_FinishSignup;
+    @FXML
+    private TextField tf_userdateofbirth;
+    @FXML
+    private TextField tf_userbio;
+    @FXML
+    private TextField tf_userphonenmbr;
+
+    private String userpassword;
+    private String username;
+
+
+
+
+    public void setUserInfo(String username, String userpassword) {
+        this.username = username;
+        this.userpassword = userpassword;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -28,9 +51,25 @@ public class signup3Controller implements Initializable {
         //install tootip once not at each click
         Tooltip.install(image_previousPage3, tooltip);
 
+
         //hndle mouseclick
         image_previousPage3.setOnMouseClicked(event ->
                 DBUtils.changeScene(event,"/view/signup2.fxml",null, null )
         );
+
+
+
+        button_FinishSignup.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("you will finished");
+
+                DBUtils.finishSignup(event, tf_userdateofbirth.getText(),tf_userphonenmbr.getText() , tf_userbio.getText());
+                System.out.println("you finished");
+            }
+        });
+
     }
+
+
 }

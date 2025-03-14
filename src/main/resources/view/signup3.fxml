@@ -64,7 +64,7 @@
                               <Insets left="190.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="tf_username1" prefHeight="26.0" prefWidth="322.0" stylesheets="/view/styles/style.css">
+                        <TextField fx:id="tf_userdateofbirth" prefHeight="26.0" prefWidth="322.0" stylesheets="/view/styles/style.css">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -89,7 +89,7 @@
                               <Insets left="190.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="tf_username" prefHeight="26.0" prefWidth="314.0" stylesheets="/view/styles/style.css">
+                        <TextField fx:id="tf_userphonenmbr" prefHeight="26.0" prefWidth="314.0" stylesheets="/view/styles/style.css">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -114,7 +114,7 @@
                               <Insets left="190.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="tf_username11" prefHeight="26.0" prefWidth="322.0" stylesheets="/view/styles/style.css">
+                        <TextField fx:id="tf_userbio" prefHeight="26.0" prefWidth="322.0" stylesheets="/view/styles/style.css">
                            <styleClass>
                               <String fx:value="transparent" />
                               <String fx:value="textColor" />
@@ -134,24 +134,32 @@
                               <Image url="@img/arrowLeft.png" />
                            </image>
                            <HBox.margin>
-                              <Insets left="85.0" top="33.0" />
+                              <Insets left="100.0" top="33.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Button fx:id="button_skip" mnemonicParsing="false" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #593f2d; -fx-cursor: hand; -fx-border-color: #d6bc99;" text="Skip" textFill="#d6bc99">
+                        <Button fx:id="button_skip" mnemonicParsing="false" prefHeight="35.0" prefWidth="178.0" stylesheets="@styles/style.css" text="Skip" textFill="#d6bc99">
                            <font>
                               <Font name="Corbel Bold" size="18.0" />
                            </font>
                            <HBox.margin>
                               <Insets left="20.0" top="35.0" />
                            </HBox.margin>
+                           <styleClass>
+                              <String fx:value="skip-button" />
+                              <String fx:value="ghost-button-animation" />
+                           </styleClass>
                         </Button>
-                        <Button fx:id="button_login" mnemonicParsing="false" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #d6bc99; -fx-cursor: hand;" text="Finish the sign up" textFill="#4a2f1c">
+                        <Button fx:id="button_FinishSignup" mnemonicParsing="false" prefHeight="35.0" prefWidth="178.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="Finish the sign up" textFill="#4a2f1c">
                            <font>
                               <Font name="Corbel Bold" size="18.0" />
                            </font>
                            <HBox.margin>
                               <Insets left="30.0" top="35.0" />
                            </HBox.margin>
+                           <styleClass>
+                              <String fx:value="dark-button-animation" />
+                              <String fx:value="dark-Beige-Color" />
+                           </styleClass>
                         </Button>
                      </children>
                   </HBox>
@@ -262,7 +270,6 @@
             <Label prefHeight="18.0" prefWidth="4.0" text="4" textFill="#4a2f1e" />
          </children>
       </StackPane>
-      <HBox layoutY="81.0" prefHeight="35.0" prefWidth="600.0" />
       <VBox layoutX="346.0" layoutY="315.0" prefHeight="140.0" prefWidth="100.0">
          <children>
             <ImageView fitHeight="76.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
@@ -273,13 +280,17 @@
                   <Insets left="15.0" top="20.0" />
                </VBox.margin>
             </ImageView>
-            <Button fx:id="bottun_changepp" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: #d6bc99; -fx-border-width: 0.5px; -fx-text-fill: #d6bc99; -fx-cursor: hand; -fx-border-radius: 20px;" stylesheets="@styles/style.css" text="change picture" textFill="#4a2f1c">
+            <Button fx:id="bottun_changepp" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-border-radius: 20px;" stylesheets="@styles/style.css" text="change picture" textFill="#4a2f1c">
                <font>
                   <Font name="Corbel" size="13.0" />
                </font>
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
+               <styleClass>
+                  <String fx:value="changePp-button" />
+                  <String fx:value="changePp-button-animation" />
+               </styleClass>
             </Button>
          </children>
       </VBox>

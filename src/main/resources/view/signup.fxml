@@ -139,7 +139,7 @@
                               <Insets left="9.0" />
                            </HBox.margin>
                         </Label>
-                        <PasswordField fx:id="tf_password" prefHeight="26.0" prefWidth="390.0" stylesheets="/view/styles/style.css">
+                        <PasswordField fx:id="tf_userpassword" prefHeight="26.0" prefWidth="390.0" stylesheets="/view/styles/style.css">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -164,7 +164,7 @@
                               <Insets left="73.0" />
                            </HBox.margin>
                         </Label>
-                        <PasswordField fx:id="tf_passwordC" prefHeight="26.0" prefWidth="390.0" stylesheets="/view/styles/style.css">
+                        <PasswordField fx:id="tf_userpasswordC" prefHeight="26.0" prefWidth="390.0" stylesheets="/view/styles/style.css">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

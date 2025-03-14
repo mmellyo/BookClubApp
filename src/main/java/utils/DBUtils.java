@@ -8,11 +8,10 @@
 //Common Constants (e.g., predefined messages, max book count)
 package utils;
 
-import controller.loggedinController;
-import controller.loginController;
-import controller.signupController;
+import controller.*;
 import javafx.animation.ScaleTransition;
 import javafx.event.Event;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -35,17 +34,20 @@ import javafx.util.Duration;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import model.Common;
 import model.CommonConstants;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBUtils {
 
     //ALERT
     public static double xOffset = 0;
     public static double yOffset = 0;
+
+    private static List<Integer> selectedGenres = new ArrayList<>();
 
     public static void showCustomAlert(String displayAlert) {
         Stage stage = new Stage();
@@ -114,24 +116,34 @@ public class DBUtils {
     }
 
 
-    public static void changeScene(Event event, String fxmlFile, String username, String password ) {
+    public static void changeScene(Event event, String fxmlFile, String username, String userpassword ) {
         Parent root = null;
 
 
         // if user is switching with info entered => Load the next FXML file with valid info
-        if (username != null && password!= null) {
+        if (username != null && userpassword!= null) {
             try {
                 FXMLLoader loader = new FXMLLoader(DBUtils.class.getResource(fxmlFile));
                 root = loader.load();  //loads the UI and assigns it to root
 
                 if (fxmlFile.equals("/view/login.fxml")) {
                     loginController loginC = loader.getController();
-                    loginC.setUserInfo(username, password);
+                    loginC.setUserInfo(username, userpassword);
                 }
 
                 if (fxmlFile.equals("/view/signup.fxml")) {
                     signupController signUpC = loader.getController();
-                    signUpC.setUserInfo(username, password);
+                    signUpC.setUserInfo(username, userpassword);
+                }
+
+                if (fxmlFile.equals("/view/signup2.fxml")) {
+                    signup2Controller signUp2C = loader.getController();
+                    signUp2C.setUserInfo(username,userpassword);
+                }
+
+                if (fxmlFile.equals("/view/signup3.fxml")) {
+                    signup3Controller signUp3C = loader.getController();
+                    signUp3C.setUserInfo(username,userpassword);
                 }
 
 
@@ -174,8 +186,7 @@ public class DBUtils {
         stage.show();
     }
 
-
-    public static void signUpUser (ActionEvent event, String username, String useremail, String password, String passwordC) {
+    public static void signUpUser (ActionEvent event, String username, String useremail, String userpassword, String passwordC) {
 
         //declare DB connection
         Connection connection = null;
@@ -207,16 +218,16 @@ public class DBUtils {
             } else //username not used:
             {
                 //quire DB to insert user
-                psInsert = connection.prepareStatement("INSERT INTO users (username, useremail,  `password`) VALUES (?,?,?)");
+                psInsert = connection.prepareStatement("INSERT INTO users (username, useremail,  `userpassword`) VALUES (?,?,?)");
                 psInsert.setString(1, username);
                 psInsert.setString(2, useremail);
-                psInsert.setString(3, password);
+                psInsert.setString(3, userpassword);
                 psInsert.executeUpdate();
 
                 System.out.println("new user inserted");
 
                 //changeScene
-                changeScene(event, "/view/signup2.fxml", username, password);
+                changeScene(event, "/view/signup2.fxml", username, userpassword);
             }
 
 
@@ -264,19 +275,105 @@ public class DBUtils {
     }
 
 
+
+
+
+    public static void finishSignup (ActionEvent event,String userdateofbirth, String userphonenmbr, String userbio) {
+
+        //declare DB connection
+        Connection connection = null;
+        PreparedStatement psInsert = null;
+        PreparedStatement psChecknmbrExists = null;
+        ResultSet resultSet = null;
+
+        try {
+            //connect with DB
+            connection = DriverManager.getConnection(CommonConstants.DB_URL,
+                    CommonConstants.DB_USERNAME, CommonConstants.DB_PASSWORD);
+
+            //DEBUG
+            System.out.println("DB connected successfully to finish signup");
+
+            //quire DB to check if phonenmbr = phonenmbr...
+            psChecknmbrExists = connection.prepareStatement("SELECT * FROM "+ CommonConstants.DB_USERS_TABLE_NAME + " WHERE userphonenmbr = ?");
+            psChecknmbrExists.setString(1, userphonenmbr);
+            resultSet = psChecknmbrExists.executeQuery();
+
+            //the check
+            //if nmbr exists
+            if (resultSet.isBeforeFirst()) {
+                //DEBUG
+
+                System.out.println("phonenmbr exists, cant use this phonenmbr");
+                showCustomAlert("This phone number is already in use. Please enter a different one.");
+
+            } else //nmbr not used:
+            {
+                //quire DB to insert additional info
+                psInsert = connection.prepareStatement("INSERT INTO users (username, useremail,  `userpassword`) VALUES (?,?,?)");
+                psInsert.setString(1, userdateofbirth);
+                psInsert.setString(2, userphonenmbr);
+                psInsert.setString(3, userbio);
+                psInsert.executeUpdate();
+
+                //DEBUG
+                System.out.println("new addi info inserted");
+
+                //changeScene
+                //changeScene(event, "/view/signup2.fxml", username, userpassword);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+
+            //free our DB resources in final block (cuz it executes no matter what)
+        } finally {
+            //follow order resultset / ps / connection
+
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (psChecknmbrExists != null) {
+                try {
+                    psChecknmbrExists.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+            if (connection!= null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+
+
     //login from signup
-    public static void prefilledLogin(ActionEvent event, String username, String password) {
+    public static void prefilledLogin(ActionEvent event, String username, String userpassword) {
         //changeScene
-        changeScene(event, "/view/login.fxml", username, password);
+        changeScene(event, "/view/login.fxml", username, userpassword);
     }
 
     //signup from login
-    public static void prefilledSignup(ActionEvent event, String username, String password) {
+    public static void prefilledSignup(ActionEvent event, String username, String userpassword) {
         //changeScene
-        changeScene(event, "/view/signup.fxml", username, password);
+        changeScene(event, "/view/signup.fxml", username, userpassword);
     }
 
-    public static void loginUser(ActionEvent event, String username, String password) throws SQLException {
+    public static void loginUser(ActionEvent event, String username, String userpassword) throws SQLException {
         //declare DB connection
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -310,15 +407,15 @@ public class DBUtils {
             } else { //if username already exists; is PW = PW in DB?
 
                 while (resultSet.next()){
-                  String retrievedPassword = resultSet.getString("password");
+                  String retrieveduserpassword = resultSet.getString("userpassword");
                   String retrievedemail = resultSet.getString("useremail");
 
-                  if(retrievedPassword.equals(password)) {
+                  if(retrieveduserpassword.equals(userpassword)) {
                       System.out.println("correct pw, moving to loggedin.fxml ");
-                      changeScene(event, "/view/loggedin.fxml", username, password );
+                      changeScene(event, "/view/loggedin.fxml", username, userpassword );
                   } else {
-                      System.out.println("Incorrect password. Please try again.");
-                      showCustomAlert("Incorrect password. Please try again.");
+                      System.out.println("Incorrect userpassword. Please try again.");
+                      showCustomAlert("Incorrect userpassword. Please try again.");
                   }
                 }
             }
@@ -357,7 +454,74 @@ public class DBUtils {
 
 
 
-    //not used but i might need it later
+
+
+
+
+    // genre & DB communication methods
+    @FXML
+    public static void toggleGenre(ActionEvent event) {
+        Button clickedButton = (Button) event.getSource();
+        int genreId = Integer.parseInt(clickedButton.getUserData().toString());
+
+        if (selectedGenres.contains(genreId)) {
+            selectedGenres.remove(Integer.valueOf(genreId));
+            //DEBUG
+            System.out.println("Deselect genre");
+            clickedButton.setStyle(""); // Reset button color
+        } else {
+            selectedGenres.add(genreId);
+            //DEBUG
+            System.out.println("select genre");
+            clickedButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+        }
+    }
+
+
+    @FXML
+    public static void saveUserGenres(String username) {
+        //declare DB connection
+        Connection connection = null;
+        PreparedStatement psInsert = null;
+        ResultSet resultSet = null;
+
+        if (selectedGenres.isEmpty()) {
+            //DEBUG
+            System.out.println("No genres selected.");
+            return;
+        }
+
+        //DEBUG
+        System.out.println(" genres are saving");
+
+        try {
+        //connect with DB
+        connection = DriverManager.getConnection(CommonConstants.DB_URL,
+                CommonConstants.DB_USERNAME, CommonConstants.DB_PASSWORD);
+
+        //DEBUG
+        System.out.println("DB connected successfully while genre selection");
+
+        //query DB
+        String query = "INSERT INTO user_genres (username, genre_id) VALUES (?, ?)";
+        psInsert= connection.prepareStatement(query);
+            for (int genreId : selectedGenres)
+            {
+                psInsert.setString(1, username);
+                psInsert.setInt(2, genreId);
+                psInsert.addBatch();
+            }
+
+            psInsert.executeBatch();
+            //DEBUG
+            System.out.println("Genres saved for user: " + username);
+
+        } catch (SQLException e) {
+        e.printStackTrace(); }
+    }
+
+
+        //not used but i might need it later
     public static boolean checkUser(String username){
         try{
             Connection connection = DriverManager.getConnection(CommonConstants.DB_URL,

@@ -23,7 +23,7 @@ public class loginController implements Initializable {
     private Button button_signup_up;
 
     @FXML
-    private TextField tf_password;
+    private TextField tf_userpassword;
     @FXML
     private TextField tf_username;
 
@@ -38,13 +38,13 @@ public class loginController implements Initializable {
 
                 //handle no white space
                 if (tf_username.getText().trim().isEmpty() ||
-                    tf_password.getText().trim().isEmpty() )
+                    tf_userpassword.getText().trim().isEmpty() )
                 {
                     System.out.println("please fill in all info to login");
                     DBUtils.showCustomAlert("Please fill in all required fields to log in.");
                 } else {
                     try {
-                        DBUtils.loginUser(event, tf_username.getText(), tf_password.getText());
+                        DBUtils.loginUser(event, tf_username.getText(), tf_userpassword.getText());
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
@@ -55,20 +55,20 @@ public class loginController implements Initializable {
         button_signup.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DBUtils.prefilledSignup(event, tf_username.getText(), tf_password.getText() );
+                DBUtils.prefilledSignup(event, tf_username.getText(), tf_userpassword.getText() );
             }
         });
 
         button_signup_up.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DBUtils.prefilledSignup(event, tf_username.getText(), tf_password.getText() );
+                DBUtils.prefilledSignup(event, tf_username.getText(), tf_userpassword.getText() );
             }
         });
     }
 
-    public  void setUserInfo(String username , String password) {
+    public  void setUserInfo(String username , String userpassword) {
         tf_username.setText(username);
-        tf_password.setText(password);
+        tf_userpassword.setText(userpassword);
     }
 }
