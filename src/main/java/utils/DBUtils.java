@@ -154,11 +154,11 @@ public class DBUtils {
                 }
 
 
-                if (fxmlFile.equals("/view/hpp.fxml")) {
+                if (fxmlFile.equals("/view/Home.fxml")) {
                     //DEBUG
                     System.out.println("hpp if entered");
-                    hppController hppC = loader.getController();
-                    hppC.setUserInfo(username,userpassword);
+                    HomeController homeC = loader.getController();
+                    homeC.setUserInfo(username,userpassword);
                 }
 
 
@@ -201,13 +201,16 @@ public class DBUtils {
         stage.show();
     }
 
-    public static void signUpUser (ActionEvent event, String username, String useremail, String userpassword, String passwordC) {
+    public static void signUpUser (ActionEvent event, String username, String useremail, String userpassword, String userpasswordC) {
 
         //declare DB connection
         Connection connection = null;
         PreparedStatement psInsert = null;
         PreparedStatement psCheckUserExists = null;
         ResultSet resultSet = null;
+
+        boolean invalidEmail = false;
+        boolean notMatching = false;
 
 
 
@@ -229,14 +232,24 @@ public class DBUtils {
             if (resultSet.isBeforeFirst()) {
                 System.out.println("user exists, cant use this username");
                 showCustomAlert("This username is already taken. Please choose another one.");
+            }
+            else //username not used:
 
-            } else //username not used:
                 //if invalid email
                 if (!Common.isValidEmail(useremail)) {
                     System.out.println("Invalid email");
                     showCustomAlert("Invalid Email format! Please enter a valid Email.");
+                    invalidEmail = true;
+                }
 
-                }else  //if valid email
+                //if pw matching
+                if (!Common.isPasswordMatching(userpassword, userpasswordC)) {
+                    System.out.println("pw != pwC");
+                    showCustomAlert("Passwords do not match! Please re-enter.");
+                    notMatching = true;
+                }
+
+                if (!invalidEmail && !notMatching) //if valid email & pw = pwC
                 {
                     //quire DB to insert user
                     psInsert = connection.prepareStatement("INSERT INTO users (username, useremail,  `userpassword`) VALUES (?,?,?)");
@@ -246,7 +259,6 @@ public class DBUtils {
                     psInsert.executeUpdate();
 
                     System.out.println("new user inserted");
-
 
 
                     //changeScene
@@ -347,7 +359,8 @@ public class DBUtils {
                 invalidPhonenmbr = true;
             }
 
-            if (!phoneUsed && !invalidDate && !invalidPhonenmbr) //if nmbr not used + valid date + valid phoennmbr:
+            //if nmbr not used + valid date + valid phoennmbr:
+            if (!phoneUsed && !invalidDate && !invalidPhonenmbr)
             {
                     //quire DB to update additional info
                     psUpdate = connection.prepareStatement("UPDATE users SET userdateofbirth = ?, userphonenmbr = ?, userbio = ? WHERE username = ?");
@@ -362,7 +375,7 @@ public class DBUtils {
                 System.out.println("new additional info inserted");
 
                 //changeScene to hp
-                changeScene(event, "/view/hpp.fxml", username, userpassword);
+                changeScene(event, "/view/Home.fxml", username, userpassword);
 
                 //DEBUG
                 System.out.println("we are switcihng to hp");

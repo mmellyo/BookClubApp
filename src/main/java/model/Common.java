@@ -33,6 +33,10 @@ public class Common {
         return Pattern.compile(PHONE_REGEX).matcher(phone).matches();
     }
 
+    // Validate isPasswordMatching Format
+    public static boolean isPasswordMatching(String password, String confirmPassword) {
+        return password.equals(confirmPassword);
+    }
  }
 
 

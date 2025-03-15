@@ -122,6 +122,16 @@
     }
 
 
+    .sm-button {
+        -fx-background-radius: 50%;
+        -fx-border-color: white;
+        -fx-border-width: 2px;
+        -fx-border-radius: 50%;
+        -fx-transition: all 0.25s;
+    }
+
+
+
 
 
 /*buttons animations*/
@@ -178,6 +188,11 @@
         -fx-scale-x: 0.95;
         -fx-scale-y: 0.95;
     }
+
+
+     .sm-button:hover {
+            -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.8), 10, 0.5, 0, 0);
+        }
 
 
 

@@ -78,7 +78,7 @@ public class signup3Controller implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("SKIP!!!! we are switcihng to hp");
-                DBUtils.changeScene(event,"/view/hpp.fxml",username, userpassword );
+                DBUtils.changeScene(event,"/view/Home.fxml",username, userpassword );
             }
         });
 

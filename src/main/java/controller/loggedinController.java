@@ -16,12 +16,22 @@ import java.util.ResourceBundle;
 public class loggedinController implements Initializable {
 
     @FXML
-    private Button button_enterapp;
+    private Button button_openapp;
     @FXML
     private Button button_logout;
     @FXML
     private Label label_welcome;
+    private String username;
+
     @FXML
+
+    public void setUsername(String username) {
+        label_welcome.setText("Welcome back " + username + ", You're logged in!");
+        this.username= username;
+        // Ensure dynamic width adjustment
+        label_welcome.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        label_welcome.setMinWidth(Region.USE_PREF_SIZE);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -29,17 +39,17 @@ public class loggedinController implements Initializable {
         button_logout.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DBUtils.changeScene(event, "/view/login.fxml", null , null);
+                DBUtils.changeScene(event, "/view/login.fxml", username , null);
             }
         });
-    }
 
-    public void setUsername(String username) {
-        label_welcome.setText("Welcome back " + username + ", You're logged in!");
+        button_openapp.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                DBUtils.changeScene(event, "/view/Home.fxml", username , null);
 
-        // Ensure dynamic width adjustment
-        label_welcome.setPrefWidth(Region.USE_COMPUTED_SIZE);
-        label_welcome.setMinWidth(Region.USE_PREF_SIZE);
+            }
+        });
     }
 
 
