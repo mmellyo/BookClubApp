@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1238.0" style="-fx-background-color: #4a2f1e;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.signup2Controller">
+   <children>
+      <BorderPane layoutX="298.0" layoutY="179.0" prefHeight="520.0" prefWidth="654.0">
+         <left>
+            <VBox prefHeight="507.0" prefWidth="640.0" style="-fx-background-color: #4a2f1e;" stylesheets="/view/styles/style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="650.0">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="650.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <children>
+                        <Label prefHeight="43.0" prefWidth="304.0" text="Let's find out your taste" textFill="#f5ebc7">
+                           <font>
+                              <Font size="29.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" top="30.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="19.0" prefWidth="650.0">
+                     <children>
+                        <Label prefHeight="14.0" prefWidth="136.0" text="Select your favorite genres" textFill="#f5ebc7">
+                           <font>
+                              <Font name="Corbel" size="12.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="250.0" right="2.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="38.0" prefWidth="640.0">
+                     <children>
+                        <Button fx:id="button_Fantasy" mnemonicParsing="false" prefHeight="35.0" prefWidth="86.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="Fantasy" textFill="#4a2f1c" userData="1">
+                           <font>
+                              <Font name="Corbel" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="111.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="genre-button" />
+                              <String fx:value="dark-button-animation" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="button_Romance" mnemonicParsing="false" prefHeight="35.0" prefWidth="95.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="Romance" textFill="#4a2f1c" userData="2">
+                           <font>
+                              <Font name="Corbel" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="genre-button" />
+                              <String fx:value="dark-button-animation" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="button_Horror" mnemonicParsing="false" prefHeight="35.0" prefWidth="80.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="Horror" textFill="#4a2f1c" userData="3">
+                           <font>
+                              <Font name="Corbel" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="genre-button" />
+                              <String fx:value="dark-button-animation" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="button_History" mnemonicParsing="false" prefHeight="35.0" prefWidth="106.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="History" textFill="#4a2f1c" userData="4">
+                           <font>
+                              <Font name="Corbel" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="genre-button" />
+                              <String fx:value="dark-button-animation" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="38.0" prefWidth="640.0">
+                     <children>
+                        <Button fx:id="button_Thriller" mnemonicParsing="false" prefHeight="35.0" prefWidth="78.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="Thriller" textFill="#4a2f1c">
+                           <font>
+                              <Font name="Corbel" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="146.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="genre-button" />
+                              <String fx:value="dark-button-animation" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="button_HistoricalFiction" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="Historical Fiction" textFill="#4a2f1c" userData="6">
+                           <font>
+                              <Font name="Corbel" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="genre-button" />
+                              <String fx:value="dark-button-animation" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="button_Mystery" mnemonicParsing="false" prefHeight="35.0" prefWidth="86.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="Mystery" textFill="#4a2f1c" userData="5">
+                           <font>
+                              <Font name="Corbel" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="genre-button" />
+                              <String fx:value="dark-button-animation" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="38.0" prefWidth="640.0">
+                     <children>
+                        <Button fx:id="button_Business" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="Business" textFill="#4a2f1c">
+                           <font>
+                              <Font name="Corbel" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="111.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="genre-button" />
+                              <String fx:value="dark-button-animation" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="button_ReligiousSpiritual" mnemonicParsing="false" prefHeight="35.0" prefWidth="186.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="Religious &amp; Spiritual" textFill="#4a2f1c">
+                           <font>
+                              <Font name="Corbel" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="genre-button" />
+                              <String fx:value="dark-button-animation" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="button_Science" mnemonicParsing="false" prefHeight="35.0" prefWidth="85.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="Science" textFill="#4a2f1c">
+                           <font>
+                              <Font name="Corbel" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="genre-button" />
+                              <String fx:value="dark-button-animation" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="38.0" prefWidth="640.0">
+                     <children>
+                        <Button fx:id="button_Psychology" mnemonicParsing="false" prefHeight="35.0" prefWidth="114.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="Psychology" textFill="#4a2f1c">
+                           <font>
+                              <Font name="Corbel" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="146.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="genre-button" />
+                              <String fx:value="dark-button-animation" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="button_Poetry" mnemonicParsing="false" prefHeight="35.0" prefWidth="80.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="Poetry" textFill="#4a2f1c">
+                           <font>
+                              <Font name="Corbel" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="genre-button" />
+                              <String fx:value="dark-button-animation" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="button_Literature" mnemonicParsing="false" prefHeight="35.0" prefWidth="102.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="Literature" textFill="#4a2f1c">
+                           <font>
+                              <Font name="Corbel" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="genre-button" />
+                              <String fx:value="dark-button-animation" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="38.0" prefWidth="640.0">
+                     <children>
+                        <Button fx:id="button_SelfHelp" mnemonicParsing="false" prefHeight="35.0" prefWidth="96.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="Self-Help" textFill="#4a2f1c">
+                           <font>
+                              <Font name="Corbel" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="111.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="genre-button" />
+                              <String fx:value="dark-button-animation" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="button_ScienceFiction" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="Science Fiction" textFill="#4a2f1c">
+                           <font>
+                              <Font name="Corbel" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="genre-button" />
+                              <String fx:value="dark-button-animation" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="button_ai" mnemonicParsing="false" prefHeight="35.0" prefWidth="147.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="AI &amp; Technology" textFill="#4a2f1c">
+                           <font>
+                              <Font name="Corbel" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="genre-button" />
+                              <String fx:value="dark-button-animation" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="39.0" prefWidth="640.0">
+                     <children>
+                        <ImageView fx:id="image_previousPage2" fitHeight="150.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                           <image>
+                              <Image url="@img/arrowLeft.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" top="34.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Button fx:id="button_next2" mnemonicParsing="false" prefHeight="22.0" prefWidth="140.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="Next" textFill="#4a2f1c">
+                           <font>
+                              <Font name="Corbel Bold" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="16.0" top="35.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="dark-button-animation" />
+                              <String fx:value="dark-Beige-Color" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="202.0" prefWidth="641.0" />
+               </children>
+            </VBox>
+         </left>
+      </BorderPane>
+      <HBox prefHeight="58.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="35.0" fitWidth="331.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/LOGOLIGHT.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="15.0" top="10.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox layoutX="4.0" layoutY="636.0" prefHeight="58.0" prefWidth="314.0">
+         <children>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@img/facebook.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="5.0" top="30.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@img/instagram.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="7.0" top="30.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@img/tiktok.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="7.0" right="7.0" top="30.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@img/twitter.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="30.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox layoutX="1125.0" layoutY="673.0" prefHeight="21.0" prefWidth="111.0">
+         <children>
+            <Label prefHeight="22.0" prefWidth="120.0" text="© 2025 Nbookini, Inc." textFill="#f5ebc7">
+               <font>
+                  <Font name="Calibri Light" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <ProgressBar centerShape="false" layoutX="500.0" layoutY="190.0" prefHeight="4.0" prefWidth="253.0" progress="0.5" stylesheets="@styles/style.css">
+         <styleClass>
+            <String fx:value="thumb" />
+            <String fx:value="slider" />
+         </styleClass>
+      </ProgressBar>
+      <StackPane layoutX="484.0" layoutY="179.0" prefHeight="8.0" prefWidth="0.0">
+         <children>
+            <Circle fill="#d6bc99" radius="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </Circle>
+            <Label prefHeight="18.0" prefWidth="4.0" text="1" textFill="#4a2f1e" />
+         </children>
+      </StackPane>
+      <StackPane layoutX="572.0" layoutY="179.0" prefHeight="8.0" prefWidth="0.0">
+         <children>
+            <Circle fill="#d6bc99" radius="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </Circle>
+            <Label prefHeight="18.0" prefWidth="4.0" text="2" textFill="#4a2f1e" />
+         </children>
+      </StackPane>
+      <StackPane layoutX="658.0" layoutY="179.0" prefHeight="8.0" prefWidth="0.0">
+         <children>
+            <Circle fill="#d6bc99" radius="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </Circle>
+            <Label prefHeight="18.0" prefWidth="4.0" text="3" textFill="#4a2f1e" />
+         </children>
+      </StackPane>
+      <StackPane layoutX="732.0" layoutY="180.0" prefHeight="8.0" prefWidth="0.0">
+         <children>
+            <Circle fill="#d6bc99" radius="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </Circle>
+            <Label prefHeight="18.0" prefWidth="4.0" text="4" textFill="#4a2f1e" />
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
