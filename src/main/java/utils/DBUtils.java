@@ -34,6 +34,7 @@ import javafx.util.Duration;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import model.BookModel;
 import model.CommonConstants;
 import model.Common;
 
@@ -516,6 +517,64 @@ public class DBUtils {
 
     }
 
+
+    public static List<BookModel> fetchLikedBooks(int user_id) throws SQLException {
+        List<BookModel> books = new ArrayList<>();
+
+        // Declare DB connection
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            // Connect
+            connection = DriverManager.getConnection(
+                    CommonConstants.DB_URL,
+                    CommonConstants.DB_USERNAME,
+                    CommonConstants.DB_PASSWORD
+            );
+
+            System.out.println("DB connected!");
+
+            //query
+            String query = "SELECT b.*, a.author_first_name, a.author_last_name " +
+                    "FROM " + CommonConstants.DB_BOOKS_TABLE_NAME + " b " +
+                    "JOIN " + CommonConstants.DB_LIKED_BOOKS_TABLE_NAME + " lb ON b.book_id = lb.book_id " +
+                    "JOIN " + CommonConstants.DB_WRITTEN_BY_TABLE_NAME + " wb ON wb.book_id = b.book_id " +
+                    "JOIN " + CommonConstants.DB_AUTHOR_TABLE_NAME + " a ON a.author_id = wb.author_id " +
+                    "WHERE lb.user_id = ?";
+
+            // Prepare statement
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, user_id);
+
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int bookId = resultSet.getInt("book_id");
+                String title = resultSet.getString("title");
+                byte[] cover_picture = resultSet.getBytes("cover_picture");
+                String author_first_name = resultSet.getString("author_first_name");
+                String author_last_name = resultSet.getString("author_last_name");
+                String description = resultSet.getString("description");
+                int page_nbr = resultSet.getInt("page_nbr");
+
+                books.add(new BookModel( bookId,  title,  author_first_name, author_last_name,  description,   page_nbr, cover_picture));
+
+                // Use or store the data as needed
+                System.out.println("Liked Book: " + bookId + " - " + title);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null) resultSet.close();
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        }
+        return books;
+
+    }
 
 
 
