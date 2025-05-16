@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" prefHeight="700.0" prefWidth="1238.0" style="-fx-background-color: #f5ecdb;" stylesheets="@../css/BookPage.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookPageController">
+<AnchorPane prefHeight="700.0" prefWidth="55.0" style="-fx-background-color: #baaa87;" styleClass="sidebar" stylesheets="@../css/Genre.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1188.0" AnchorPane.topAnchor="0.0">
+  <children>
+      <Pane prefHeight="100.0" prefWidth="55.0" AnchorPane.rightAnchor="0.0">
+          <children>
+              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="2.5" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../img/logo.png" />
+                  </image></ImageView>
+          </children>
+      </Pane>
+      <VBox layoutX="10.0" layoutY="208.0" spacing="10.0">
+          <children>
+              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+                  <children>
+                      <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../pictures/home.png" />
+                          </image>
+                      </ImageView>
+                  </children>
+              </HBox>
+              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+                  <children>
+                      <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../pictures/book.png" />
+                          </image>
+                      </ImageView>
+                  </children>
+              </HBox>
+              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+                  <children>
+                      <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../pictures/chat.png" />
+                          </image>
+                      </ImageView>
+                  </children>
+              </HBox>
+              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+                  <children>
+                      <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../pictures/Group 1707479776.png" />
+                          </image>
+                      </ImageView>
+                  </children>
+              </HBox>
+              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+                  <children>
+                      <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../pictures/archive-book.png" />
+                          </image>
+                      </ImageView>
+                  </children>
+              </HBox>
+          </children>
+      </VBox>
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="15.0" layoutY="662.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+              <Image url="@../pictures/settings.png" />
+          </image>
+      </ImageView>
+  </children>
+</AnchorPane>
+   <StackPane layoutX="293.0" layoutY="175.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+         <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="424.0" prefWidth="1000.0" styleClass="no-focus-scroll" vbarPolicy="NEVER" StackPane.alignment="BOTTOM_CENTER">
+            <content>
+               <VBox maxWidth="-Infinity" prefHeight="847.0" prefWidth="985.0" style="-fx-background-color: #faf3e5;" />
+            </content>
+         </ScrollPane>
+         <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="334.0" prefWidth="1188.0" StackPane.alignment="TOP_CENTER">
+            <StackPane.margin>
+               <Insets top="80.0" />
+            </StackPane.margin>
+            <children>
+               <ImageView fitHeight="310.0" fitWidth="261.0" pickOnBounds="true" preserveRatio="true">
+                  <HBox.margin>
+                     <Insets left="250.0" />
+                  </HBox.margin>
+               </ImageView>
+               <VBox maxHeight="-Infinity" prefHeight="355.0" prefWidth="491.0">
+                  <children>
+                     <Label alignment="TOP_LEFT" prefHeight="108.0" prefWidth="428.0" text="Book Title">
+                        <font>
+                           <Font name="System Bold" size="36.0" />
+                        </font>
+                        <VBox.margin>
+                           <Insets left="50.0" />
+                        </VBox.margin>
+                        <opaqueInsets>
+                           <Insets top="10.0" />
+                        </opaqueInsets>
+                     </Label>
+                     <Label alignment="TOP_LEFT" prefHeight="79.0" prefWidth="441.0" text="Author">
+                        <VBox.margin>
+                           <Insets left="50.0" top="10.0" />
+                        </VBox.margin>
+                     </Label>
+                     <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="118.0" prefWidth="491.0">
+                        <children>
+                           <Button alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="122.0" text="Add To Library">
+                              <HBox.margin>
+                                 <Insets left="50.0" />
+                              </HBox.margin>
+                           </Button>
+                        </children>
+                     </HBox>
+                     <Separator maxWidth="-Infinity" opacity="0.55" prefHeight="18.0" prefWidth="393.0">
+                        <VBox.margin>
+                           <Insets left="45.0" />
+                        </VBox.margin>
+                     </Separator>
+                  </children>
+               </VBox>
+            </children>
+         </HBox>
+      </children>
+   </StackPane>
+</AnchorPane>

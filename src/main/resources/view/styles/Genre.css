@@ -1,0 +1,35 @@
+.movementButtons{
+    -fx-background-color:  #baaa87;
+    -fx-background-radius: 20px;
+}
+
+.movementButtons:hover {
+    -fx-background-color: #f0dcb6;
+}
+
+.movementButtons:pressed {
+    -fx-background-color: #665e4d;
+}
+
+.sidebar{
+    -fx-background-color : #BAAA87;
+}
+.sidebar-selected{
+    -fx-background-color : #A29475;
+    -fx-background-radius:25%
+}
+.mouse-mouved:hover{
+    -fx-background-color : #F5ECDB;
+    -fx-background-radius:25%
+}
+
+.bookButtons {
+    -fx-background-color: transparent;
+    -fx-wrap-text: false;
+    -fx-text-overrun: ellipsis;
+    -fx-max-width: 150px;
+    -fx-alignment: center;
+}
+.bookButtons:hover {
+    -fx-background-color: #baaa87;
+}
