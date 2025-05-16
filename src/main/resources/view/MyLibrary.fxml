@@ -84,63 +84,62 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="89.0" layoutY="33.0" prefHeight="700.0" prefWidth="1187.0" styleClass="no-focus-scroll" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane fx:id="mainScrollPane" fitToWidth="true" hbarPolicy="NEVER" layoutX="89.0" layoutY="33.0" prefHeight="700.0" prefWidth="1187.0" styleClass="no-focus-scroll" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0">
          <content>
-            <VBox prefHeight="964.0" prefWidth="1213.0" style="-fx-background-color: #f5ecdb;">
+            <VBox prefHeight="1401.0" prefWidth="1191.0" style="-fx-background-color: #f5ecdb;">
                <children>
                   <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="73.0" prefWidth="811.0">
                      <VBox.margin>
                         <Insets right="-5000.0" />
                      </VBox.margin>
                      <children>
-                        <StackPane alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="34.0" prefWidth="784.0" style="-fx-background-color: white; -fx-background-radius: 7;">
+                        <StackPane alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="34.0" prefWidth="1134.0" style="-fx-background-color: white; -fx-background-radius: 7;">
                            <children>
-                              <TextField fx:id="searchField" maxWidth="329.0" prefHeight="26.0" prefWidth="329.0" promptText="Search" style="-fx-background-color: #f0f0f0; -fx-background-radius: 7; -fx-prompt-text-fill: #665e4d;">
+                              <TextField fx:id="searchField" maxWidth="923.0" prefHeight="26.0" prefWidth="842.0" promptText="Search" style="-fx-background-color: #f0f0f0; -fx-background-radius: 7; -fx-prompt-text-fill: #665e4d;">
                                  <StackPane.margin>
-                                    <Insets left="150.0" />
+                                    <Insets left="250.0" />
                                  </StackPane.margin>
                                  <padding>
                                     <Insets left="30.0" />
                                  </padding>
+
                               </TextField>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true">
                                  <StackPane.margin>
-                                    <Insets left="55.0" />
+                                    <Insets left="250.0" />
                                  </StackPane.margin>
                                  <image>
-                                    <Image url="@/view/img/magnifying.png" />
+                                    <Image url="@img/magnifying.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="button_signup" mnemonicParsing="false" prefHeight="20.0" prefWidth="84.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="All books" textFill="#4a2f1c">
-                                 <font>
-                                    <Font name="Corbel Bold" size="10.0" />
-                                 </font>
+                              <Button mnemonicParsing="false" stylesheets="@styles/style.css" text="All Books" textAlignment="CENTER">
                                  <styleClass>
-                                    <String fx:value="dark-button-animation" />
-                                    <String fx:value="dark-Beige-Color" />
+                                    <String fx:value="My-Library-TopBar-btn" />
+                                    <String fx:value="My-Library-TopBar-btn-animation" />
                                  </styleClass>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
+                                 <font>
+                                    <Font name="Nirmala UI Semilight" size="12.0" />
+                                 </font>
                                  <StackPane.margin>
-                                    <Insets left="40.0" />
+                                    <Insets left="180.0" />
                                  </StackPane.margin>
                               </Button>
-                              <Button fx:id="button_signup1" mnemonicParsing="false" prefHeight="20.0" prefWidth="84.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="All books" textFill="#4a2f1c">
+                              <Button mnemonicParsing="false" styleClass="Current-My-Library-TopBar-btn" stylesheets="@styles/style.css" text="Your List" textAlignment="CENTER">
                                  <font>
-                                    <Font name="Corbel Bold" size="10.0" />
+                                    <Font name="Nirmala UI Semilight" size="12.0" />
                                  </font>
-                                 <styleClass>
-                                    <String fx:value="dark-button-animation" />
-                                    <String fx:value="dark-Beige-Color" />
-                                 </styleClass>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
                                  <StackPane.margin>
-                                    <Insets left="150.0" />
+                                    <Insets left="115.0" />
                                  </StackPane.margin>
                               </Button>
+                              <ImageView fitHeight="25.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@img/LOGOLIGHT.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets left="5.0" />
+                                 </StackPane.margin>
+                              </ImageView>
                            </children>
                            <opaqueInsets>
                               <Insets />
@@ -149,95 +148,172 @@
                               <Insets left="20.0" />
                            </HBox.margin>
                         </StackPane>
-                        <Button maxHeight="30.0" maxWidth="38.0" minHeight="30.0" minWidth="38.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="38.0" style="-fx-background-color: #f5ecdb;">
-                           <HBox.margin>
-                              <Insets left="160.0" />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@/view/img/app-notification.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
                      </children>
                   </HBox>
-                  <Label text="Liked Books">
+                  <Label text="Your Book Collection" textAlignment="CENTER">
                      <font>
-                        <Font name="Corbel" size="14.0" />
+                        <Font name="Nirmala UI Semilight" size="20.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="30.0" />
+                        <Insets left="490.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox prefWidth="1191.0">
+                  <HBox prefWidth="1342.0">
                      <children>
-                        <ScrollPane fitToHeight="true" prefWidth="1411.0">
-                           <content>
-                              <HBox fx:id="LikedList" prefWidth="200.0" spacing="25.0">
-                                 <padding>
-                                    <Insets left="35.0" top="20.0" />
-                                 </padding>
-                              </HBox>
-                           </content>
+                        <VBox prefWidth="400.0">
+                           <children>
+                              <Label fx:id="likedLabel" alignment="CENTER" text="Favorite Books">
+                                 <font>
+                                    <Font name="Nirmala UI Bold" size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="100.0" top="150.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Find your most loved books here." textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font name="Corbel Light Italic" size="19.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="50.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox prefWidth="941.0">
                            <HBox.margin>
-                              <Insets />
+                              <Insets left="100.0" />
                            </HBox.margin>
-                        </ScrollPane>
+                           <children>
+                              <HBox prefWidth="943.0">
+                                 <children>
+                                    <ScrollPane fitToHeight="true" prefWidth="817.0">
+                                       <content>
+                                          <HBox fx:id="LikedList" spacing="25.0">
+                                             <padding>
+                                                <Insets bottom="50.0" left="70.0" top="20.0" />
+                                             </padding>
+                                          </HBox>
+                                       </content>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </ScrollPane>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="50.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefWidth="200.0">
+                     <children>
+                        <VBox prefWidth="400.0">
+                           <children>
+                              <Label fx:id="readLaterLabel" text="Read Later">
+                                 <font>
+                                    <Font name="Nirmala UI Bold" size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="100.0" top="150.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Keep your next reads ready." textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font name="Corbel Light Italic" size="19.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="50.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox prefWidth="978.0">
+                           <HBox.margin>
+                              <Insets left="100.0" />
+                           </HBox.margin>
+                           <children>
+                              <HBox prefWidth="1191.0">
+                                 <children>
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" prefWidth="1411.0">
+                                       <content>
+                                          <HBox fx:id="ReadLaterList" prefWidth="200.0" spacing="25.0">
+                                             <padding>
+                                                <Insets bottom="50.0" left="70.0" top="20.0" />
+                                             </padding>
+                                          </HBox>
+                                       </content>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </ScrollPane>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="50.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
                      </children>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </HBox>
-                  <VBox layoutX="10.0" layoutY="417.0" prefHeight="235.0" prefWidth="811.0">
+                  <HBox prefWidth="200.0">
                      <children>
-                        <Label prefHeight="40.0" prefWidth="98.0" text="Recommended">
-                           <VBox.margin>
-                              <Insets left="30.0" />
-                           </VBox.margin>
-                        </Label>
-                        <HBox prefHeight="196.0" prefWidth="811.0">
+                        <VBox prefWidth="400.0">
                            <children>
-                              <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="193.0" prefWidth="165.0" style="-fx-background-color: #f5ecdb;" text="Button">
-                                 <HBox.margin>
-                                    <Insets left="30.0" />
-                                 </HBox.margin>
-                                 <graphic>
-                                    <ImageView fitHeight="162.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
-                                 </graphic>
-                              </Button>
-                              <Button contentDisplay="TOP" layoutX="40.0" layoutY="10.0" mnemonicParsing="false" prefHeight="193.0" prefWidth="165.0" style="-fx-background-color: #f5ecdb;" text="Button">
-                                 <graphic>
-                                    <ImageView fitHeight="162.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets left="30.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button contentDisplay="TOP" layoutX="208.0" layoutY="10.0" mnemonicParsing="false" prefHeight="193.0" prefWidth="165.0" style="-fx-background-color: #f5ecdb;" text="Button">
-                                 <graphic>
-                                    <ImageView fitHeight="162.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets left="30.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button contentDisplay="TOP" layoutX="376.0" layoutY="10.0" mnemonicParsing="false" prefHeight="193.0" prefWidth="165.0" style="-fx-background-color: #f5ecdb;" text="Button">
-                                 <graphic>
-                                    <ImageView fitHeight="162.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets left="30.0" />
-                                 </HBox.margin>
-                              </Button>
+                              <Label fx:id="readLabel" text="read" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font name="Nirmala UI Bold" size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="125.0" top="150.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Track the books you’ve completed" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font name="Corbel Light Italic" size="19.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="50.0" />
+                                 </VBox.margin>
+                              </Label>
                            </children>
-                        </HBox>
+                        </VBox>
+                        <VBox prefWidth="978.0">
+                           <HBox.margin>
+                              <Insets left="100.0" />
+                           </HBox.margin>
+                           <children>
+                              <HBox prefWidth="1191.0">
+                                 <children>
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" prefWidth="1411.0">
+                                       <content>
+                                          <HBox fx:id="ReadList" prefWidth="200.0" spacing="25.0">
+                                             <padding>
+                                                <Insets bottom="50.0" left="70.0" top="20.0" />
+                                             </padding>
+                                          </HBox>
+                                       </content>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </ScrollPane>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="50.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
                      </children>
-                     <VBox.margin>
-                        <Insets bottom="50.0" right="-500.0" />
-                     </VBox.margin>
-                  </VBox>
+                  </HBox>
                </children>
             </VBox>
          </content>
