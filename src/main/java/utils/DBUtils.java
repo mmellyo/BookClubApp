@@ -213,8 +213,6 @@ public class DBUtils {
         boolean invalidEmail = false;
         boolean notMatching = false;
 
-
-
         try {
             //connect with DB
              connection = DriverManager.getConnection(CommonConstants.DB_URL,
@@ -223,12 +221,13 @@ public class DBUtils {
             //DEBUG
             System.out.println("DB connected successfully!");
 
-            //quire DB to check if username = username...
-            psCheckUserExists = connection.prepareStatement("SELECT * FROM "+ CommonConstants.DB_USERS_TABLE_NAME + " WHERE username = ?");
+            //query DB to check if user exists or username used
+            psCheckUserExists = connection.prepareStatement(
+                    "SELECT * FROM "+ CommonConstants.DB_USERS_TABLE_NAME +
+                            " WHERE username = ?");
             psCheckUserExists.setString(1, username);
             resultSet = psCheckUserExists.executeQuery();
 
-            //the check
             //if user exists
             if (resultSet.isBeforeFirst()) {
                 System.out.println("user exists, cant use this username");
@@ -250,10 +249,13 @@ public class DBUtils {
                     notMatching = true;
                 }
 
-                if (!invalidEmail && !notMatching) //if valid email & pw = pwC
+                if (!invalidEmail && !notMatching) //if valid email & the password = the confirmation password
                 {
                     //quire DB to insert user
-                    psInsert = connection.prepareStatement("INSERT INTO users (username, useremail,  `userpassword`) VALUES (?,?,?)");
+                    psInsert = connection.prepareStatement(
+                            "INSERT INTO " + CommonConstants.DB_USERS_TABLE_NAME+
+                                    " (username, useremail,  `userpassword`) " +
+                                    "VALUES (?,?,?)");
                     psInsert.setString(1, username);
                     psInsert.setString(2, useremail);
                     psInsert.setString(3, userpassword);
@@ -333,7 +335,9 @@ public class DBUtils {
             System.out.println("DB connected successfully to finish signup");
 
             //quire DB to check if phonenmbr = phonenmbr...
-            psChecknmbrExists = connection.prepareStatement("SELECT * FROM "+ CommonConstants.DB_USERS_TABLE_NAME + " WHERE userphonenmbr = ?");
+            psChecknmbrExists = connection.prepareStatement(
+                    "SELECT * FROM "+ CommonConstants.DB_USERS_TABLE_NAME +
+                            " WHERE userphonenmbr = ?");
             psChecknmbrExists.setString(1, userphonenmbr);
             resultSet = psChecknmbrExists.executeQuery();
 
@@ -364,7 +368,11 @@ public class DBUtils {
             if (!phoneUsed && !invalidDate && !invalidPhonenmbr)
             {
                     //quire DB to update additional info
-                    psUpdate = connection.prepareStatement("UPDATE users SET userdateofbirth = ?, userphonenmbr = ?, userbio = ? WHERE username = ?");
+                    psUpdate = connection.prepareStatement(
+                            "UPDATE users SET userdateofbirth = ?, " +
+                                    "userphonenmbr = ?, " +
+                                    "userbio = ? " +
+                                "WHERE username = ?");
                     psUpdate.setString(1, userdateofbirth);
                     psUpdate.setString(2, userphonenmbr);
                     psUpdate.setString(3, userbio);
@@ -452,10 +460,11 @@ public class DBUtils {
             //DEBUG
             System.out.println("DB connected !");
 
-            //quire DB to check if username = username...
+            //quire DB to check if username = username id db
             //spot the username in the DB, compare PWs
             PreparedStatement checkUserExists = connection.prepareStatement(
-                    "SELECT * FROM " + CommonConstants.DB_USERS_TABLE_NAME +
+                    "SELECT * FROM " +
+                            CommonConstants.DB_USERS_TABLE_NAME +
                             " WHERE USERNAME = ?"
             );
             checkUserExists.setString(1, username);
@@ -539,9 +548,12 @@ public class DBUtils {
             //query
             String query = "SELECT b.*, a.author_first_name, a.author_last_name " +
                     "FROM " + CommonConstants.DB_BOOKS_TABLE_NAME + " b " +
-                    "JOIN " + CommonConstants.DB_LIKED_BOOKS_TABLE_NAME + " lb ON b.book_id = lb.book_id " +
-                    "JOIN " + CommonConstants.DB_WRITTEN_BY_TABLE_NAME + " wb ON wb.book_id = b.book_id " +
-                    "JOIN " + CommonConstants.DB_AUTHOR_TABLE_NAME + " a ON a.author_id = wb.author_id " +
+                    "JOIN " + CommonConstants.DB_LIKED_BOOKS_TABLE_NAME +
+                        " lb ON b.book_id = lb.book_id " +
+                    "JOIN " + CommonConstants.DB_WRITTEN_BY_TABLE_NAME +
+                        " wb ON wb.book_id = b.book_id " +
+                    "JOIN " + CommonConstants.DB_AUTHOR_TABLE_NAME +
+                        " a ON a.author_id = wb.author_id " +
                     "WHERE lb.user_id = ?";
 
             // Prepare statement
@@ -577,6 +589,127 @@ public class DBUtils {
     }
 
 
+    public static List<BookModel> fetchReadLaterBooks(int user_id) throws SQLException {
+        List<BookModel> books = new ArrayList<>();
+
+        // Declare DB connection
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            // Connect
+            connection = DriverManager.getConnection(
+                    CommonConstants.DB_URL,
+                    CommonConstants.DB_USERNAME,
+                    CommonConstants.DB_PASSWORD
+            );
+
+            System.out.println("DB connected!");
+
+            //query
+            String query = "SELECT b.*, a.author_first_name, a.author_last_name " +
+                    "FROM " + CommonConstants.DB_BOOKS_TABLE_NAME + " b " +
+                    "JOIN " + CommonConstants.DB_READ_LATER_BOOKS_TABLE_NAME +
+                    " lb ON b.book_id = lb.book_id " +
+                    "JOIN " + CommonConstants.DB_WRITTEN_BY_TABLE_NAME +
+                    " wb ON wb.book_id = b.book_id " +
+                    "JOIN " + CommonConstants.DB_AUTHOR_TABLE_NAME +
+                    " a ON a.author_id = wb.author_id " +
+                    "WHERE lb.user_id = ?";
+
+            // Prepare statement
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, user_id);
+
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int bookId = resultSet.getInt("book_id");
+                String title = resultSet.getString("title");
+                byte[] cover_picture = resultSet.getBytes("cover_picture");
+                String author_first_name = resultSet.getString("author_first_name");
+                String author_last_name = resultSet.getString("author_last_name");
+                String description = resultSet.getString("description");
+                int page_nbr = resultSet.getInt("page_nbr");
+
+                books.add(new BookModel( bookId,  title,  author_first_name, author_last_name,  description,   page_nbr, cover_picture));
+
+                // Use or store the data as needed
+                System.out.println("Liked Book: " + bookId + " - " + title);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null) resultSet.close();
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        }
+        return books;
+
+    }
+
+    public static List<BookModel> fetchReadBooks(int user_id) throws SQLException {
+        List<BookModel> books = new ArrayList<>();
+
+        // Declare DB connection
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            // Connect
+            connection = DriverManager.getConnection(
+                    CommonConstants.DB_URL,
+                    CommonConstants.DB_USERNAME,
+                    CommonConstants.DB_PASSWORD
+            );
+
+            System.out.println("DB connected!");
+
+            //query
+            String query = "SELECT b.*, a.author_first_name, a.author_last_name " +
+                    "FROM " + CommonConstants.DB_BOOKS_TABLE_NAME + " b " +
+                    "JOIN " + CommonConstants.DB_READ_BOOKS_TABLE_NAME +
+                    " lb ON b.book_id = lb.book_id " +
+                    "JOIN " + CommonConstants.DB_WRITTEN_BY_TABLE_NAME +
+                    " wb ON wb.book_id = b.book_id " +
+                    "JOIN " + CommonConstants.DB_AUTHOR_TABLE_NAME +
+                    " a ON a.author_id = wb.author_id " +
+                    "WHERE lb.user_id = ?";
+
+            // Prepare statement
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, user_id);
+
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int bookId = resultSet.getInt("book_id");
+                String title = resultSet.getString("title");
+                byte[] cover_picture = resultSet.getBytes("cover_picture");
+                String author_first_name = resultSet.getString("author_first_name");
+                String author_last_name = resultSet.getString("author_last_name");
+                String description = resultSet.getString("description");
+                int page_nbr = resultSet.getInt("page_nbr");
+
+                books.add(new BookModel( bookId,  title,  author_first_name, author_last_name,  description,   page_nbr, cover_picture));
+
+                // Use or store the data as needed
+                System.out.println("Liked Book: " + bookId + " - " + title);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null) resultSet.close();
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        }
+        return books;
+
+    }
 
 
 
@@ -625,8 +758,11 @@ public class DBUtils {
         //DEBUG
         System.out.println("DB connected successfully while genre selection");
 
-        //query DB
-        String query = "INSERT INTO user_genres (username, genre_id) VALUES (?, ?)";
+        //query DB to update user genres
+        String query = "INSERT INTO" +
+                CommonConstants.DB_USER_GENRES_NAME +
+                " (username, genre_id) " +
+                "VALUES (?, ?)";
         psInsert= connection.prepareStatement(query);
             for (int genreId : selectedGenres)
             {

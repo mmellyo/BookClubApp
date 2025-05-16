@@ -175,7 +175,7 @@ public class MyLibraryController implements Initializable {
 
     private void loadReadLaterBooks() {
         try {
-            List<BookModel> readLaterList = DBUtils.fetchLikedBooks(1);
+            List<BookModel> readLaterList = DBUtils.fetchReadLaterBooks(1);
 
             ReadLaterList.getChildren().clear();
 
@@ -244,7 +244,7 @@ public class MyLibraryController implements Initializable {
 
     private void loadReadBooks() {
         try {
-            List<BookModel> readList = DBUtils.fetchLikedBooks(1);
+            List<BookModel> readList = DBUtils.fetchReadBooks(1);
 
             ReadList.getChildren().clear();
 
