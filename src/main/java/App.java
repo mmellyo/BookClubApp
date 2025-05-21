@@ -17,7 +17,7 @@ public class App extends Application {
         //debug
         //System.out.println(getClass().getResource("/view/login.fxml"));
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/MyLibrary.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/Home.fxml"));
         Parent root = fxmlLoader.load();
 
         //primaryStage.setTitle("Login Window"); // Optional: set a title

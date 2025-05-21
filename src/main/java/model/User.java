@@ -11,20 +11,20 @@ public class User {
     private String email;
     private String hashedPass;
     private String gender;
-    private String user_id;
+    private int user_id;
     private Date dob;
     private byte[] pfp;
 
-    private List<Book> favorites;
-    private List<Book> liked;
-    private List<Book> saved;
+    private List<Book> favorites = new ArrayList<>();
+    private List<Book> liked = new ArrayList<>();
+    private List<Book> saved = new ArrayList<>();
 
-    private Set<String> favGenres;
-    private List<Club> memberOf;
-    private List<Club> adminOf;
+    private Set<String> favGenres = new HashSet<>();
+    private List<Integer> memberOf = new ArrayList<>();
+    private List<Integer> adminOf = new ArrayList<>();
 
 
-    public User(String username, String user_id, byte[] pfp, Set<String> favGenres, List<Club> memberOf, List<Club> adminOf) {
+    public User(String username, int user_id, byte[] pfp, Set<String> favGenres, List<Integer> memberOf, List<Integer> adminOf) {
         this.username = username;
         this.user_id = user_id;
         this.adminOf = adminOf;
@@ -33,15 +33,15 @@ public class User {
         this.favGenres = favGenres;
     }
 
-    public String getUser_id() {
+    public int getUser_id() {
         return user_id;
     }
 
-    public List<Club> getMemberOf() {
+    public List<Integer> getMemberOf() {
         return memberOf;
     }
 
-    public List<Club> getAdminOf() {
+    public List<Integer> getAdminOf() {
         return adminOf;
     }
 
@@ -57,12 +57,12 @@ public class User {
         return favGenres;
     }
 
-    public User(String user_id) {
+    public User(int user_id) {
         String sql = "SELECT " +
                 "u.username, u.user_pfp, " +
                 "g.genre_name, " +
-                "c.club_name AS admin_club_name, c.cover_picture AS admin_club_cover, " +
-                "c2.club_name AS member_club_name, c2.cover_picture AS member_club_cover " +
+                "c.club_id AS admin_club_id, " +
+                "c2.club_id AS member_club_id " +
                 "FROM users u " +
                 "LEFT JOIN user_genres ug ON u.user_id = ug.user_id " +
                 "LEFT JOIN genres g ON ug.genre_id = g.genre_id " +
@@ -73,7 +73,7 @@ public class User {
 
         try (Connection connection = DBManager.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, user_id);
+            stmt.setInt(1, user_id);
             ResultSet rs = stmt.executeQuery();
 
             String username = null;
@@ -81,7 +81,7 @@ public class User {
             java.sql.Date dob = null;
             String gender = null;
             byte[] pfpBytes = null;
-
+            this.user_id = user_id;
             while (rs.next()) {
                 if (this.username == null) {
                     // Only set user info once
@@ -99,25 +99,19 @@ public class User {
                     this.favGenres.add(genre);
                 }
 
-                Set<String> adminClubNames = new HashSet<>();
-                Set<String> memberClubNames = new HashSet<>();
+
 
                 // Add admin club
-                String adminName = rs.getString("admin_club_name");
-                Blob adminCoverBlob = rs.getBlob("admin_club_cover");
-                if (adminName != null && !adminClubNames.contains(adminName)) {
-                    byte[] cover = adminCoverBlob != null ? adminCoverBlob.getBytes(1, (int) adminCoverBlob.length()) : null;
-                    this.adminOf.add(new Club(adminName, cover));
-                    adminClubNames.add(adminName);
+                int admin_club_id = rs.getInt("admin_club_id");
+                if (!rs.wasNull()) {
+                    this.adminOf.add(admin_club_id);
                 }
 
+
                 // Add member club
-                String memberName = rs.getString("member_club_name");
-                Blob memberCoverBlob = rs.getBlob("member_club_cover");
-                if (memberName != null && !memberClubNames.contains(memberName)) {
-                    byte[] cover = memberCoverBlob != null ? memberCoverBlob.getBytes(1, (int) memberCoverBlob.length()) : null;
-                    this.memberOf.add(new Club(memberName, cover));
-                    memberClubNames.add(memberName);
+                int member_club_id = rs.getInt("member_club_id");
+                if (!rs.wasNull()) {
+                    this.memberOf.add(member_club_id);
                 }
             }
 

@@ -19,7 +19,7 @@ public class ResultPageController {
     private AnchorPane rootPane;
     private List<Button> bookButtons = new ArrayList<>();
     private int currentPage = 0;
-    private Set<Book> result;
+    private List<Book> result;
 
     @FXML
     private Button nextButton;
@@ -36,7 +36,7 @@ public class ResultPageController {
         setList();
     }
 
-    public void setResult(Set<Book> result) {
+    public void setResult(List<Book> result) {
         this.result = result;
         loadInitialBooks();
     }
@@ -70,7 +70,7 @@ public class ResultPageController {
         }
     }
 
-    private void addBooksToUI(Set<Book> books, int page) {
+    private void addBooksToUI(List<Book> books, int page) {
         int start = page * 12;
         for (int i = 0; i < 12; i++) {
             Button button = bookButtons.get(i);

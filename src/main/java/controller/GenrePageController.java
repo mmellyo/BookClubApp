@@ -19,6 +19,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.BufferedReader;
@@ -32,7 +33,14 @@ public class GenrePageController {
     private List<Button> bookButtons = new ArrayList<Button>();
     @FXML
     private String genre;
-    private int currentPage = 1;
+    private int currentPage = 0;
+
+    @FXML
+    private Button nextButton;
+
+    @FXML
+    private Button previousButton;
+
 
     private void setList(){
         for (int i = 1; i <= 12; i++) {
@@ -46,69 +54,94 @@ public class GenrePageController {
     public void setGenre(String genre) {
         this.genre = genre;
         genreHeader.setText(genre);
+
+        try {
+            loadInitialBooks(); // now genre is definitely not null
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     // Load initial books
-   /*
-   private void loadInitialBooks() {
+
+   private void loadInitialBooks() throws SQLException {
         List<Book> books = fetchBooks(genre, currentPage);
         addBooksToUI(books);
     }
 
     @FXML
-    private void nextPage(ActionEvent event) {
+    private void nextPage(ActionEvent event) throws SQLException {
+        currentPage++;
         List<Book> books = fetchBooks(genre, currentPage + 1);
         addBooksToUI(books);
     }
     @FXML
-    private void previousPage(ActionEvent event) {
+    private void previousPage(ActionEvent event) throws SQLException {
+        if (currentPage > 0) currentPage--;
         List<Book> books = fetchBooks(genre, currentPage - 1);
         addBooksToUI(books);
     }
-    */
 
 
-    /* private List<Book> fetchBooks(String genre, int page) {
-        List<Book> books = new ArrayList<>();
-        try {
-            String apiUrl = "https://openlibrary.org/subjects/" + genre.toLowerCase() + ".json?limit=12&offset=" + (page * 12);
-            URL url = new URL(apiUrl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
+     private List<Book> fetchBooks(String genre, int page) throws SQLException {
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode root = objectMapper.readTree(reader);
+            List<Book> books = new ArrayList<>();
+         if(genre.equals("All"))
+         {
+             List<Book> AllBooks = Book.getAllBooks();
+             System.out.println("Total books found: " + AllBooks.size()); // <--- debug
 
-            JsonNode works = root.path("works");
-            for (JsonNode work : works) {
-                String title = work.path("title").asText();
-                String author = work.path("authors").size() > 0 ? work.path("authors").get(0).path("name").asText() : "Unknown";
-                String coverId = work.path("cover_id").asText();
-                String coverUrl = coverId.isEmpty() ? "" : "https://covers.openlibrary.org/b/id/" + coverId + "-M.jpg";
+             int start = page * 12;
+             int end = Math.min(start + 12, AllBooks.size());
+             for (int i = start; i < end; i++) {
+                 books.add(AllBooks.get(i));
+             }
+         }
+         else{
+             List<Book> AllBooks = Book.getBooksByGenre(genre);
+             System.out.println("Total books found: " + AllBooks.size()); // <--- debug
 
-                books.add(new Book(title, author, coverUrl));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+             int start = page * 12;
+             int end = Math.min(start + 12, AllBooks.size());
+             for (int i = start; i < end; i++) {
+                 books.add(AllBooks.get(i));
+             }
+         }
+
         return books;
-    }*/
+    }
 
 
     private void addBooksToUI(List<Book> books) {
         setList();
-        for(int i=0; i<12; i++) {
+        for (int i = 0; i < bookButtons.size(); i++) {
             Button button = bookButtons.get(i);
-            button.setText(books.get(i).getTitle());
-            ImageView coverImage = new ImageView();
-            //coverImage.setImage(new Image(books.get(i).getCoverUrl(), 150, 200, true, true));
-            if (books.get(i).getCoverBytes() != null) {
-                InputStream is = new ByteArrayInputStream(books.get(i).getCoverBytes());
-                Image image = new Image(is, 150, 200, true, true);
-                coverImage.setImage(image);
+            if (i < books.size()) {
+                Book book = books.get(i);
+                button.setText(book.getTitle());
+                ImageView coverImage = new ImageView();
+                if (book.getCoverBytes() != null) {
+                    InputStream is = new ByteArrayInputStream(book.getCoverBytes());
+                    Image image = new Image(is, 150, 200, true, true);
+                    coverImage.setImage(image);
+                }
+                button.setGraphic(coverImage);
+            } else {
+                button.setText("");
+                button.setGraphic(null);
+                button.setDisable(true);
+                button.setVisible(false);
             }
-            button.setGraphic(coverImage);
+        }
+        try {
+            int totalBooks = Book.getBooksByGenre(genre).size();
+            int maxPages = (int) Math.ceil(totalBooks / 12.0);
+
+            previousButton.setDisable(currentPage <= 0);
+            nextButton.setDisable(currentPage >= maxPages - 1);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
