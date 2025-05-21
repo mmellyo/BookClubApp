@@ -4,11 +4,13 @@ public class Club {
     private String name;
     private String description;
     private byte[] coverImage;
-    private String admin_id;
+    private int admin_id;
 
-    public Club(String name, byte[] coverImage) {
+    public Club(String name, byte[] coverImage,int admin_id) {
         this.name = name;
         this.coverImage = coverImage;
+
+        this.admin_id =  admin_id;
     }
 
     public String getName() {
@@ -19,7 +21,7 @@ public class Club {
         return coverImage;
     }
 
-    public String getAdmin_id() {
+    public int getAdmin_id() {
         return admin_id;
     }
 

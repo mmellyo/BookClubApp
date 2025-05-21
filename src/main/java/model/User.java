@@ -62,29 +62,31 @@ public class User {
         this.adminOf = new ArrayList<>();
         this.memberOf = new ArrayList<>();
 
-        try (Connection connection = DriverManager.getConnection(
-                CommonConstants.DB_URL,
-                CommonConstants.DB_USERNAME,
-                CommonConstants.DB_PASSWORD);
-             PreparedStatement stmt = connection.prepareStatement(
-                     "SELECT " +
-                             "u.username, u.user_pfp, " +
-                             "g.genre_name, " +
-                             "c.club_name AS admin_club_name, " +
-                             "c2.club_name AS member_club_name, " +
-                             "FROM users u " +
-                             "LEFT JOIN user_genres ug ON u.user_id = ug.user_id " +
-                             "LEFT JOIN genres g ON ug.genre_id = g.genre_id " +
-                             "LEFT JOIN clubs c ON c.admin_id = u.user_id " +
-                             "LEFT JOIN members m ON u.user_id = m.user_id " +
-                             "LEFT JOIN clubs c2 ON m.club_id = c2.club_id " +
-                             "WHERE u.user_id = ?")) {
-
+        try (
+                Connection connection = DriverManager.getConnection(
+                        CommonConstants.DB_URL,
+                        CommonConstants.DB_USERNAME,
+                        CommonConstants.DB_PASSWORD
+                );
+                PreparedStatement stmt = connection.prepareStatement(
+                        "SELECT u.username, u.user_pfp, " +
+                                "g.genre_name, " +
+                                "c.club_id AS admin_club_id, " +
+                                "c2.club_id AS member_club_id " +
+                                "FROM users u " +
+                                "LEFT JOIN user_genres ug ON u.user_id = ug.user_id " +
+                                "LEFT JOIN genres g ON ug.genre_id = g.genre_id " +
+                                "LEFT JOIN clubs c ON c.admin_id = u.user_id " +
+                                "LEFT JOIN members m ON u.user_id = m.user_id " +
+                                "LEFT JOIN clubs c2 ON m.club_id = c2.club_id " +
+                                "WHERE u.user_id = ?"
+                )
+        ) {
             stmt.setInt(1, user_id);
             ResultSet rs = stmt.executeQuery();
 
-            Set<String> adminClubNames = new HashSet<>();
-            Set<String> memberClubNames = new HashSet<>();
+            Set<Integer> adminClubIds = new HashSet<>();
+            Set<Integer> memberClubIds = new HashSet<>();
 
             while (rs.next()) {
                 if (this.username == null) {
@@ -101,17 +103,16 @@ public class User {
                     this.favGenres.add(genre);
                 }
 
-                String adminName = rs.getString("admin_club_name");
-                if (adminName != null && adminClubNames.add(adminName)) {
-                    this.adminOf.add(new Club(adminName, null));
+               /* int adminId = rs.getInt("admin_club_id");
+                if (!rs.wasNull() && adminClubIds.add(adminId)) {
+                    this.adminOf.add(new Club(adminId));  // Use a constructor that takes an ID
                 }
 
-                String memberName = rs.getString("member_club_name");
-                if (memberName != null && memberClubNames.add(memberName)) {
-                    this.memberOf.add(new Club(memberName, null));
-                }
+                int memberId = rs.getInt("member_club_id");
+                if (!rs.wasNull() && memberClubIds.add(memberId)) {
+                    this.memberOf.add(new Club(memberId));  // Use a constructor that takes an ID
+                }*/
             }
-
 
             rs.close();
 

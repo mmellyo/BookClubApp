@@ -96,6 +96,7 @@
 
     .skip-button {
             -fx-background-color:  #593f2d;
+        -fx-border-width: 1px;
             -fx-border-color: #d6bc99;
             -fx-text-fill:#d6bc99;
             -fx-cursor: hand;

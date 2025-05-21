@@ -11,13 +11,16 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import model.MessageModel;
 import model.User;
 import utils.DBUtils;
 
 import java.io.ByteArrayInputStream;
+import java.net.URL;
 import java.util.List;
 
 public class ClubViewController {
@@ -41,6 +44,10 @@ public class ClubViewController {
         ComboBox.getItems().addAll("Option 1", "Option 2", "Option 3");
         loadChatHistory();
     }
+    private byte[] loadUserProfilePicture(int userId) {
+        User user = new User(userId);
+        return user.getPfp();
+    }
 
     @FXML
     public void handleSendMessage() {
@@ -62,17 +69,19 @@ public class ClubViewController {
             MessageModel msg = messages.get(i);
             boolean isCurrentUser = msg.getUserId() == userId;
 
-            // Show username if user changed
+
+            //Show username if user changed
             if (msg.getUserId() != previousUserId) {
                 Label usernameLabel = new Label(isCurrentUser ? "You" : msg.getUsername());
-                usernameLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #888888; -fx-font-size: 12px;");
+                usernameLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #888888; -fx-font-size: 13px;");
                 HBox userContainer = new HBox(usernameLabel);
-                userContainer.setPadding(new Insets(10, 0, 0, 0));
+                userContainer.setPadding(new Insets(10, 0, 0, 50));
                 userContainer.setAlignment(isCurrentUser ? Pos.CENTER_RIGHT : Pos.CENTER_LEFT);
                 chatBox.getChildren().add(userContainer);
             }
 
-            // Message and timestamp in VBox
+
+            //Message and timestamp in VBox
             VBox messageGroup = new VBox();
             messageGroup.setSpacing(2);
 
@@ -90,39 +99,27 @@ public class ClubViewController {
 
             messageGroup.getChildren().addAll(messageLabel, timeLabel);
 
-            // Profile image
-            javafx.scene.shape.Circle profilePic = new javafx.scene.shape.Circle(15);
-            profilePic.setStyle("-fx-fill: gray;");
 
-        /*    User otherUser = new User(msg.getUserId());
-            byte[] imageBytes = otherUser.getPfp();
-
-            ImageView imageView;
+            //PFP
+            byte[] imageBytes = loadUserProfilePicture(msg.getUserId());
+            Circle profileCircle = new Circle(20);  // bigger circle for better quality
 
             if (imageBytes != null && imageBytes.length > 0) {
                 ByteArrayInputStream bis = new ByteArrayInputStream(imageBytes);
-                Image pfp = new Image(bis);
-                imageView = new ImageView(pfp);
+                Image pfp = new Image(bis, 40, 40, true, true);  // specify width, height, preserveRatio, smooth
+                profileCircle.setFill(new ImagePattern(pfp));
             } else {
-                // Fallback: show a default placeholder image
-                imageView = new ImageView(new Image("placeholder.png")); // Ensure this exists in resources
+                URL imageUrl = getClass().getResource("/view/img/pp.png");
+                if (imageUrl != null) {
+                    Image fallback = new Image(imageUrl.toExternalForm(), 40, 40, true, true);
+                    profileCircle.setFill(new ImagePattern(fallback));
+                } else {
+                    System.out.println("Default image not found.");
+                }
             }
 
-            imageView.setFitWidth(20);
-            imageView.setFitHeight(20);
-
-// Rounded rectangle mask
-            Rectangle clip = new Rectangle(20, 20);
-            clip.setArcWidth(10);
-            clip.setArcHeight(10);
-            imageView.setClip(clip);
-
-
-            VBox vbox = new VBox(imageView);
-*/
-
-
-
+            VBox pfpContainer = new VBox(profileCircle);
+            pfpContainer.setPadding(new Insets(0, 0, 5, 0));
 
             HBox messageContainer = new HBox(10);
             messageContainer.setPadding(new Insets(2, 0, 10, 0));
@@ -131,10 +128,10 @@ public class ClubViewController {
             if (isCurrentUser) {
                 messageContainer.getChildren().addAll(messageGroup);
             } else {
-                //messageContainer.getChildren().addAll(vbox, messageGroup);
-                messageContainer.getChildren().addAll(profilePic, messageGroup);
-
+                messageContainer.getChildren().addAll(pfpContainer, messageGroup);
+               // HBox.setMargin(profileCircle, new Insets(-4, 0, 0, 0)); // shift image 4px upwards
             }
+
 
             chatBox.getChildren().add(messageContainer);
             previousUserId = msg.getUserId();
