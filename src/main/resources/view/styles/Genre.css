@@ -30,6 +30,7 @@
     -fx-max-width: 150px;
     -fx-alignment: center;
 }
+
 .bookButtons:hover {
     -fx-background-color: #baaa87;
 }

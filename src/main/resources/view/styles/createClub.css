@@ -1,0 +1,13 @@
+.buttons {
+    -fx-background-color:  #A29475;
+    -fx-background-radius: 20px;
+}
+
+.buttons : hover {
+    -fx-background-color: #f0dcb6;
+}
+
+.field {
+-fx-background-color: #f0dcb6;
+-fx-prompt-text-fill: #665e4d;
+}

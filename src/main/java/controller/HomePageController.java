@@ -1,13 +1,9 @@
 package controller;
 
-import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,35 +11,23 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Book;
 import model.Club;
-import model.Search;
 import model.User;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.sql.*;
-import java.sql.Date;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class HomePageController {
 
@@ -59,6 +43,8 @@ public class HomePageController {
     private Label username;
     @FXML
     private HBox fyb;
+    @FXML
+    private HBox popular;
 
     private User user;
 
@@ -73,7 +59,7 @@ public class HomePageController {
         user = new User(1);
 
         //merging both the clubs the user is admin of and member of without duplicates
-        Set<Club> mergedClubs = new HashSet<>(user.getAdminOf());
+        List<Integer> mergedClubs = new ArrayList<>(user.getAdminOf());
         mergedClubs.addAll(user.getMemberOf());
 
 
@@ -92,7 +78,8 @@ public class HomePageController {
 
 
         try {
-            addBookCardsToHBox(Search.generateFyb(user), fyb);
+            addBookCardsToHBox(Book.generateFyb(user), fyb);
+            addBookCardsToHBox(Book.getPopularBooks(), popular);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -147,13 +134,13 @@ public class HomePageController {
         if (event.getCode() == KeyCode.ENTER) {
 
             String searchText = searchField.getText();
-            Set<Book> result = Search.searchBooks(searchText);
+            List<Book> result = Book.searchBooks(searchText);
             switchToResultPage(result);
 
         }
     }
 
-    private void switchToResultPage(Set<Book> result) {
+    private void switchToResultPage(List<Book> result) {
         try {
             // Gettign the FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Result.fxml"));
@@ -179,29 +166,62 @@ public class HomePageController {
     }
 
     @FXML
-    private void addClub(MouseEvent mouseEvent) {
+    private void addClub(MouseEvent mouseEvent) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/CreateClub.fxml"));
+            Parent root = loader.load();
 
+            CreateClubController controller = loader.getController();
+            controller.initialise(user.getUser_id());
+
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED); // Removes the title bar
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void addClubCardsToVBox(Set<Club> clubs, VBox container) {
+    public void addClubCardsToVBox(List<Integer> clubs, VBox container) {
+
         try {
-            for (Club club : clubs) {
+            Set<Integer> seen = new HashSet<>();
+            for (int club_id : clubs) {
+                if (!seen.add(club_id)) continue;
+                Club club = Club.getClub(club_id);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ClubCard.fxml"));
                 HBox card = loader.load();
 
                 ClubCardController controller = loader.getController();
-                InputStream is = new ByteArrayInputStream(club.getCoverImage());
-                controller.setClubCard(club.getName(), "1",new Image(is));
+                if (club.getCoverImage() != null) {
+                    InputStream is = new ByteArrayInputStream(club.getCoverImage());
+                    Image image = new Image(is.toString(), 0, 0, true, true, false);
+                    controller.setClubCard(club.getName(), String.valueOf(club.getCount()),new Image(is));
+                } else {
+                    // Use a default placeholder image if cover image is missing
+                    Image coverImage = new Image(getClass().getResourceAsStream("/view/img/profile-user.png"));
+                    controller.setClubCard(club.getName(), String.valueOf(club.getCount()),coverImage);
+                }
+
+                int finalClubId = club_id;
+                card.setOnMouseClicked(event -> {
+                    //go to club logic
+                });
 
                 VBox.setMargin(card, new Insets(10));
                 container.getChildren().add(card);
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    private void addBookCardsToHBox (Set<Book> books, HBox container) {
+    private void addBookCardsToHBox (List<Book> books, HBox container) {
         try {
             for (Book book : books) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BookCard.fxml"));
@@ -209,15 +229,30 @@ public class HomePageController {
 
                 BookCardController controller = loader.getController();
                 controller.setBookCard(book);
+                card.setOnMouseClicked(event -> {
+                    try {
+                        FXMLLoader detailLoader = new FXMLLoader(getClass().getResource("/view/BookPage.fxml"));
+                        Parent detailRoot = detailLoader.load();
 
-                HBox.setMargin(card, new Insets(15));
+                        //BookPageController detailController = detailLoader.getController();
+                        //detailController.initializeWithBook(book); // pass full book object or just book ID
+
+                        Stage stage = new Stage();
+                        stage.setTitle("Book Details");
+                        stage.setScene(new Scene(detailRoot));
+                        stage.show();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+                HBox.setMargin(card, new Insets(25));
                 container.getChildren().add(card);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     public void openNotification(MouseEvent mouseEvent) {
 
