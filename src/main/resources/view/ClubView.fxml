@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -29,19 +30,25 @@
                               </HBox>
                               <VBox prefHeight="675.0" prefWidth="276.0">
                                  <children>
-                                    <Button fx:id="announcement_btn" mnemonicParsing="false" prefHeight="27.0" prefWidth="294.0" stylesheets="@styles/ComboBox.css" text="Announcements">
+                                    <Button fx:id="announcement_btn" mnemonicParsing="false" onAction="#handleAnnouncements" prefHeight="27.0" prefWidth="294.0" stylesheets="@styles/ComboBox.css" text="Announcements">
                                        <styleClass>
                                           <String fx:value="ghost-button" />
                                           <String fx:value="ghost-button-animation" />
                                        </styleClass>
                                     </Button>
-                                    <Button fx:id="general_btn" mnemonicParsing="false" prefHeight="27.0" prefWidth="294.0" stylesheets="@styles/ComboBox.css" text="General Chat">
+                                    <Button fx:id="general_btn" mnemonicParsing="false" onAction="#handleGeneralChat" prefHeight="27.0" prefWidth="294.0" stylesheets="@styles/ComboBox.css" text="General Chat">
                                        <styleClass>
                                           <String fx:value="ghost-button" />
                                           <String fx:value="ghost-button-animation" />
                                        </styleClass>
                                     </Button>
-                                    <Button fx:id="recommendation_btn" mnemonicParsing="false" prefHeight="27.0" prefWidth="294.0" stylesheets="@styles/ComboBox.css" text="Recommendation">
+                                    <Button fx:id="recommendation_btn" mnemonicParsing="false" onAction="#handleRecommendations" prefHeight="27.0" prefWidth="294.0" stylesheets="@styles/ComboBox.css" text="Recommendation">
+                                       <styleClass>
+                                          <String fx:value="ghost-button" />
+                                          <String fx:value="ghost-button-animation" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="quotes_btn" mnemonicParsing="false" onAction="#handleQuotes" prefHeight="27.0" prefWidth="294.0" stylesheets="@styles/ComboBox.css" text="Quotes">
                                        <styleClass>
                                           <String fx:value="ghost-button" />
                                           <String fx:value="ghost-button-animation" />
@@ -60,7 +67,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <Button layoutX="960.0" layoutY="609.0" mnemonicParsing="false" onAction="#handleSendMessage" prefHeight="46.0" prefWidth="75.0" stylesheets="@styles/ComboBox.css" text="send">
+                        <Button layoutX="956.0" layoutY="610.0" mnemonicParsing="false" onAction="#handleSendMessage" prefHeight="43.0" prefWidth="75.0" stylesheets="@styles/ComboBox.css" text="send">
                            <styleClass>
                               <String fx:value="Send-btn" />
                               <String fx:value="Send-btn-animation" />
@@ -68,7 +75,7 @@
                         <TextField fx:id="messageField" layoutX="298.0" layoutY="609.0" prefHeight="45.0" prefWidth="662.0" styleClass="custom-textfield" stylesheets="@styles/ComboBox.css" />
                         <ScrollPane fx:id="chatScrollPane" hbarPolicy="NEVER" layoutX="288.0" layoutY="85.0" prefHeight="498.0" prefWidth="858.0" vbarPolicy="NEVER">
                            <content>
-                              <VBox fx:id="chatBox" prefHeight="200.0" prefWidth="811.0">
+                              <VBox fx:id="chatContainer" prefHeight="200.0" prefWidth="800.0">
                                  <padding>
                                     <Insets left="20.0" />
                                  </padding></VBox>
@@ -90,14 +97,20 @@
                         <Insets left="62.0" />
                      </HBox.margin>
                      <children>
-                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="1185.0" text="clubs name" />
+                        <Label fx:id="clubNameLabel" alignment="CENTER" prefHeight="18.0" prefWidth="350.0" text="clubs name">
+                           <HBox.margin>
+                              <Insets left="400.0" top="2.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fx:id="clubCoverPicture" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic></Label>
                      </children>
                   </HBox>
                </children>
             </HBox>
          </top>
          <left>
-            <VBox prefHeight="651.0" prefWidth="62.0" style="-fx-background-color: #baaa87; -fx-border-color: f5ecdb; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER" />
+            <VBox fx:id="chatSideBar" prefHeight="651.0" prefWidth="62.0" style="-fx-background-color: #baaa87; -fx-border-color: f5ecdb; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER" />
          </left>
       </BorderPane>
    </children>
