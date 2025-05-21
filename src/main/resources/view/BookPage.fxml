@@ -14,14 +14,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" prefHeight="700.0" prefWidth="1238.0" style="-fx-background-color: #f5ecdb;" stylesheets="@../css/BookPage.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookPageController">
-<AnchorPane prefHeight="700.0" prefWidth="55.0" style="-fx-background-color: #baaa87;" styleClass="sidebar" stylesheets="@../css/Genre.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1188.0" AnchorPane.topAnchor="0.0">
+<AnchorPane fx:id="rootPane" prefHeight="700.0" prefWidth="1238.0" style="-fx-background-color: #f5ecdb;" stylesheets="@/view/styles/BookPage.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BookPageController">
+<AnchorPane prefHeight="700.0" prefWidth="55.0" style="-fx-background-color: #baaa87;" styleClass="sidebar" stylesheets="@/view/styles/Genre.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1188.0" AnchorPane.topAnchor="0.0">
   <children>
       <Pane prefHeight="100.0" prefWidth="55.0" AnchorPane.rightAnchor="0.0">
           <children>
               <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="2.5" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../img/logo.png" />
+                     <Image url="@img/LOGOLIGHT.png" />
                   </image></ImageView>
           </children>
       </Pane>
@@ -31,7 +31,7 @@
                   <children>
                       <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                           <image>
-                              <Image url="@../pictures/home.png" />
+                              <Image url="@/view/img/home.png" />
                           </image>
                       </ImageView>
                   </children>
@@ -40,7 +40,7 @@
                   <children>
                       <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                           <image>
-                              <Image url="@../pictures/book.png" />
+                              <Image url="@/view/img/book.png" />
                           </image>
                       </ImageView>
                   </children>
@@ -49,7 +49,7 @@
                   <children>
                       <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                           <image>
-                              <Image url="@../pictures/chat.png" />
+                              <Image url="@/view/img/chat.png" />
                           </image>
                       </ImageView>
                   </children>
@@ -58,7 +58,7 @@
                   <children>
                       <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                           <image>
-                              <Image url="@../pictures/Group 1707479776.png" />
+                              <Image url="@/view/img/Group 1707479776.png" />
                           </image>
                       </ImageView>
                   </children>
@@ -67,7 +67,7 @@
                   <children>
                       <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                           <image>
-                              <Image url="@../pictures/archive-book.png" />
+                              <Image url="@/view/img/archive-book.png" />
                           </image>
                       </ImageView>
                   </children>
@@ -76,7 +76,7 @@
       </VBox>
       <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="15.0" layoutY="662.0" pickOnBounds="true" preserveRatio="true">
           <image>
-              <Image url="@../pictures/settings.png" />
+              <Image url="@/view/img/settings.png" />
           </image>
       </ImageView>
   </children>

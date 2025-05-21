@@ -147,8 +147,8 @@ public class HomePageController {
             Parent root = loader.load();
 
             // Pass the genre to the GenrePageController
-            ResultPageController controller = loader.getController();
-            controller.setResult(result);
+            //ResultPageController controller = loader.getController();
+           //controller.setResult(result);
 
             // Create a new stage for the genre page
             Stage stage = new Stage();
