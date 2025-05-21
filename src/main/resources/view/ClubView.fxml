@@ -28,15 +28,15 @@
                                     <ComboBox fx:id="ComboBox" prefHeight="26.0" prefWidth="293.0" promptText="Clubs name" stylesheets="@styles/ComboBox.css" />
                                  </children>
                               </HBox>
-                              <VBox prefHeight="675.0" prefWidth="276.0">
+                              <VBox fx:id="ForumsVbox" prefHeight="675.0" prefWidth="276.0">
                                  <children>
-                                    <Button fx:id="announcement_btn" mnemonicParsing="false" onAction="#handleAnnouncements" prefHeight="27.0" prefWidth="294.0" stylesheets="@styles/ComboBox.css" text="Announcements">
+                                    <Button fx:id="announcement_btn" mnemonicParsing="false" prefHeight="27.0" prefWidth="294.0" stylesheets="@styles/ComboBox.css" text="Announcements">
                                        <styleClass>
                                           <String fx:value="ghost-button" />
                                           <String fx:value="ghost-button-animation" />
                                        </styleClass>
                                     </Button>
-                                    <Button fx:id="general_btn" mnemonicParsing="false" onAction="#handleGeneralChat" prefHeight="27.0" prefWidth="294.0" stylesheets="@styles/ComboBox.css" text="General Chat">
+                                    <Button fx:id="general_btn" mnemonicParsing="false" prefHeight="27.0" prefWidth="294.0" stylesheets="@styles/ComboBox.css" text="General Chat">
                                        <styleClass>
                                           <String fx:value="ghost-button" />
                                           <String fx:value="ghost-button-animation" />
@@ -48,7 +48,7 @@
                                           <String fx:value="ghost-button-animation" />
                                        </styleClass>
                                     </Button>
-                                    <Button fx:id="quotes_btn" mnemonicParsing="false" onAction="#handleQuotes" prefHeight="27.0" prefWidth="294.0" stylesheets="@styles/ComboBox.css" text="Quotes">
+                                    <Button fx:id="quotes_btn" mnemonicParsing="false" prefHeight="27.0" prefWidth="294.0" stylesheets="@styles/ComboBox.css" text="Quotes">
                                        <styleClass>
                                           <String fx:value="ghost-button" />
                                           <String fx:value="ghost-button-animation" />
@@ -110,7 +110,7 @@
             </HBox>
          </top>
          <left>
-            <VBox fx:id="chatSideBar" prefHeight="651.0" prefWidth="62.0" style="-fx-background-color: #baaa87; -fx-border-color: f5ecdb; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER" />
+            <VBox fx:id="chatSideBar" prefHeight="604.0" prefWidth="66.0" style="-fx-background-color: #baaa87; -fx-border-color: f5ecdb; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER" />
          </left>
       </BorderPane>
    </children>

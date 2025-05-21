@@ -781,13 +781,14 @@ public class DBUtils {
     }
 
 
-    public static List<MessageModel> loadLast10Messages(int forumId) {
+    public static List<MessageModel> loadLast10Messages(int forumId, int clubId) {
         List<MessageModel> messages = new ArrayList<>();
 
         String query = "SELECT u.username, m.message_content, m.created_at, m.user_id " +
                 "FROM messages m " +
                 "JOIN users u ON m.user_id = u.user_id " +
-                "WHERE m.forum_id = ? " +
+                "JOIN forums f ON m.forum_id = f.forum_id " +
+                "WHERE m.forum_id = ? AND f.club_id = ? " +
                 "ORDER BY m.created_at DESC LIMIT 20";
 
         try (
@@ -798,10 +799,12 @@ public class DBUtils {
                 PreparedStatement ps = connection.prepareStatement(query)
         ) {
             ps.setInt(1, forumId);
+            ps.setInt(2, clubId);
+
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                int userId = rs.getInt("user_id");  // <-- get user ID from result set
+                int userId = rs.getInt("user_id");
                 String username = rs.getString("username");
                 String content = rs.getString("message_content");
                 Timestamp time = rs.getTimestamp("created_at");
@@ -815,7 +818,6 @@ public class DBUtils {
 
         return messages;
     }
-
 
 
 
@@ -859,23 +861,29 @@ public class DBUtils {
 
 
 
-    public static void sendMessage(int userId, int forumId, String msgContent) {
+    public static void sendMessage(int userId, int forumId, String msgContent, int clubid) {
 
-            // Declare DB connection
-            Connection connection = null;
-            PreparedStatement statement = null;
-            ResultSet resultSet = null;
+        Connection connection = null;
 
-            try {
-                // Connect
-                connection = DriverManager.getConnection(
-                        CommonConstants.DB_URL,
-                        CommonConstants.DB_USERNAME,
-                        CommonConstants.DB_PASSWORD
-                );
+        try {
+            // Connect to DB
+            connection = DriverManager.getConnection(
+                    CommonConstants.DB_URL,
+                    CommonConstants.DB_USERNAME,
+                    CommonConstants.DB_PASSWORD
+            );
+            System.out.println("DB connected!");
 
-                System.out.println("DB connected!");
-
+            // 0. Validate that the forum belongs to the specified club
+            String validateForumClub = "SELECT 1 FROM forums WHERE forum_id = ? AND club_id = ?";
+            try (PreparedStatement ps = connection.prepareStatement(validateForumClub)) {
+                ps.setInt(1, forumId);
+                ps.setInt(2, clubid);
+                ResultSet rs = ps.executeQuery();
+                if (!rs.next()) {
+                    throw new RuntimeException("Forum does not belong to the specified club.");
+                }
+            }
 
             // 1. Insert message
             String insertMsg = "INSERT INTO messages (user_id, forum_id, message_content) VALUES (?, ?, ?)";
@@ -885,64 +893,53 @@ public class DBUtils {
                 ps.setString(3, msgContent);
                 ps.executeUpdate();
             }
-                System.out.println("the msg is saved : "+msgContent );
+            System.out.println("The message is saved: " + msgContent);
 
-            // 2. Get club ID from forum
-            int clubId = -1;
-            String getClub = "SELECT club_id FROM forums WHERE forum_id = ?";
-            try (PreparedStatement ps = connection.prepareStatement(getClub)) {
-                ps.setInt(1, forumId);
-                ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
-                    clubId = rs.getInt("club_id");
-                }
-            }
-
-            System.out.println("club id " + clubId);
-            if (clubId == -1) {
-                connection.rollback();
-                throw new RuntimeException("No club linked to this forum.");
-            }
-
-            // 3. Insert notification for that club
-            int notifId = -1;
+            // 2. Insert notification for that club
             String notifMsg = "New message in forum: " + msgContent;
+            int notifId = -1;
             String insertNotif = "INSERT INTO notifications (club_id, content, type) VALUES (?, ?, ?)";
             try (PreparedStatement ps = connection.prepareStatement(insertNotif, Statement.RETURN_GENERATED_KEYS)) {
-                ps.setInt(1, clubId);
+                ps.setInt(1, clubid);
                 ps.setString(2, notifMsg);
                 ps.setString(3, "msg sent");
                 ps.executeUpdate();
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rs.next()) notifId = rs.getInt(1);
             }
-            System.out.println("msg added in forums , notif :" +notifMsg );
+            System.out.println("Message added in forums, notification: " + notifMsg);
 
-                // 4. Notify all users who posted in forums of that club
-                String getUsers = "SELECT user_id FROM members WHERE club_id = ?";
+            // 3. Notify all users who are members of that club
+            String getUsers = "SELECT user_id FROM members WHERE club_id = ?";
+            try (PreparedStatement ps = connection.prepareStatement(getUsers)) {
+                ps.setInt(1, clubid);
+                ResultSet rs = ps.executeQuery();
 
-                try (PreparedStatement ps = connection.prepareStatement(getUsers)) {
-                    ps.setInt(1, clubId);
-                    ResultSet rs = ps.executeQuery();
-
-                    String insertNotified = "INSERT INTO notified (notification_id, user_id) VALUES (?, ?)";
-                    try (PreparedStatement insertStmt = connection.prepareStatement(insertNotified)) {
-                        int count = 0;
-                        while (rs.next()) {
-                            int uId = rs.getInt("user_id");
-                            insertStmt.setInt(1, notifId);
-                            insertStmt.setInt(2, uId);
-                            insertStmt.executeUpdate();
-                            count++;
-
-                        }
-                        System.out.println("Total users notified: " + count);  // Summary debug
-
+                String insertNotified = "INSERT INTO notified (notification_id, user_id) VALUES (?, ?)";
+                try (PreparedStatement insertStmt = connection.prepareStatement(insertNotified)) {
+                    int count = 0;
+                    while (rs.next()) {
+                        int uId = rs.getInt("user_id");
+                        insertStmt.setInt(1, notifId);
+                        insertStmt.setInt(2, uId);
+                        insertStmt.executeUpdate();
+                        count++;
                     }
+                    System.out.println("Total users notified: " + count);
                 }
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
+            // You might want to do rollback or other error handling here depending on your connection management
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
 

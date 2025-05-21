@@ -14,26 +14,26 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import model.BookModel;
-import model.Club;
-import model.MessageModel;
-import model.User;
+import model.*;
 import utils.DBUtils;
 
 import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClubViewController {
 
     private int forumId;
-    private int userId = 1;
-    private int clubId = 1;
+    private int userId = 2;
+    private int clubId ;
     private int adminId=1;
 
     @FXML
     private VBox chatSideBar;
+    @FXML
+    private VBox ForumsVbox;
     @FXML
     private Label clubNameLabel;
     @FXML
@@ -54,50 +54,36 @@ public class ClubViewController {
 
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
+
         //load all clubs
         loadClubs();
-        //load all rooms
-
 
         ComboBox.getItems().addAll("Option 1", "Option 2", "Option 3");
-
-
-        //load labels
-        Club club = new Club(clubId);
-        clubNameLabel.setText(club.getName());
-
-        //load clubs cover
-        Image image = club.displayClubCover(club.getCoverImage());
-        if (image != null) {
-            clubCoverPicture.setImage(image);
-        }
     }
 
-    @FXML
-    private void handleGeneralChat() {
+
+    private void handleChat(int forumId) {
+        System.out.println("chat clicked on club id :" + clubId + " forum " + forumId);
         chatScrollPane.setContent(generalChatBox);
         generalChatBox.setPrefWidth(800);
         generalChatBox.setMaxWidth(800);
         generalChatBox.setMinWidth(800);
 
-        forumId = 1;
-        loadChatHistory(forumId);  //default id for this chat
+        loadChatHistory(forumId, clubId,"Chat");
 
         messageField.setDisable(false);
         messageField.setPromptText("Type your message...");
     }
 
    @FXML
-   public void handleAnnouncements() {
+   public void handleAnnouncements(int forumId) {
        chatScrollPane.setContent(announcementChatBox);
        announcementChatBox.setPrefWidth(800);
        announcementChatBox.setMaxWidth(800);
        announcementChatBox.setMinWidth(800);
 
-       forumId = 2;
-       loadChatHistory(forumId);  //default id for this chat
-
+       loadChatHistory(forumId, clubId, "Announcement");
 
        if (userId == adminId) {
            messageField.setDisable(false);
@@ -118,21 +104,20 @@ public class ClubViewController {
        recommendationChatBox.setMaxWidth(800);
        recommendationChatBox.setMinWidth(800);
 
-       forumId = 3;
-       loadChatHistory(forumId);
+     //  forumId = 3;
+    //   loadChatHistory(forumId, clubId);
 
         messageField.setDisable(false);
         messageField.setPromptText("Type your recommendation...");
     }
 
-    public void handleQuotes() {
+    public void handleQuotes(int forumId) {
         chatScrollPane.setContent(quotesChatBox);
         quotesChatBox.setPrefWidth(800);
         quotesChatBox.setMaxWidth(800);
         quotesChatBox.setMinWidth(800);
 
-        forumId = 4;
-        loadChatHistory(forumId);
+        loadChatHistory(forumId, clubId, "Quotes");
 
         messageField.setDisable(false);
         messageField.setPromptText("Type a Quote...");
@@ -143,28 +128,31 @@ public class ClubViewController {
 
 
     @FXML
-    public void handleSendMessage() {
+    public void handleSendMessage() throws SQLException {
         String msg = messageField.getText().trim();
         if (msg.isEmpty()) return;
 
-        DBUtils.sendMessage(userId, forumId, msg);
-        System.out.println("the forun id after clicking on send " +forumId );
+        System.out.println("current : forumid " + forumId + " clubid : " + clubId);
+        DBUtils.sendMessage(userId, forumId, msg,clubId);
         messageField.clear();
-        loadChatHistory(forumId);
+
+        String forumType = Forums.getForumType(forumId);
+        loadChatHistory(forumId, clubId,forumType);
     }
 
-    private void loadChatHistory(int forumid) {
-        VBox targetBox = switch (forumid) {
-            case 1 -> generalChatBox;
-            case 2 -> announcementChatBox;
-            case 3 -> recommendationChatBox;
-            case 4-> quotesChatBox;
+    private void loadChatHistory(int forumid, int clubid, String target) {
+        VBox targetBox = switch (target) {
+            case "Chat" -> generalChatBox;
+            case "Quotes" -> quotesChatBox;
+            case "Announcement" -> announcementChatBox;
+        //    case 4-> quotesChatBox;
             default -> generalChatBox;
         };
 
 
         targetBox.getChildren().clear();
-        List<MessageModel> messages = DBUtils.loadLast10Messages(forumid);
+        List<MessageModel> messages = DBUtils.loadLast10Messages(forumid, clubid);
+        System.out.println("loading chat now... ");
 
         int previousUserId = -1;
 
@@ -193,7 +181,7 @@ public class ClubViewController {
             messageLabel.setWrapText(true);
             messageLabel.setPadding(new Insets(10));
 
-            if (forumid == 4) {
+            if (target.equals("Quotes")) {
                 // Quote styling
                 messageLabel = new Label("“" + msg.getContent() + "”");
                 messageLabel.setStyle("-fx-background-color: #fdf6e3; " +
@@ -320,18 +308,30 @@ public class ClubViewController {
                     clubBox.setStyle("-fx-background-color: #cbbd9e; -fx-border-radius: 10; -fx-background-radius: 10;");
                 }
 
-                // Click to select
+
+                // Click to select (update current club_id)
                 clubBox.setOnMouseClicked(e -> {
+                    System.out.println(club.getName() + " is clicked");
                     this.clubId = club.getClub_id();
+
+                    //update label
                     clubNameLabel.setText(club.getName());
+
+                    //update pdp
                     Image cover = club.displayClubCover(club.getCoverImage());
                     if (cover != null) {
                         clubCoverPicture.setImage(cover);
                     }
-                    handleGeneralChat();
-                    loadClubs(); // Refresh to highlight selected
-                });
 
+                    loadClubs(); // Refresh to highlight selected
+
+                    //load forums for club clicked
+                    try {
+                        loadForums(clubId);
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
                 chatSideBar.getChildren().add(clubBox);
             }
 
@@ -341,6 +341,52 @@ public class ClubViewController {
     }
 
 
+    private void loadForums(int clubId) throws SQLException {
+        System.out.println("load forums :");
+        List<Forums> forums = Forums.getForums(clubId);
+
+
+        for (Forums forum : forums) {
+            //crate a forum btn
+            Button forumButton = new Button(forum.getForumName());
+            forumButton.getStyleClass().add("ghost-button");
+            System.out.println("init id :" + forum.getForumId() );
+
+
+            // load chats
+            forumButton.setOnMouseClicked(e -> {
+
+                int forumId = forum.getForumId();
+                this.forumId = forumId;
+                String forumType = null;
+
+                try {
+                    forumType = forum.getForumType(forumId);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                System.out.println("id : "+forumId +  "the forum :" +forum.getForumName() + "is of type :" + forumType);
+
+                if (forumType.equals("Chat")){
+                    System.out.println("loading chat of 'chat'");
+                    handleChat(forumId);
+                }
+                if (forumType.equals("Quotes")){
+                    System.out.println("loading chat of 'Quotes'");
+                    handleQuotes(forumId);
+                }
+                if (forumType.equals("Announcement")){
+                    System.out.println("loading chat of 'Announcement'");
+                    handleAnnouncements(forumId);
+                }
+
+            });
+            ForumsVbox.getChildren().add(forumButton);
+
+
+        }
+
+    }
 
 
 
