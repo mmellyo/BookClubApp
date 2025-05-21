@@ -70,7 +70,7 @@ public class HomePageController {
     public void initialize()  {
 
 
-        user = new User("1");
+        user = new User(1);
 
         //merging both the clubs the user is admin of and member of without duplicates
         Set<Club> mergedClubs = new HashSet<>(user.getAdminOf());
@@ -160,8 +160,8 @@ public class HomePageController {
             Parent root = loader.load();
 
             // Pass the genre to the GenrePageController
-            ResultPageController controller = loader.getController();
-            controller.setResult(result);
+            //ResultPageController controller = loader.getController();
+           //controller.setResult(result);
 
             // Create a new stage for the genre page
             Stage stage = new Stage();

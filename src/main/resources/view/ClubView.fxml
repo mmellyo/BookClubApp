@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1244.0" style="-fx-background-color: #f5ecdb;" styleClass="root" stylesheets="@/view/styles/Home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClubViewController">
+   <children>
+      <BorderPane prefHeight="703.0" prefWidth="1251.0">
+         <center>
+            <VBox prefHeight="393.0" prefWidth="650.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane prefHeight="669.0" prefWidth="1168.0">
+                     <children>
+                        <VBox layoutX="-2.0" layoutY="-1.0" prefHeight="664.0" prefWidth="277.0" style="-fx-background-color: cbbd9e; -fx-border-color: f5ecdb; -fx-border-width: 1; -fx-border-radius: 3;">
+                           <children>
+                              <HBox prefHeight="30.0" prefWidth="276.0" style="-fx-border-width: 1; -fx-border-color: f5ecdb; -fx-border-width: 1 1 1 1; -fx-border-radius: 0;">
+                                 <children>
+                                    <ComboBox fx:id="ComboBox" prefHeight="26.0" prefWidth="293.0" promptText="Clubs name" stylesheets="@styles/ComboBox.css" />
+                                 </children>
+                              </HBox>
+                              <VBox prefHeight="675.0" prefWidth="276.0">
+                                 <children>
+                                    <Button fx:id="announcement_btn" mnemonicParsing="false" prefHeight="27.0" prefWidth="294.0" stylesheets="@styles/ComboBox.css" text="Announcements">
+                                       <styleClass>
+                                          <String fx:value="ghost-button" />
+                                          <String fx:value="ghost-button-animation" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="general_btn" mnemonicParsing="false" prefHeight="27.0" prefWidth="294.0" stylesheets="@styles/ComboBox.css" text="General Chat">
+                                       <styleClass>
+                                          <String fx:value="ghost-button" />
+                                          <String fx:value="ghost-button-animation" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="recommendation_btn" mnemonicParsing="false" prefHeight="27.0" prefWidth="294.0" stylesheets="@styles/ComboBox.css" text="Recommendation">
+                                       <styleClass>
+                                          <String fx:value="ghost-button" />
+                                          <String fx:value="ghost-button-animation" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                        <HBox layoutX="275.0" layoutY="-2.0" prefHeight="30.0" prefWidth="915.0" style="-fx-background-color: cbbd9e; -fx-border-width: 2; -fx-region-border: black;">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="18.0" prefWidth="930.0" text="room's name" textAlignment="CENTER" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets top="6.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Button layoutX="968.0" layoutY="605.0" mnemonicParsing="false" onAction="#handleSendMessage" prefHeight="51.0" prefWidth="159.0" text="send" />
+                        <TextField fx:id="messageField" layoutX="804.0" layoutY="630.0" />
+                        <ScrollPane fx:id="chatScrollPane" hbarPolicy="NEVER" layoutX="288.0" layoutY="85.0" prefHeight="498.0" prefWidth="858.0" vbarPolicy="NEVER">
+                           <content>
+                              <VBox fx:id="chatBox" prefHeight="200.0" prefWidth="811.0">
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding></VBox>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </center>
+         <top>
+            <HBox prefHeight="27.0" prefWidth="1253.0" style="-fx-background-color: #baaa87;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="23.0" prefWidth="1190.0" style="-fx-border-color: f5ecdb; -fx-border-width: 0 0 1 0;">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets left="62.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="1185.0" text="clubs name" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </top>
+         <left>
+            <VBox prefHeight="651.0" prefWidth="62.0" style="-fx-background-color: #baaa87; -fx-border-color: f5ecdb; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER" />
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>

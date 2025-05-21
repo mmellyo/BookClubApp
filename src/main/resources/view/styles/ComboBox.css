@@ -1,0 +1,56 @@
+/* ComboBox base styling */
+.combo-box {
+    -fx-background-color: #cbbd9e;
+    -fx-text-fill: black;
+    -fx-border-color: #cbbd9e;
+    -fx-border-radius: 5px;
+}
+
+/* Arrow button */
+.combo-box .arrow-button {
+    -fx-background-color: #cbbd9e;
+}
+
+/* Dropdown list background */
+.combo-box-popup .list-view {
+    -fx-background-color: #cbbd9e;
+}
+
+/* Dropdown list cell (each item) */
+.combo-box-popup .list-cell {
+    -fx-text-fill: white;
+}
+
+/* Hovered item */
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #4a2f1e;
+    -fx-text-fill: #cbbd9e;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*the rooms buttons */
+.ghost-button {
+        -fx-background-color: transparent;
+        -fx-text-fill:#4a2f1e;
+        -fx-cursor: hand;
+    }
+
+     .ghost-button-animation:hover {
+            -fx-background-color: #d6bc99;
+            -fx-text-fill:#4a2f1e;
+        }
+
+
+        .ghost-button-animation:pressed {
+                -fx-background-color: #8C6B47;
+
+        }
