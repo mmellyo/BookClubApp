@@ -162,6 +162,12 @@ public class DBUtils {
                     HomePageController homeC = loader.getController();
                     homeC.setUserInfo(userid);
                 }
+                if (fxmlFile.equals("/view/ClubView.fxml")) {
+                    //DEBUG
+
+                    ClubViewController clubC = loader.getController();
+                    clubC.setUserInfo(userid);
+                }
 
 
 
@@ -187,6 +193,8 @@ public class DBUtils {
                 System.out.println("Error loading FXML case1 : " + e.getMessage());
                 e.printStackTrace();
                 //throw new RuntimeException(e);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         } else // if user is switching with no info entered => Load the next FXML file
         {

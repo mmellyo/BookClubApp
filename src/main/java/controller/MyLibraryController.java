@@ -1,9 +1,12 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
@@ -16,10 +19,14 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.BookModel;
+import model.User;
 import utils.DBUtils;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -41,12 +48,20 @@ public class MyLibraryController implements Initializable {
     private Label readLaterLabel;
     @FXML
     private Label readLabel;
+    private User user;
+    @FXML
+    private HBox home;
 
+    private int userid;
 
+    public void setUserInfo(int userId) {
+        this.userid = userId;
+        this.user = new User(userId);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        home.setOnMouseClicked(event -> navigateToHome());
         loadLikedBooks();
         loadReadLaterBooks();
         loadReadBooks();
@@ -83,7 +98,28 @@ public class MyLibraryController implements Initializable {
             readLabel.setScaleY(scaleRead);
         });
     }
+    private void navigateToHome() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Home.fxml"));
+            Parent root = loader.load();
 
+            HomePageController controller = loader.getController();
+            System.out.println("user_id in switching: " + userid);
+            controller.setUserInfo(userid); // This should now work
+
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Close the current window (the one that triggered the event)
+            Stage currentStage = (Stage) LikedList.getScene().getWindow();
+            currentStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private double getFocusScale(double scroll, double sectionPos) {
         double distance = Math.abs(scroll - sectionPos);
         double maxScale = 1.2;

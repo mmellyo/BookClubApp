@@ -47,15 +47,15 @@ public class loginController implements Initializable {
 
                 //handle no white space
                 if (tf_username.getText().trim().isEmpty() ||
-                    tf_userpassword.getText().trim().isEmpty() )
+                        tf_userpassword.getText().trim().isEmpty() )
                 {
                     System.out.println("please fill in all info to login");
                     DBUtils.showCustomAlert("Please fill in all required fields to log in.");
                 } else {
                     try {
-                         userId = DBUtils.loginUser(event, tf_username.getText(), tf_userpassword.getText());
-                         System.out.println("user_id in login: "+ userId);
-                         switchToHomePage(userId, event);
+                        userId = DBUtils.loginUser(event, tf_username.getText(), tf_userpassword.getText());
+                        System.out.println("user_id in login: "+ userId);
+                        switchToHomePage(userId, event);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }

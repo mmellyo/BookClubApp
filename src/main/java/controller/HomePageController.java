@@ -68,8 +68,7 @@ public class HomePageController {
     @FXML
     public void initialize()  {
 
-        profile.setOnMouseClicked(event -> navigateToProfile());
-        library.setOnMouseClicked(event -> navigateToLibrary());
+        library.setOnMouseClicked(event -> navigateToLibrary(userId));
         
         user = new User(userId);
         System.out.println("user_id in login: "+ userId);
@@ -109,11 +108,33 @@ public class HomePageController {
 
     }
 
-    private void navigateToLibrary() {
+    private void navigateToLibrary(int userId) {
+        library.setOnMouseClicked(event -> switchToLibrary(userId, event));
     }
 
-    private void navigateToProfile() {
+    private void switchToLibrary(int userId, MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MyLibrary.fxml")); // Change path if needed
+            Parent root = loader.load();
+
+            MyLibraryController controller = loader.getController();
+            controller.setUserInfo(userId); // Assuming such method exists
+
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Close the current window
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
 
     // setting up the genres buttons
     private void setupButtons() {

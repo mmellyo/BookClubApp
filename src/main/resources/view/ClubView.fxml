@@ -25,7 +25,7 @@
                            <children>
                               <HBox prefHeight="30.0" prefWidth="276.0" style="-fx-border-width: 1; -fx-border-color: f5ecdb; -fx-border-width: 1 1 1 1; -fx-border-radius: 0;">
                                  <children>
-                                    <ComboBox fx:id="ComboBox" prefHeight="26.0" prefWidth="293.0" promptText="Clubs name" stylesheets="@styles/ComboBox.css" />
+                                    <ComboBox fx:id="comboBox" prefHeight="26.0" prefWidth="293.0" promptText="Clubs name" stylesheets="@styles/ComboBox.css" />
                                  </children>
                               </HBox>
                               <VBox fx:id="ForumsVbox" prefHeight="675.0" prefWidth="276.0">

@@ -1,8 +1,14 @@
 package controller;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.event.ActionEvent; // M
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -14,10 +20,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.*;
 import utils.DBUtils;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,7 +35,7 @@ import java.util.List;
 public class ClubViewController {
 
     private int forumId;
-    private int userId = 2;
+    private int userid;
     private int clubId ;
     private int adminId=1;
 
@@ -39,7 +48,7 @@ public class ClubViewController {
     @FXML
     private ImageView clubCoverPicture;
     @FXML
-    private ComboBox<String> ComboBox;
+    private ComboBox<String> comboBox;
     @FXML
     private TextField messageField;
     @FXML
@@ -51,7 +60,13 @@ public class ClubViewController {
     private VBox announcementChatBox = new VBox();
     private VBox recommendationChatBox = new VBox();
     private VBox quotesChatBox = new VBox();
+    private User user;
 
+    public void setUserInfo(int userId) throws SQLException {
+        this.userid = userId;
+        this.user = new User(userId);
+        initialize(); // Load data only after user is set
+    }
 
     @FXML
     public void initialize() throws SQLException {
@@ -59,7 +74,33 @@ public class ClubViewController {
         //load all clubs
         loadClubs();
 
-        ComboBox.getItems().addAll("Option 1", "Option 2", "Option 3");
+        comboBox.getItems().add("go back to Home");
+        comboBox.setOnAction(this::goToHome); // no need to extract selected value manually
+
+
+    }
+
+    private void goToHome(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Home.fxml"));
+            Parent root = loader.load();
+
+            HomePageController controller = loader.getController();
+            System.out.println("user_id in switching: " + userid);
+            controller.setUserInfo(userid); // This should now work
+
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Close the current window (the one that triggered the event)
+            Stage currentStage = (Stage) comboBox.getScene().getWindow();
+            currentStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -85,7 +126,7 @@ public class ClubViewController {
 
        loadChatHistory(forumId, clubId, "Announcement");
 
-       if (userId == adminId) {
+       if (userid == adminId) {
            messageField.setDisable(false);
            messageField.setPromptText("Enter your announcement...");
        } else {
@@ -133,7 +174,7 @@ public class ClubViewController {
         if (msg.isEmpty()) return;
 
         System.out.println("current : forumid " + forumId + " clubid : " + clubId);
-        DBUtils.sendMessage(userId, forumId, msg,clubId);
+        DBUtils.sendMessage(userid, forumId, msg,clubId);
         messageField.clear();
 
         String forumType = Forums.getForumType(forumId);
@@ -158,7 +199,7 @@ public class ClubViewController {
 
         for (int i = messages.size() - 1; i >= 0; i--) {
             MessageModel msg = messages.get(i);
-            boolean isCurrentUser = msg.getUserId() == userId;
+            boolean isCurrentUser = msg.getUserId() == userid;
 
 
             //Show username if user changed
