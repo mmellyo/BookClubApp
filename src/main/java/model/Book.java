@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import utils.DBManager;
 
 import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,6 +34,21 @@ public class Book {
         this.title = title;
         this.coverBytes = coverBytes;
         this.book_id = book_id;
+    }
+
+    public static void addToLiked(int userid, Book book) throws SQLException {
+        String sql = "INSERT INTO liked_books (user_id, book_id) VALUES (?, ?)";
+
+        try (Connection connection = DBManager.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);)
+        {
+
+            stmt.setInt(1, userid);
+            stmt.setInt(2, book.getBook_id());
+
+
+            stmt.executeUpdate();
+        }
     }
 
     @Override
@@ -65,6 +81,34 @@ public class Book {
     }
 
     //db stuff
+    public static void addToLater (int userid, Book book) throws SQLException {
+        String sql = "INSERT INTO read_later_books (user_id, book_id) VALUES (?, ?)";
+
+        try (Connection connection = DBManager.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);)
+              {
+
+            stmt.setInt(1, userid);
+            stmt.setInt(2, book.getBook_id());
+
+
+            stmt.executeUpdate();
+        }
+    }
+    public static void addToRead (int userid, Book book) throws SQLException {
+        String sql = "INSERT INTO read_books (user_id, book_id) VALUES (?, ?)";
+
+        try (Connection connection = DBManager.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);)
+        {
+
+            stmt.setInt(1, userid);
+            stmt.setInt(2, book.getBook_id());
+
+
+            stmt.executeUpdate();
+        }
+    }
 
     public static List<Book> searchBooks (String input) throws SQLException {
         // stock the results in a tree set to not allow duplicate values

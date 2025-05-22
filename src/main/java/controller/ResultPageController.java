@@ -156,8 +156,7 @@ public class ResultPageController {
             Parent root = loader.load();
 
             BookPageController controller = loader.getController();
-            controller.setBookInfo(book); // This should now work
-
+            controller.setBookInfo(book, userid); // This should now work
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(new Scene(root));

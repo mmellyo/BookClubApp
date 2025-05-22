@@ -353,7 +353,7 @@ return -1;
             // Check if phone number is already used (by another user)
             psChecknmbrExists = connection.prepareStatement(
                     "SELECT * FROM " + CommonConstants.DB_USERS_TABLE_NAME +
-                            " WHERE userphonenmbr = ? AND id != ?");
+                            " WHERE userphonenmbr = ? AND user_id != ?");
             psChecknmbrExists.setString(1, userphonenmbr);
             psChecknmbrExists.setInt(2, userId);
             resultSet = psChecknmbrExists.executeQuery();
@@ -379,7 +379,7 @@ return -1;
             if (!phoneUsed && !invalidDate && !invalidPhonenmbr) {
                 psUpdate = connection.prepareStatement(
                         "UPDATE " + CommonConstants.DB_USERS_TABLE_NAME +
-                                " SET user_dob = ?, userphonenmbr = ? WHERE id = ?");
+                                " SET user_dob = ?, userphonenmbr = ? WHERE user_id = ?");
                 psUpdate.setString(1, userdateofbirth);
                 psUpdate.setString(2, userphonenmbr);
                 psUpdate.setInt(3, userId);

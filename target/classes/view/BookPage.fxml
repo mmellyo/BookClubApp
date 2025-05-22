@@ -28,9 +28,9 @@
       </Pane>
       <VBox layoutX="10.0" layoutY="208.0" spacing="10.0" AnchorPane.topAnchor="250.0">
           <children>
-              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+              <HBox fx:id="home" alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
                   <children>
-                      <ImageView fx:id="home" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                      <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                           <image>
                               <Image url="@img/home.png" />
                           </image>
@@ -40,9 +40,9 @@
                       </ImageView>
                   </children>
               </HBox>
-              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+              <HBox fx:id="profile" alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
                   <children>
-                      <ImageView fx:id="profile" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                      <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                           <image>
                               <Image url="@img/Group%201707479776.png" />
                           </image>
@@ -52,9 +52,9 @@
                       </ImageView>
                   </children>
               </HBox>
-              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+              <HBox fx:id="library" alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
                   <children>
-                      <ImageView fx:id="library" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                      <ImageView  fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                           <image>
                               <Image url="@img/archive-book.png" />
                           </image>
@@ -144,17 +144,17 @@
                      </Label>
                      <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="118.0" prefWidth="491.0">
                         <children>
-                           <Button fx:id="add" alignment="CENTER" mnemonicParsing="false" onAction="#addToLibrary" prefHeight="34.0" prefWidth="122.0" styleClass="movementButtons" stylesheets="@styles/Genre.css" text="Add To Later">
+                           <Button fx:id="later" alignment="CENTER" mnemonicParsing="false" onAction="#addToLater" prefHeight="34.0" prefWidth="122.0" styleClass="movementButtons" stylesheets="@styles/Genre.css" text="Add To Later">
                               <HBox.margin>
                                  <Insets left="50.0" />
                               </HBox.margin>
                            </Button>
-                           <Button fx:id="add1" alignment="CENTER" mnemonicParsing="false" onAction="#addToLibrary" prefHeight="34.0" prefWidth="122.0" styleClass="movementButtons" stylesheets="@styles/Genre.css" text="Add To Liked">
+                           <Button fx:id="liked" alignment="CENTER" mnemonicParsing="false" onAction="#addToLiked" prefHeight="34.0" prefWidth="122.0" styleClass="movementButtons" stylesheets="@styles/Genre.css" text="Add To Liked">
                               <HBox.margin>
                                  <Insets left="10.0" />
                               </HBox.margin>
                            </Button>
-                           <Button fx:id="add2" alignment="CENTER" mnemonicParsing="false" onAction="#addToLibrary" prefHeight="34.0" prefWidth="122.0" styleClass="movementButtons" stylesheets="@styles/Genre.css" text="Add To Read">
+                           <Button fx:id="read" alignment="CENTER" mnemonicParsing="false" onAction="#addToRead" prefHeight="34.0" prefWidth="122.0" styleClass="movementButtons" stylesheets="@styles/Genre.css" text="Add To Read">
                               <HBox.margin>
                                  <Insets left="10.0" />
                               </HBox.margin>

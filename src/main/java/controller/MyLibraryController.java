@@ -133,7 +133,7 @@ public class MyLibraryController implements Initializable {
     public int arc = 10;
     private void loadLikedBooks() {
         try {
-            List<BookModel> likedBooks = DBUtils.fetchLikedBooks(1);
+            List<BookModel> likedBooks = DBUtils.fetchLikedBooks(userid);
 
             LikedList.getChildren().clear();
 
@@ -211,7 +211,7 @@ public class MyLibraryController implements Initializable {
 
     private void loadReadLaterBooks() {
         try {
-            List<BookModel> readLaterList = DBUtils.fetchReadLaterBooks(1);
+            List<BookModel> readLaterList = DBUtils.fetchReadLaterBooks(userid);
 
             ReadLaterList.getChildren().clear();
 
@@ -280,7 +280,7 @@ public class MyLibraryController implements Initializable {
 
     private void loadReadBooks() {
         try {
-            List<BookModel> readList = DBUtils.fetchReadBooks(1);
+            List<BookModel> readList = DBUtils.fetchReadBooks(userid);
 
             ReadList.getChildren().clear();
 

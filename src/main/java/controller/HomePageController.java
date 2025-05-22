@@ -306,8 +306,8 @@ public class HomePageController {
                         FXMLLoader detailLoader = new FXMLLoader(getClass().getResource("/view/BookPage.fxml"));
                         Parent detailRoot = detailLoader.load();
 
-                        //BookPageController detailController = detailLoader.getController();
-                        //detailController.initializeWithBook(book); // pass full book object or just book ID
+                        BookPageController detailController = detailLoader.getController();
+                        detailController.setBookInfo(book, userId); // pass full book object or just book ID
 
                         Stage stage = new Stage();
                         stage.setTitle("Book Details");
