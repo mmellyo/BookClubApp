@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1238.0" style="-fx-background-color: #4a2f1e;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.loggedinController">
+   <children>
+      <BorderPane layoutX="298.0" layoutY="179.0" prefHeight="520.0" prefWidth="654.0">
+         <left>
+            <VBox prefHeight="507.0" prefWidth="640.0" style="-fx-background-color: #4a2f1e;" stylesheets="/view/styles/style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="650.0">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="650.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <children>
+                        <Label fx:id="label_welcome" prefHeight="46.0" prefWidth="148.0" text="Welcome !" textAlignment="CENTER" textFill="#f5ebc7">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="30.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="83.0" prefWidth="640.0">
+                     <children>
+                        <Label prefHeight="27.0" prefWidth="273.0" text="Access your dashboard or log out." textFill="#f5ebc7">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="180.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Button fx:id="button_openapp" mnemonicParsing="false" prefHeight="35.0" prefWidth="178.0" style="-fx-cursor: hand;" stylesheets="@styles/style.css" text="Open App" textFill="#4a2f1c">
+                     <font>
+                        <Font name="Corbel Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="225.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="dark-Beige-Color" />
+                        <String fx:value="dark-button-animation" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="button_logout" mnemonicParsing="false" prefHeight="35.0" prefWidth="178.0" stylesheets="@styles/style.css" text="logout" textFill="#d6bc99">
+                     <font>
+                        <Font name="Corbel Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="225.0" top="10.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="skip-button" />
+                        <String fx:value="ghost-button-animation" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </VBox>
+         </left>
+      </BorderPane>
+      <HBox prefHeight="118.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="35.0" fitWidth="331.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/LOGOLIGHT.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="15.0" top="10.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox layoutX="4.0" layoutY="636.0" prefHeight="58.0" prefWidth="360.0">
+         <children>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@img/facebook.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="5.0" top="30.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@img/instagram.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="7.0" top="30.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@img/tiktok.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="7.0" right="7.0" top="30.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@img/twitter.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="30.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox layoutX="1125.0" layoutY="673.0" prefHeight="21.0" prefWidth="111.0">
+         <children>
+            <Label prefHeight="22.0" prefWidth="120.0" text="© 2023 Nbookini, Inc." textFill="#f5ebc7">
+               <font>
+                  <Font name="Calibri Light" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

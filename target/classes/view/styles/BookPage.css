@@ -1,0 +1,36 @@
+.no-focus-scroll:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+.scroll-pane {
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: #f5ecdb;
+}
+
+.scroll-pane .scroll-bar:horizontal {
+    -fx-background-color: transparent; /* Remove background */
+    -fx-pref-width: 5px; /* Thin vertical scrollbar */
+    -fx-pref-height: 5px; /* Thin horizontal scrollbar */
+}
+
+.scroll-pane .scroll-bar:horizontal .thumb {
+    -fx-background-color: #999999; /* Light gray */
+    -fx-background-radius: 5px; /* Rounded corners */
+    -fx-pref-width: 5px;
+    -fx-pref-height: 5px;
+}
+.scroll-pane .scroll-bar:horizontal .track {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:horizontal .increment-button,
+.scroll-pane .scroll-bar:horizontal .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 0;
+}

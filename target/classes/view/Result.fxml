@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ResultPageController">
+    <AnchorPane prefHeight="700.0" prefWidth="55.0" style="-fx-background-color: #baaa87;" styleClass="sidebar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1188.0" AnchorPane.topAnchor="0.0">
+        <children>
+            <Pane prefHeight="100.0" prefWidth="55.0" AnchorPane.rightAnchor="0.0">
+                <children>
+                    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="2.5" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@img/pp.png" />
+                        </image></ImageView>
+                </children>
+            </Pane>
+            <VBox layoutX="10.0" layoutY="208.0" spacing="10.0">
+                <children>
+                    <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+                        <children>
+                            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@img/home.png" />
+                                </image>
+                            </ImageView>
+                        </children>
+                    </HBox>
+                    <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+                        <children>
+                            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@img/book.png" />
+                                </image>
+                            </ImageView>
+                        </children>
+                    </HBox>
+                    <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+                        <children>
+                            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@img/chat.png" />
+                                </image>
+                            </ImageView>
+                        </children>
+                    </HBox>
+                    <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+                        <children>
+                            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@img/Group 1707479776.png" />
+                                </image>
+                            </ImageView>
+                        </children>
+                    </HBox>
+                    <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+                        <children>
+                            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@/view/img/archive-book.png" />
+                                </image>
+                            </ImageView>
+                        </children>
+                    </HBox>
+                </children>
+            </VBox>
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="15.0" layoutY="662.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@img/settings.png" />
+                </image>
+            </ImageView>
+        </children>
+      <stylesheets>
+         <URL value="@styles/Genre.css" />
+         <URL value="@styles/Genre.css" />
+      </stylesheets>
+    </AnchorPane>
+    <VBox fx:id="bookContainer" layoutX="55.20000076293945" prefHeight="698.0" prefWidth="1186.0">
+        <children>
+            <Label fx:id="genreHeader" prefHeight="49.0" prefWidth="94.0" text="Genre">
+                <VBox.margin>
+                    <Insets left="20.0" top="20.0" />
+                </VBox.margin>
+                <font>
+                    <Font name="Corbel Bold" size="22.0" />
+                </font></Label>
+            <HBox prefHeight="300.0" prefWidth="1186.0">
+                <children>
+                    <Button fx:id="book1" alignment="TOP_CENTER" contentDisplay="TOP" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="274.0" prefWidth="150.0" styleClass="bookButtons" stylesheets="@styles/Genre.css" text="Button" textAlignment="CENTER" wrapText="true">
+                        <graphic>
+                            <ImageView fitHeight="230.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        </graphic>
+                        <HBox.margin>
+                            <Insets left="60.0" />
+                        </HBox.margin>
+                        <padding>
+                            <Insets left="-4.0" right="-4.0" />
+                        </padding>
+                    </Button>
+                    <Button fx:id="book2" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="15.0" layoutY="10.0" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="274.0" prefWidth="150.0" styleClass="bookButtons" stylesheets="@styles/Genre.css" text="Button" wrapText="true">
+                        <graphic>
+                            <ImageView fitHeight="230.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        </graphic>
+                        <padding>
+                            <Insets left="-4.0" right="-4.0" />
+                        </padding>
+                        <HBox.margin>
+                            <Insets left="30.0" />
+                        </HBox.margin>
+                    </Button>
+                    <Button fx:id="book3" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="217.0" layoutY="10.0" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="274.0" prefWidth="150.0" styleClass="bookButtons" stylesheets="@styles/Genre.css" text="Button" wrapText="true">
+                        <graphic>
+                            <ImageView fitHeight="230.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        </graphic>
+                        <padding>
+                            <Insets left="-4.0" right="-4.0" />
+                        </padding>
+                        <HBox.margin>
+                            <Insets left="30.0" />
+                        </HBox.margin>
+                    </Button>
+                    <Button fx:id="book4" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="417.0" layoutY="10.0" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="274.0" prefWidth="150.0" styleClass="bookButtons" stylesheets="@styles/Genre.css" text="Button" wrapText="true">
+                        <graphic>
+                            <ImageView fitHeight="230.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        </graphic>
+                        <padding>
+                            <Insets left="-4.0" right="-4.0" />
+                        </padding>
+                        <HBox.margin>
+                            <Insets left="30.0" />
+                        </HBox.margin>
+                    </Button>
+                    <Button fx:id="book5" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="617.0" layoutY="10.0" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="274.0" prefWidth="150.0" styleClass="bookButtons" stylesheets="@styles/Genre.css" text="Button" wrapText="true">
+                        <graphic>
+                            <ImageView fitHeight="230.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        </graphic>
+                        <padding>
+                            <Insets left="-4.0" right="-4.0" />
+                        </padding>
+                        <HBox.margin>
+                            <Insets left="30.0" />
+                        </HBox.margin>
+                    </Button>
+                    <Button fx:id="book6" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="780.0" layoutY="10.0" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="274.0" prefWidth="150.0" styleClass="bookButtons" stylesheets="@styles/Genre.css" text="Button" wrapText="true">
+                        <graphic>
+                            <ImageView fitHeight="230.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        </graphic>
+                        <padding>
+                            <Insets left="-4.0" right="-4.0" />
+                        </padding>
+                        <HBox.margin>
+                            <Insets left="30.0" />
+                        </HBox.margin>
+                    </Button>
+                </children>
+                <VBox.margin>
+                    <Insets top="30.0" />
+                </VBox.margin>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="80.0" prefHeight="300.0" prefWidth="1186.0">
+                <children>
+                    <Button fx:id="book7" alignment="TOP_CENTER" contentDisplay="TOP" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="274.0" prefWidth="150.0" styleClass="bookButtons" stylesheets="@styles/Genre.css" text="Button" wrapText="true">
+                        <graphic>
+                            <ImageView fitHeight="230.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        </graphic>
+                        <HBox.margin>
+                            <Insets left="60.0" />
+                        </HBox.margin>
+                        <padding>
+                            <Insets left="-4.0" right="-4.0" />
+                        </padding>
+                    </Button>
+                    <Button fx:id="book8" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="15.0" layoutY="10.0" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="274.0" prefWidth="150.0" styleClass="bookButtons" stylesheets="@styles/Genre.css" text="Button" wrapText="true">
+                        <graphic>
+                            <ImageView fitHeight="230.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        </graphic>
+                        <padding>
+                            <Insets left="-4.0" right="-4.0" />
+                        </padding>
+                        <HBox.margin>
+                            <Insets left="30.0" />
+                        </HBox.margin>
+                    </Button>
+                    <Button fx:id="book9" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="217.0" layoutY="10.0" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="274.0" prefWidth="150.0" styleClass="bookButtons" stylesheets="@styles/Genre.css" text="Button" wrapText="true">
+                        <graphic>
+                            <ImageView fitHeight="230.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        </graphic>
+                        <padding>
+                            <Insets left="-4.0" right="-4.0" />
+                        </padding>
+                        <HBox.margin>
+                            <Insets left="30.0" />
+                        </HBox.margin>
+                    </Button>
+                    <Button fx:id="book10" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="417.0" layoutY="10.0" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="274.0" prefWidth="150.0" styleClass="bookButtons" stylesheets="@styles/Genre.css" text="Button" wrapText="true">
+                        <graphic>
+                            <ImageView fitHeight="230.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        </graphic>
+                        <padding>
+                            <Insets left="-4.0" right="-4.0" />
+                        </padding>
+                        <HBox.margin>
+                            <Insets left="30.0" />
+                        </HBox.margin>
+                    </Button>
+                    <Button fx:id="book11" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="617.0" layoutY="10.0" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="274.0" prefWidth="150.0" styleClass="bookButtons" stylesheets="@styles/Genre.css" text="Button" wrapText="true">
+                        <graphic>
+                            <ImageView fitHeight="230.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        </graphic>
+                        <padding>
+                            <Insets left="-4.0" right="-4.0" />
+                        </padding>
+                        <HBox.margin>
+                            <Insets left="30.0" />
+                        </HBox.margin>
+                    </Button>
+                    <Button fx:id="book12" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="780.0" layoutY="10.0" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="274.0" prefWidth="150.0" styleClass="bookButtons" stylesheets="@styles/Genre.css" text="Button" wrapText="true">
+                        <graphic>
+                            <ImageView fitHeight="230.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        </graphic>
+                        <padding>
+                            <Insets left="-4.0" right="-4.0" />
+                        </padding>
+                        <HBox.margin>
+                            <Insets left="30.0" />
+                        </HBox.margin>
+                    </Button>
+                </children>
+                <VBox.margin>
+                    <Insets bottom="10.0" top="10.0" />
+                </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="1186.0">
+                <children>
+                    <Button fx:id="previousButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" styleClass="movementButtons" stylesheets="@styles/Genre.css" text="previous">
+                        <HBox.margin>
+                            <Insets right="10.0" />
+                        </HBox.margin>
+                    </Button>
+                    <Button fx:id="nextButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" styleClass="movementButtons" stylesheets="@styles/Genre.css" text="next">
+                        <HBox.margin>
+                            <Insets right="10.0" />
+                        </HBox.margin>
+                    </Button>
+                </children>
+                <VBox.margin>
+                    <Insets bottom="10.0" />
+                </VBox.margin>
+            </HBox>
+        </children>
+    </VBox>
+</AnchorPane>

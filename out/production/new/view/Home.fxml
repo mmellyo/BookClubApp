@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1238.0" style="-fx-background-color: #f5ecdb;" styleClass="root" stylesheets="@/view/styles/Home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+    <children>
+        <AnchorPane layoutX="10.0" layoutY="10.0" style="-fx-background-color: #baaa87;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <AnchorPane prefHeight="700.0" prefWidth="55.0" styleClass="sidebar" stylesheets="@/view/styles/Home.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <Pane prefHeight="100.0" prefWidth="55.0" AnchorPane.rightAnchor="0.0">
+                            <children>
+                                <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="2.5" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+                            </children>
+                        </Pane>
+                        <VBox layoutX="10.0" layoutY="208.0" spacing="10.0">
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+                                    <children>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@/view/img/home.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="sidebar-selected">
+                                    <children>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@/view/img/book.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+                                    <children>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@/view/img/chat.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+                                    <children>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@/view/img/Group 1707479776.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+                                    <children>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@/view/img/archive-book.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="15.0" layoutY="662.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/view/img/settings.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="89.0" layoutY="33.0" prefHeight="200.0" prefWidth="760.0" styleClass="no-focus-scroll" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="370.0" AnchorPane.topAnchor="0.0">
+            <content>
+                <VBox prefHeight="964.0" prefWidth="811.0" style="-fx-background-color: #f5ecdb;">
+                    <padding>
+                        <Insets right="500.0" />
+                    </padding>
+                    <children>
+                        <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="73.0" prefWidth="811.0">
+                            <VBox.margin>
+                                <Insets right="-500.0" />
+                            </VBox.margin>
+                            <children>
+                                <StackPane alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="569.0">
+                                    <children>
+                                        <TextField fx:id="searchField" maxWidth="329.0" prefHeight="26.0" prefWidth="329.0" promptText="Search" style="-fx-background-color: #baaa87; -fx-background-radius: 7; -fx-prompt-text-fill: #665e4d;">
+                                            <StackPane.margin>
+                                                <Insets left="50.0" />
+                                            </StackPane.margin>
+                                            <padding>
+                                                <Insets left="30.0" />
+                                            </padding>
+                                        </TextField>
+                                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true">
+                                            <StackPane.margin>
+                                                <Insets left="55.0" />
+                                            </StackPane.margin>
+                                            <image>
+                                                <Image url="@/view/img/magnifying.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                </StackPane>
+                                <Button maxHeight="30.0" maxWidth="38.0" minHeight="30.0" minWidth="38.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="38.0" style="-fx-background-color: #f5ecdb;">
+                                    <HBox.margin>
+                                        <Insets left="160.0" />
+                                    </HBox.margin>
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@/view/img/app-notification.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                            </children>
+                        </HBox>
+                        <ScrollPane prefHeight="106.0" prefWidth="811.0" style="-fx-background-color: #f5ecdb;" styleClass="no-focus-scroll" vbarPolicy="NEVER">
+                            <VBox.margin>
+                                <Insets right="-500.0" />
+                            </VBox.margin>
+                            <content>
+                                <HBox fx:id="genreBox" prefHeight="90.0" prefWidth="1418.0">
+                                    <children>
+                                        <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="122.0" prefWidth="74.0" style="-fx-background-color: #f5ecdb;" styleClass="genre-button" text="All">
+                                            <HBox.margin>
+                                                <Insets left="30.0" />
+                                            </HBox.margin>
+                                            <graphic>
+                                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true">
+                                                    <image>
+                                                        <Image url="@img/books.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="20.0" layoutY="10.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="74.0" style="-fx-background-color: #f5ecdb;" styleClass="genre-button" text="Romance">
+                                            <graphic>
+                                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@img/romance.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="118.0" layoutY="10.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="74.0" style="-fx-background-color: #f5ecdb;" styleClass="genre-button" text="Fantasy">
+                                            <graphic>
+                                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@img/fantasy.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="216.0" layoutY="10.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="74.0" style="-fx-background-color: #f5ecdb;" styleClass="genre-button" text="Horror">
+                                            <graphic>
+                                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@img/horror.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="313.0" layoutY="10.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="74.0" style="-fx-background-color: #f5ecdb;" styleClass="genre-button" text="History">
+                                            <graphic>
+                                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@img/history-book.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="400.0" layoutY="10.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="74.0" style="-fx-background-color: #f5ecdb;" styleClass="genre-button" text="Mystery">
+                                            <graphic>
+                                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@img/mistery.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="488.0" layoutY="10.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="74.0" style="-fx-background-color: #f5ecdb;" styleClass="genre-button" text="Literature">
+                                            <graphic>
+                                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@img/poetry.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="606.0" layoutY="10.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="74.0" style="-fx-background-color: #f5ecdb;" styleClass="genre-button" text="Science">
+                                            <graphic>
+                                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@img/science-book.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="624.0" layoutY="10.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="74.0" style="-fx-background-color: #f5ecdb;" styleClass="genre-button" text="Self-Help">
+                                            <graphic>
+                                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@img/inspiration.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="719.0" layoutY="10.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="74.0" style="-fx-background-color: #f5ecdb;" styleClass="genre-button" text="Thriller">
+                                            <graphic>
+                                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@/view/img/inspiration.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="793.0" layoutY="10.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="74.0" style="-fx-background-color: #f5ecdb;" styleClass="genre-button" text="Business">
+                                            <graphic>
+                                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@/view/img/inspiration.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="868.0" layoutY="10.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="74.0" style="-fx-background-color: #f5ecdb;" styleClass="genre-button" text="Psychology">
+                                            <graphic>
+                                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@/view/img/inspiration.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="942.0" layoutY="10.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="74.0" style="-fx-background-color: #f5ecdb;" styleClass="genre-button" text="Sci-Fi">
+                                            <graphic>
+                                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@/view/img/inspiration.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="1016.0" layoutY="10.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="74.0" style="-fx-background-color: #f5ecdb;" styleClass="genre-button" text="AI &amp; Tech">
+                                            <graphic>
+                                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@/view/img/inspiration.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="1091.0" layoutY="10.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="74.0" style="-fx-background-color: #f5ecdb;" styleClass="genre-button" text="Religion">
+                                            <graphic>
+                                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@/view/img/inspiration.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="1228.0" layoutY="10.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="74.0" style="-fx-background-color: #f5ecdb;" styleClass="genre-button" text="Historical Fiction">
+                                            <graphic>
+                                                <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@/view/img/inspiration.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                            </content>
+                        </ScrollPane>
+                        <VBox prefHeight="235.0" prefWidth="811.0">
+                            <VBox.margin>
+                                <Insets right="-500.0" top="20.0" />
+                            </VBox.margin>
+                            <children>
+                                <Label prefHeight="40.0" prefWidth="98.0" text="For You">
+                                    <VBox.margin>
+                                        <Insets left="30.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <HBox prefHeight="196.0" prefWidth="811.0">
+                                    <children>
+                                        <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="193.0" prefWidth="165.0" style="-fx-background-color: #f5ecdb;" text="Button">
+                                            <HBox.margin>
+                                                <Insets left="30.0" />
+                                            </HBox.margin>
+                                            <graphic>
+                                                <ImageView fitHeight="162.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
+                                            </graphic>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="40.0" layoutY="10.0" mnemonicParsing="false" prefHeight="193.0" prefWidth="165.0" style="-fx-background-color: #f5ecdb;" text="Button">
+                                            <graphic>
+                                                <ImageView fitHeight="162.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="30.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="208.0" layoutY="10.0" mnemonicParsing="false" prefHeight="193.0" prefWidth="165.0" style="-fx-background-color: #f5ecdb;" text="Button">
+                                            <graphic>
+                                                <ImageView fitHeight="162.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="30.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="376.0" layoutY="10.0" mnemonicParsing="false" prefHeight="193.0" prefWidth="165.0" style="-fx-background-color: #f5ecdb;" text="Button">
+                                            <graphic>
+                                                <ImageView fitHeight="162.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="30.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                        <VBox layoutX="10.0" layoutY="182.0" prefHeight="235.0" prefWidth="811.0">
+                            <children>
+                                <Label prefHeight="40.0" prefWidth="98.0" text="Popular">
+                                    <VBox.margin>
+                                        <Insets left="30.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <HBox prefHeight="196.0" prefWidth="811.0">
+                                    <children>
+                                        <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="193.0" prefWidth="165.0" style="-fx-background-color: #f5ecdb;" text="Button">
+                                            <HBox.margin>
+                                                <Insets left="30.0" />
+                                            </HBox.margin>
+                                            <graphic>
+                                                <ImageView fitHeight="162.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
+                                            </graphic>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="40.0" layoutY="10.0" mnemonicParsing="false" prefHeight="193.0" prefWidth="165.0" style="-fx-background-color: #f5ecdb;" text="Button">
+                                            <graphic>
+                                                <ImageView fitHeight="162.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="30.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="208.0" layoutY="10.0" mnemonicParsing="false" prefHeight="193.0" prefWidth="165.0" style="-fx-background-color: #f5ecdb;" text="Button">
+                                            <graphic>
+                                                <ImageView fitHeight="162.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="30.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="376.0" layoutY="10.0" mnemonicParsing="false" prefHeight="193.0" prefWidth="165.0" style="-fx-background-color: #f5ecdb;" text="Button">
+                                            <graphic>
+                                                <ImageView fitHeight="162.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="30.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                            </children>
+                            <VBox.margin>
+                                <Insets right="-500.0" />
+                            </VBox.margin>
+                        </VBox>
+                        <VBox layoutX="10.0" layoutY="417.0" prefHeight="235.0" prefWidth="811.0">
+                            <children>
+                                <Label prefHeight="40.0" prefWidth="98.0" text="Recommended">
+                                    <VBox.margin>
+                                        <Insets left="30.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <HBox prefHeight="196.0" prefWidth="811.0">
+                                    <children>
+                                        <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="193.0" prefWidth="165.0" style="-fx-background-color: #f5ecdb;" text="Button">
+                                            <HBox.margin>
+                                                <Insets left="30.0" />
+                                            </HBox.margin>
+                                            <graphic>
+                                                <ImageView fitHeight="162.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
+                                            </graphic>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="40.0" layoutY="10.0" mnemonicParsing="false" prefHeight="193.0" prefWidth="165.0" style="-fx-background-color: #f5ecdb;" text="Button">
+                                            <graphic>
+                                                <ImageView fitHeight="162.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="30.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="208.0" layoutY="10.0" mnemonicParsing="false" prefHeight="193.0" prefWidth="165.0" style="-fx-background-color: #f5ecdb;" text="Button">
+                                            <graphic>
+                                                <ImageView fitHeight="162.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="30.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button contentDisplay="TOP" layoutX="376.0" layoutY="10.0" mnemonicParsing="false" prefHeight="193.0" prefWidth="165.0" style="-fx-background-color: #f5ecdb;" text="Button">
+                                            <graphic>
+                                                <ImageView fitHeight="162.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets left="30.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                            </children>
+                            <VBox.margin>
+                                <Insets right="-500.0" />
+                            </VBox.margin>
+                        </VBox>
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+        <ScrollPane hbarPolicy="NEVER" layoutX="901.0" layoutY="142.0" prefHeight="200.0" styleClass="no-focus-scroll" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="867.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <content>
+                <VBox prefHeight="1400.0" prefWidth="370.0" style="-fx-background-color: #f5ecdb;" />
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>

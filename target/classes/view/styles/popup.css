@@ -1,0 +1,15 @@
+.popup {
+    -fx-background-color: #baaa87;
+    -fx-border-color: #baaa87;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+.label {
+    -fx-text-fill: black;
+    -fx-padding: 5px;
+}
+
+.label:hover {
+    -fx-background-color: #E0E0E0;
+}
