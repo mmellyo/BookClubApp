@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DBManager {
     private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/nbookinidb";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "0000";
+        private static final String DB_PASSWORD = "Mellybookclub";
 
     private DBManager() {
     }
