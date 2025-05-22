@@ -160,7 +160,7 @@ public class DBUtils {
                     //DEBUG
                     System.out.println("hpp if entered");
                     HomePageController homeC = loader.getController();
-                    homeC.setUserInfo(userid,userpassword);
+                    homeC.setUserInfo(userid);
                 }
 
 
@@ -422,7 +422,7 @@ return -1;
         // Handle login
         if (fxmlFile.equals("/view/login.fxml")) {
             loginController loginC = loader.getController();
-            loginC.setUserInfo(userid, username, userpassword);
+            //loginC.setUserInfo(userid, username, userpassword);
 
             // Handle signup
         } else if (fxmlFile.equals("/view/signup.fxml")) {
@@ -463,9 +463,10 @@ return -1;
                     String retrieveduserpassword = resultSet.getString("user_password");
 
                     if (retrieveduserpassword.equals(userpassword)) {
-                        userId = resultSet.getInt("user_id");
-                        System.out.println("Correct password, moving to loggedin.fxml");
-                        changeScene(event, "/view/loggedin.fxml", userId, userpassword);
+                        userId = resultSet.getInt(1);
+
+                        System.out.println("Correct password, moving to home.fxml");
+
                     } else {
                         System.out.println("Incorrect password. Please try again.");
                         showCustomAlert("Incorrect password. Please try again.");

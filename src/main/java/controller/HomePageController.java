@@ -46,26 +46,33 @@ public class HomePageController {
     private HBox fyb;
     @FXML
     private HBox popular;
+    
+    @FXML
+    private HBox profile;
+    @FXML
+    private HBox library;
+
 
     private User user;
     private String userpassword;
     private int userId;
 
 
-    public void setUserInfo(int userId, String userpassword) {
+    public void setUserInfo(int userId) {
         this.userId = userId;
-        System.out.println("the userid set is " + userId);
-        this.userpassword = userpassword;
-
+        this.user = new User(userId);
+        initialize(); // Load data only after user is set
     }
 
 
     @FXML
     public void initialize()  {
 
-System.out.println("userid inside init" + userId);
+        profile.setOnMouseClicked(event -> navigateToProfile());
+        library.setOnMouseClicked(event -> navigateToLibrary());
+        
         user = new User(userId);
-
+        System.out.println("user_id in login: "+ userId);
         //merging both the clubs the user is admin of and member of without duplicates
         List<Integer> mergedClubs = new ArrayList<>(user.getAdminOf());
         mergedClubs.addAll(user.getMemberOf());
@@ -100,6 +107,12 @@ System.out.println("userid inside init" + userId);
             throw new RuntimeException(e);
         }
 
+    }
+
+    private void navigateToLibrary() {
+    }
+
+    private void navigateToProfile() {
     }
 
     // setting up the genres buttons
@@ -162,9 +175,9 @@ System.out.println("userid inside init" + userId);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Result.fxml"));
             Parent root = loader.load();
 
-            // Pass the genre to the GenrePageController
-            //ResultPageController controller = loader.getController();
-            //controller.setResult(result);
+            // Pass the results to the ResultPageController
+            ResultPageController controller = loader.getController();
+            controller.setResult(result, userId);
 
             // Create a new stage for the genre page
             Stage stage = new Stage();

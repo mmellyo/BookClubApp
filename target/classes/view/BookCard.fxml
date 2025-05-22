@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane onMouseClicked="#goToBookPage" prefHeight="250.0" prefWidth="150.0" style="-fx-background-color: transparent;" styleClass="bookButtons" stylesheets="@styles/BookCard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BookCardController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="250.0" prefWidth="150.0">
+         <children>
+            <ImageView fx:id="coverPic" fitHeight="202.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label fx:id="bookName" alignment="CENTER" contentDisplay="CENTER" text="Label" textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
