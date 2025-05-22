@@ -139,12 +139,36 @@ public class ResultPageController {
                     coverImage.setImage(image);
                 }
                 button.setGraphic(coverImage);
-
+                button.setOnAction(e -> openBookPage(book));
                 button.setDisable(false);  // Enable button because a book is available
             } else {
                 button.setText("");
                 button.setGraphic(null);
-                button.setDisable(true);   // Disable button because no book here
+                button.setDisable(true);
+                button.setOnAction(null);// Disable button because no book here
             }
         }
-    }}
+    }
+
+    private void openBookPage(Book book) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BookPage.fxml"));
+            Parent root = loader.load();
+
+            BookPageController controller = loader.getController();
+            controller.setBookInfo(book); // This should now work
+
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Close the current window (the one that triggered the event)
+            Stage currentStage = (Stage) rootPane.getScene().getWindow();
+            currentStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}

@@ -51,6 +51,7 @@ public class Book {
     public byte[] getCoverBytes() {
         return coverBytes;
     }
+    public String getDescription() {return description;}
 
     public Image getCoverImage() {
         if (coverBytes != null && coverBytes.length > 0) {
@@ -215,5 +216,32 @@ public class Book {
         }
         return books;
     }
+
+    public static String getAuthorBio(int bookid) {
+        String bio = "";
+        String sql = "SELECT a.author_bio "+
+                "FROM author a " +
+                "JOIN written_by wb ON wb.author_id = a.author_id " +
+                "JOIN books b ON b.book_id = wb.book_id " +
+                "WHERE b.book_id = ? ";
+
+        try (Connection connection = DBManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+
+            statement.setInt(1, bookid);
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+
+                bio = rs.getString("author_bio");
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return bio;
+    }
+
 
 }
