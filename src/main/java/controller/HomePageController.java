@@ -54,15 +54,16 @@ public class HomePageController {
 
     public void setUserInfo(int userId, String userpassword) {
         this.userId = userId;
+        System.out.println("the userid set is " + userId);
         this.userpassword = userpassword;
-    }
 
+    }
 
 
     @FXML
     public void initialize()  {
 
-
+System.out.println("userid inside init" + userId);
         user = new User(userId);
 
         //merging both the clubs the user is admin of and member of without duplicates
@@ -81,7 +82,7 @@ public class HomePageController {
             pfp.setFill(new ImagePattern(image));
         } else {
             // Optionally use a default placeholder image
-            Image defaultImage = new Image(getClass().getResource("/images/pp.png").toExternalForm());
+            Image defaultImage = new Image(getClass().getResource("/view/img/pp.png").toExternalForm());
             pfp.setFill(new ImagePattern(defaultImage));
         }
 
