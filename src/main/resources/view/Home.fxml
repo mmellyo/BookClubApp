@@ -24,9 +24,9 @@
                         <Pane prefHeight="75.0" prefWidth="55.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <ImageView fitHeight="67.0" fitWidth="50.0" layoutX="3.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@/view/img/logo.png" />
-                           </image></ImageView>
+                                    <image>
+                                        <Image url="@/view/img/LOGOLIGHT.png" />
+                                    </image></ImageView>
                             </children>
                         </Pane>
                         <VBox layoutX="10.0" layoutY="208.0" spacing="10.0">
@@ -358,78 +358,78 @@
             </content>
         </ScrollPane>
         <ScrollPane hbarPolicy="NEVER" layoutX="901.0" layoutY="142.0" prefHeight="200.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, -10, 7);" styleClass="no-focus-scroll" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="867.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <content>
-            <VBox fx:id="rightSide" prefHeight="1400.0" prefWidth="370.0" style="-fx-background-color: #faf3e5; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), -10, 0.5, 10, 7);">
-               <children>
-                  <HBox prefHeight="86.0" prefWidth="370.0">
-                     <children>
-                        <HBox prefHeight="62.0" prefWidth="192.0">
-                           <children>
-                              <Circle fx:id="pfp" fill="#faf3e5" radius="20.0" stroke="#a1a1a1" strokeType="INSIDE">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Circle>
-                              <Label fx:id="username" minWidth="100.0" prefHeight="22.0" prefWidth="166.0" text="username">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="10.0" top="9.0" />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                           <HBox.margin>
-                              <Insets left="10.0" top="25.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets right="165.0" />
-                           </padding>
+            <content>
+                <VBox fx:id="rightSide" prefHeight="1400.0" prefWidth="370.0" style="-fx-background-color: #faf3e5; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), -10, 0.5, 10, 7);">
+                    <children>
+                        <HBox prefHeight="86.0" prefWidth="370.0">
+                            <children>
+                                <HBox prefHeight="62.0" prefWidth="192.0">
+                                    <children>
+                                        <Circle fx:id="pfp" fill="#faf3e5" radius="20.0" stroke="#a1a1a1" strokeType="INSIDE">
+                                            <HBox.margin>
+                                                <Insets />
+                                            </HBox.margin>
+                                        </Circle>
+                                        <Label fx:id="username" minWidth="100.0" prefHeight="22.0" prefWidth="166.0" text="username">
+                                            <font>
+                                                <Font size="15.0" />
+                                            </font>
+                                            <HBox.margin>
+                                                <Insets left="10.0" top="9.0" />
+                                            </HBox.margin>
+                                        </Label>
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets left="10.0" top="25.0" />
+                                    </HBox.margin>
+                                    <padding>
+                                        <Insets right="165.0" />
+                                    </padding>
+                                </HBox>
+                                <Button fx:id="notification" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="38.0" mnemonicParsing="false" onMouseClicked="#openNotification" prefHeight="30.0" prefWidth="38.0" style="-fx-background-color: #faf3e5;" styleClass="button_small">
+                                    <HBox.margin>
+                                        <Insets top="30.0" />
+                                    </HBox.margin>
+                                    <graphic>
+                                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/notification.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                            </children>
                         </HBox>
-                        <Button fx:id="notification" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="38.0" mnemonicParsing="false" onMouseClicked="#openNotification" prefHeight="30.0" prefWidth="38.0" style="-fx-background-color: #faf3e5;" styleClass="button_small">
-                           <HBox.margin>
-                              <Insets top="30.0" />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@img/notification.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                     <children>
-                        <Label id="clubLabel" text="Your Clubs">
-                           <font>
-                              <Font name="Corbel Bold" size="19.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Button mnemonicParsing="false" onMouseClicked="#addClub" style="-fx-background-color: transparent;" styleClass="button_small">
-                           <graphic>
-                              <ImageView fx:id="addClub" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@img/plus.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <HBox.margin>
-                              <Insets left="218.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </content>
+                        <HBox>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                            <children>
+                                <Label id="clubLabel" text="Your Clubs">
+                                    <font>
+                                        <Font name="Corbel Bold" size="19.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets left="20.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <Button mnemonicParsing="false" onMouseClicked="#addClub" style="-fx-background-color: transparent;" styleClass="button_small">
+                                    <graphic>
+                                        <ImageView fx:id="addClub" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/plus.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <HBox.margin>
+                                        <Insets left="218.0" />
+                                    </HBox.margin>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </content>
         </ScrollPane>
     </children>
 </AnchorPane>

@@ -120,7 +120,7 @@ public class DBUtils {
     }
 
 
-    public static void changeScene(Event event, String fxmlFile, String username, String userpassword ) {
+    public static void changeScene(Event event, String fxmlFile,  String username, String userpassword ) {
         Parent root = null;
 
 
@@ -155,6 +155,13 @@ public class DBUtils {
                     loggedinC.setUsername(username);
                 }
 
+
+                if (fxmlFile.equals("/view/Home.fxml")) {
+                    //DEBUG
+                    System.out.println("hpp if entered");
+                    HomeController homeC = loader.getController();
+                    homeC.setUserInfo(username,userpassword);
+                }
 
                 if (fxmlFile.equals("/view/Home.fxml")) {
                     //DEBUG
@@ -482,8 +489,8 @@ public class DBUtils {
             } else { //if username already exists; is PW = PW in DB?
 
                 while (resultSet.next()){
-                  String retrieveduserpassword = resultSet.getString("userpassword");
-                  String retrievedemail = resultSet.getString("useremail");
+                  String retrieveduserpassword = resultSet.getString("user_password");
+                  String retrievedemail = resultSet.getString("email");
 
                   if(retrieveduserpassword.equals(userpassword)) {
                       System.out.println("correct pw, moving to loggedin.fxml ");

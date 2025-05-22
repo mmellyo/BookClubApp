@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Book {
@@ -99,24 +100,35 @@ public class Book {
         return result;
     }
 
-    public static List<Book> generateFyb (User user) throws SQLException {
-
+    public static List<Book> generateFyb(User user) throws SQLException {
         List<Book> books = new ArrayList<>();
+
+        Set<String> favGenres = user.getFavGenres();
+
+        // Return empty list early if no favorite genres
+        if (favGenres == null || favGenres.isEmpty()) {
+            return books;
+        }
+
+        String placeholders = favGenres.stream()
+                .map(g -> "?")
+                .collect(Collectors.joining(", "));
 
         String sql = "SELECT DISTINCT b.book_id, b.title, b.cover_picture " +
                 "FROM books b " +
                 "JOIN books_genres bg ON b.book_id = bg.book_id " +
                 "JOIN genres g ON bg.genre_id = g.genre_id " +
-                "WHERE g.genre_name IN (" +
-                user.getFavGenres().stream().map(g -> "?").collect(Collectors.joining(", ")) +
-                ") LIMIT 4";
+                "WHERE g.genre_name IN (" + placeholders + ") " +
+                "LIMIT 4";
 
         try (Connection connection = DBManager.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
+
             int i = 1;
-            for (String genre : user.getFavGenres()) {
+            for (String genre : favGenres) {
                 stmt.setString(i++, genre);
             }
+
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("book_id");
@@ -126,6 +138,7 @@ public class Book {
                 books.add(new Book(title, coverBytes, id));
             }
         }
+
         return books;
     }
 

@@ -24,6 +24,7 @@ import javafx.stage.StageStyle;
 import model.Book;
 import model.Club;
 import model.User;
+import utils.DBUtils;
 
 import java.io.*;
 import java.sql.*;
@@ -148,7 +149,7 @@ public class HomePageController {
 
             // Pass the genre to the GenrePageController
             //ResultPageController controller = loader.getController();
-           //controller.setResult(result);
+            //controller.setResult(result);
 
             // Create a new stage for the genre page
             Stage stage = new Stage();
@@ -198,17 +199,19 @@ public class HomePageController {
                 ClubCardController controller = loader.getController();
                 if (club.getCoverImage() != null) {
                     InputStream is = new ByteArrayInputStream(club.getCoverImage());
-                    Image image = new Image(is.toString(), 0, 0, true, true, false);
                     controller.setClubCard(club.getName(), String.valueOf(club.getCount()),new Image(is));
                 } else {
                     // Use a default placeholder image if cover image is missing
-                    Image coverImage = new Image(getClass().getResourceAsStream("/view/img/profile-user.png"));
+                    Image coverImage = new Image(getClass().getResource("/images/club-logo.png").toExternalForm());
                     controller.setClubCard(club.getName(), String.valueOf(club.getCount()),coverImage);
                 }
 
                 int finalClubId = club_id;
                 card.setOnMouseClicked(event -> {
-                    //go to club logic
+                    FXMLLoader loaderr = new FXMLLoader(getClass().getResource("/view/ClubView.fxml"));
+                    DBUtils.changeScene(event,"/view/ClubView.fxml", "melly", null );
+                    System.out.println("click on club " + club_id + " with user id " + username);
+
                 });
 
                 VBox.setMargin(card, new Insets(10));

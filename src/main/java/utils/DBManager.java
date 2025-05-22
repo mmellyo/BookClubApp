@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBManager {
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3307/nbookinidb";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/nbookinidb";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "";
+    private static final String DB_PASSWORD = "Mellybookclub";
 
     private DBManager() {
     }
