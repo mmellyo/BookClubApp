@@ -702,7 +702,7 @@ return -1;
 
 
     @FXML
-    public static void saveUserGenres(String username) {
+    public static void saveUserGenres(int userId) {
         //declare DB connection
         Connection connection = null;
         PreparedStatement psInsert = null;
@@ -726,21 +726,21 @@ return -1;
         System.out.println("DB connected successfully while genre selection");
 
         //query DB to update user genres
-        String query = "INSERT INTO" +
-                CommonConstants.DB_USER_GENRES_NAME +
-                " (username, genre_id) " +
+        String query = "INSERT INTO " +
+                "user_genres"+
+                " (user_id, genre_id) " +
                 "VALUES (?, ?)";
         psInsert= connection.prepareStatement(query);
             for (int genreId : selectedGenres)
             {
-                psInsert.setString(1, username);
+                psInsert.setInt(1, userId);
                 psInsert.setInt(2, genreId);
                 psInsert.addBatch();
             }
 
             psInsert.executeBatch();
             //DEBUG
-            System.out.println("Genres saved for user: " + username);
+            System.out.println("Genres saved for user: " + userId);
 
         } catch (SQLException e) {
         e.printStackTrace(); }

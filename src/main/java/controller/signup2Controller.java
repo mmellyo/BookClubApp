@@ -112,7 +112,7 @@ public class signup2Controller implements Initializable {
         button_next2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DBUtils.saveUserGenres(username);
+                DBUtils.saveUserGenres(userId);
                 //DEBUG
                 System.out.println("next2 IS clicked, lets save generes for : "+ username);
 
