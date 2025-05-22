@@ -1,5 +1,10 @@
 package controller;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.Book;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,15 +20,12 @@ import javafx.scene.layout.HBox;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 public class GenrePageController {
     @FXML
@@ -34,13 +36,18 @@ public class GenrePageController {
     @FXML
     private String genre;
     private int currentPage = 0;
-
+    private int userid;
     @FXML
     private Button nextButton;
 
     @FXML
     private Button previousButton;
-
+    @FXML
+    private HBox profile;
+    @FXML
+    private HBox library;
+    @FXML
+    private HBox home;
 
     private void setList(){
         for (int i = 1; i <= 12; i++) {
@@ -51,13 +58,46 @@ public class GenrePageController {
         }
     }
     // replacing the word genre with the actual genre navigated to
-    public void setGenre(String genre) {
+    public void setGenre(String genre, int userid) {
         this.genre = genre;
         genreHeader.setText(genre);
+        this.userid= userid;
 
         try {
-            loadInitialBooks(); // now genre is definitely not null
+            loadInitialBooks();
+            home.setOnMouseClicked(event -> navigateToHome());
+            profile.setOnMouseClicked(event -> navigateToProfile());
+            library.setOnMouseClicked(event -> navigateToLibrary());// now genre is definitely not null
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void navigateToLibrary() {
+    }
+
+    private void navigateToProfile() {
+    }
+
+    private void navigateToHome() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Home.fxml"));
+            Parent root = loader.load();
+
+            HomePageController controller = loader.getController();
+            System.out.println("user_id in switching: " + userid);
+            controller.setUserInfo(userid); // This should now work
+
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Close the current window (the one that triggered the event)
+            Stage currentStage = (Stage) rootPane.getScene().getWindow();
+            currentStage.close();
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -126,6 +166,7 @@ public class GenrePageController {
                     coverImage.setImage(image);
                 }
                 button.setGraphic(coverImage);
+                button.setOnAction(e -> openBookPage(book));
             } else {
                 button.setText("");
                 button.setGraphic(null);
@@ -144,6 +185,26 @@ public class GenrePageController {
             e.printStackTrace();
         }
     }
+    private void openBookPage(Book book) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BookPage.fxml"));
+            Parent root = loader.load();
 
+            BookPageController controller = loader.getController();
+            controller.setBookInfo(book); // This should now work
+
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Close the current window (the one that triggered the event)
+            Stage currentStage = (Stage) rootPane.getScene().getWindow();
+            currentStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

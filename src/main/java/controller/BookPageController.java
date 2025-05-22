@@ -38,9 +38,12 @@ public class BookPageController {
 
         // Set the cover image if available
         if (book.getCoverBytes() != null) {
-            InputStream is = new ByteArrayInputStream(book.getCoverBytes());
-            Image image = new Image(is, 150, 200, true, true);
-            cover.setImage(image);
+            try (InputStream is = new ByteArrayInputStream(book.getCoverBytes())) {
+                Image image = new Image(is, 150, 200, true, true);
+                cover.setImage(image);
+            } catch (Exception e) {
+                e.printStackTrace(); // Debug if image creation failed
+            }
         } else {
             cover.setImage(null);  // No image available
         }

@@ -51,7 +51,8 @@ public class HomePageController {
     private HBox profile;
     @FXML
     private HBox library;
-
+    @FXML
+    private HBox home;
 
     private User user;
     private String userpassword;
@@ -109,7 +110,26 @@ public class HomePageController {
     }
 
     private void navigateToLibrary(int userId) {
-        library.setOnMouseClicked(event -> switchToLibrary(userId, event));
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MyLibrary.fxml"));
+            Parent root = loader.load();
+
+            MyLibraryController controller = loader.getController();
+            System.out.println("user_id in switching: " + userId);
+            controller.setUserInfo(userId); // This should now work
+
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Close the current window (the one that triggered the event)
+            Stage currentStage = (Stage) genreBox.getScene().getWindow();
+            currentStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void switchToLibrary(int userId, MouseEvent event) {
@@ -162,7 +182,7 @@ public class HomePageController {
 
             // Pass the genre to the GenrePageController
             GenrePageController controller = loader.getController();
-            controller.setGenre(genre);
+            controller.setGenre(genre, userId);
 
             // Create a new stage for the genre page
             Stage stage = new Stage();
