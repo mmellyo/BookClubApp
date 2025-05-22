@@ -7,8 +7,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import model.User;
 import utils.DBUtils;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -26,7 +28,7 @@ public class loginController implements Initializable {
     private TextField tf_userpassword;
     @FXML
     private TextField tf_username;
-
+private int userId;
 
 
 
@@ -44,7 +46,7 @@ public class loginController implements Initializable {
                     DBUtils.showCustomAlert("Please fill in all required fields to log in.");
                 } else {
                     try {
-                        DBUtils.loginUser(event, tf_username.getText(), tf_userpassword.getText());
+                         userId = DBUtils.loginUser(event, tf_username.getText(), tf_userpassword.getText());
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
@@ -55,20 +57,32 @@ public class loginController implements Initializable {
         button_signup.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DBUtils.prefilledSignup(event, tf_username.getText(), tf_userpassword.getText() );
+                try {
+                    DBUtils.prefilledSignup(event,userId, tf_username.getText(), tf_userpassword.getText() );
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
         button_signup_up.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DBUtils.prefilledSignup(event, tf_username.getText(), tf_userpassword.getText() );
+                try {
+                    DBUtils.prefilledSignup(event,userId, tf_username.getText(), tf_userpassword.getText() );
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
 
-    public  void setUserInfo(String username , String userpassword) {
-        tf_username.setText(username);
-        tf_userpassword.setText(userpassword);
+    public void setUserInfo(int userId, String username, String userPassword) {
+        System.out.println("we are passign data from logged to hp");
+        this.userId = userId;
+        tf_username.setText(username);           // Use directly from parameter
+        tf_userpassword.setText(userPassword);
     }
+
+
 }

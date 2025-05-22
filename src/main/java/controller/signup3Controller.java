@@ -11,6 +11,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
+import model.User;
 import utils.DBUtils;
 
 import java.net.URL;
@@ -34,15 +35,16 @@ public class signup3Controller implements Initializable {
 
     private String userpassword;
     private String username;
+    private int userId;
 
 
 
-
-    public void setUserInfo(String username, String userpassword) {
-        this.username = username;
+    public void setUserInfo(int userId, String userpassword) {
+        User user = new User(userId);
+        this.username = user.getUsername();
+        this.userId = userId;
         this.userpassword = userpassword;
     }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -57,7 +59,7 @@ public class signup3Controller implements Initializable {
 
         //hndle mouseclick
         image_previousPage3.setOnMouseClicked(event ->
-                DBUtils.changeScene(event,"/view/signup2.fxml",null, null )
+                DBUtils.changeScene(event,"/view/signup2.fxml",userId, null )
         );
 
 
@@ -68,8 +70,8 @@ public class signup3Controller implements Initializable {
 
                 //DEBUG
                 System.out.println("you will finished");
-
-                DBUtils.finishSignup(event, username, userpassword, tf_userdateofbirth.getText(),tf_userphonenmbr.getText() , tf_userbio.getText());
+User user = new User(userId);
+                DBUtils.finishSignup(event,userId, user.getUsername(), userpassword, tf_userdateofbirth.getText(),tf_userphonenmbr.getText() , tf_userbio.getText());
 
             }
         });
@@ -78,7 +80,7 @@ public class signup3Controller implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("SKIP!!!! we are switcihng to hp");
-                DBUtils.changeScene(event,"/view/Home.fxml",username, userpassword );
+                DBUtils.changeScene(event,"/view/Home.fxml",userId, userpassword );
             }
         });
 

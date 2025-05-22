@@ -19,6 +19,7 @@ import javafx.stage.Popup;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.User;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -56,22 +57,28 @@ public class HomeController {
 
      // VBox to hold suggestions
 
-
+/*
     //ADDDED BY MELLY : to share data between scenes
     private String username;
     private String userpassword;
+
     public void setUserInfo(String username, String userpassword) {
         this.username = username;
         this.userpassword = userpassword;
 
+    }
+    public void setUserInfo(int userId, String userpassword) {
+        User user = new User(userId);
+        this.username = user.getUsername();
+        this.userId = userId;
+        this.userpassword = userpassword;
     }
 
 
 
 
 
-
-
+*/
 
 
 

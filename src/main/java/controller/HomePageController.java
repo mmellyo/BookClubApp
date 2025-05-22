@@ -48,8 +48,14 @@ public class HomePageController {
     private HBox popular;
 
     private User user;
+    private String userpassword;
+    private int userId;
 
 
+    public void setUserInfo(int userId, String userpassword) {
+        this.userId = userId;
+        this.userpassword = userpassword;
+    }
 
 
 
@@ -57,7 +63,7 @@ public class HomePageController {
     public void initialize()  {
 
 
-        user = new User(1);
+        user = new User(userId);
 
         //merging both the clubs the user is admin of and member of without duplicates
         List<Integer> mergedClubs = new ArrayList<>(user.getAdminOf());
@@ -68,9 +74,17 @@ public class HomePageController {
         addClubCardsToVBox(mergedClubs, rightSide);
 
         //changing byte to img to fill the pfp circle
-        InputStream is = new ByteArrayInputStream(user.getPfp());
-        Image image = new Image(is);
-        pfp.setFill(new ImagePattern(image));
+        byte[] pfpBytes = user.getPfp();
+        if (pfpBytes != null && pfpBytes.length > 0) {
+            InputStream is = new ByteArrayInputStream(pfpBytes);
+            Image image = new Image(is);
+            pfp.setFill(new ImagePattern(image));
+        } else {
+            // Optionally use a default placeholder image
+            Image defaultImage = new Image(getClass().getResource("/images/pp.png").toExternalForm());
+            pfp.setFill(new ImagePattern(defaultImage));
+        }
+
 
         //setting the username label
         username.setText(user.getUsername());
@@ -209,8 +223,8 @@ public class HomePageController {
                 int finalClubId = club_id;
                 card.setOnMouseClicked(event -> {
                     FXMLLoader loaderr = new FXMLLoader(getClass().getResource("/view/ClubView.fxml"));
-                    DBUtils.changeScene(event,"/view/ClubView.fxml", "melly", null );
-                    System.out.println("click on club " + club_id + " with user id " + username);
+                    DBUtils.changeScene(event,"/view/ClubView.fxml", userId, null );
+                    System.out.println("click on club " + club_id + " with user id " + userId);
 
                 });
 

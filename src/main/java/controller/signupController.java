@@ -8,8 +8,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.User;
 import utils.DBUtils;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.geometry.Insets;
@@ -44,7 +46,7 @@ public class signupController implements Initializable {
       private TextField tf_userpassword;
       @FXML
       private TextField tf_userpasswordC;
-
+      private int userId;
 
 
       @Override
@@ -58,7 +60,7 @@ public class signupController implements Initializable {
                            !tf_userpassword.getText().trim().isEmpty() &&
                            !tf_userpasswordC.getText().trim().isEmpty())
                        {
-                             DBUtils.signUpUser(event, tf_username.getText(), tf_useremail.getText(), tf_userpassword.getText(), tf_userpasswordC.getText());
+                             userId= DBUtils.signUpUser(event, tf_username.getText(), tf_useremail.getText(), tf_userpassword.getText(), tf_userpasswordC.getText());
                        } else {
                              System.out.println("please fill in all info to sign up");
                              DBUtils.showCustomAlert("Please fill in all required fields to sign up.");
@@ -70,21 +72,33 @@ public class signupController implements Initializable {
             button_login.setOnAction(new EventHandler<ActionEvent>() {
                   @Override
                   public void handle(ActionEvent event) {
-                      DBUtils.prefilledLogin(event,tf_username.getText(),tf_userpassword.getText());
+                      try {
+                          DBUtils.prefilledLogin(event,userId, tf_username.getText(),tf_userpassword.getText());
+                      } catch (IOException e) {
+                          throw new RuntimeException(e);
+                      }
                   }
             });
 
             button_login_up.setOnAction(new EventHandler<ActionEvent>() {
                   @Override
                   public void handle(ActionEvent event) {
-                        DBUtils.prefilledLogin(event,tf_username.getText(),tf_userpassword.getText());
+                      try {
+                          DBUtils.prefilledLogin(event,userId, tf_username.getText(),tf_userpassword.getText());
+                      } catch (IOException e) {
+                          throw new RuntimeException(e);
+                      }
                   }
             });
       }
 
 
-      public void setUserInfo(String username, String userpassword ) {
+
+      public void setUserInfo(int userid, String username, String userpassword) {
+            // Pre-fill fields here
             tf_username.setText(username);
             tf_userpassword.setText(userpassword);
+            this.userId = userid;
       }
+
 }

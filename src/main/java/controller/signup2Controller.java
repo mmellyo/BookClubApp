@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.User;
 import utils.DBUtils;
 
 import java.io.IOException;
@@ -65,10 +66,13 @@ public class signup2Controller implements Initializable {
     private List<Integer> selectedGenres = new ArrayList<>();
     private String username;
     private String userpassword;
+    private int userId;
 
 
-    public void setUserInfo(String username , String userpassword ) {
-        this.username = username;
+    public void setUserInfo(int userId, String userpassword) {
+        User user = new User(userId);
+        this.username = user.getUsername();
+        this.userId = userId;
         this.userpassword = userpassword;
     }
 
@@ -102,7 +106,7 @@ public class signup2Controller implements Initializable {
 
         // handle click to previous / next
         image_previousPage2.setOnMouseClicked(event ->
-                DBUtils.changeScene(event,"/view/signup.fxml", username, userpassword )
+                DBUtils.changeScene(event,"/view/signup.fxml", userId, userpassword )
 
         );
         button_next2.setOnAction(new EventHandler<ActionEvent>() {
@@ -112,7 +116,7 @@ public class signup2Controller implements Initializable {
                 //DEBUG
                 System.out.println("next2 IS clicked, lets save generes for : "+ username);
 
-                DBUtils.changeScene(event,"/view/signup3.fxml",username,userpassword);
+                DBUtils.changeScene(event,"/view/signup3.fxml",userId,userpassword);
             }
         });
 
