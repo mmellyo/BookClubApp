@@ -144,9 +144,19 @@
                      </Label>
                      <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="118.0" prefWidth="491.0">
                         <children>
-                           <Button fx:id="add" alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="122.0" text="Add To Library">
+                           <Button fx:id="add" alignment="CENTER" mnemonicParsing="false" onAction="#addToLibrary" prefHeight="34.0" prefWidth="122.0" styleClass="movementButtons" stylesheets="@styles/Genre.css" text="Add To Later">
                               <HBox.margin>
                                  <Insets left="50.0" />
+                              </HBox.margin>
+                           </Button>
+                           <Button fx:id="add1" alignment="CENTER" mnemonicParsing="false" onAction="#addToLibrary" prefHeight="34.0" prefWidth="122.0" styleClass="movementButtons" stylesheets="@styles/Genre.css" text="Add To Liked">
+                              <HBox.margin>
+                                 <Insets left="10.0" />
+                              </HBox.margin>
+                           </Button>
+                           <Button fx:id="add2" alignment="CENTER" mnemonicParsing="false" onAction="#addToLibrary" prefHeight="34.0" prefWidth="122.0" styleClass="movementButtons" stylesheets="@styles/Genre.css" text="Add To Read">
+                              <HBox.margin>
+                                 <Insets left="10.0" />
                               </HBox.margin>
                            </Button>
                         </children>
