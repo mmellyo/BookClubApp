@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -18,62 +19,53 @@
           <children>
               <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="2.5" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../pictures/logo.png" />
+                     <Image url="@img/logo.png" />
                   </image></ImageView>
           </children>
       </Pane>
-      <VBox layoutX="10.0" layoutY="208.0" spacing="10.0">
+      <VBox layoutX="10.0" layoutY="208.0" spacing="10.0" AnchorPane.topAnchor="250.0">
           <children>
-              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+              <HBox fx:id="home" alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
                   <children>
                       <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                           <image>
-                              <Image url="@../pictures/home.png" />
+                              <Image url="@img/home.png" />
                           </image>
                       </ImageView>
                   </children>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
               </HBox>
-              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+              <HBox fx:id="profile" alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
                   <children>
                       <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                           <image>
-                              <Image url="@../pictures/book.png" />
+                              <Image url="@img/Group%201707479776.png" />
                           </image>
                       </ImageView>
                   </children>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
               </HBox>
-              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+              <HBox fx:id="save" alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
                   <children>
                       <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                           <image>
-                              <Image url="@../pictures/chat.png" />
+                              <Image url="@img/archive-book.png" />
                           </image>
                       </ImageView>
                   </children>
-              </HBox>
-              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
-                  <children>
-                      <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                          <image>
-                              <Image url="@../pictures/Group 1707479776.png" />
-                          </image>
-                      </ImageView>
-                  </children>
-              </HBox>
-              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
-                  <children>
-                      <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                          <image>
-                              <Image url="@../pictures/archive-book.png" />
-                          </image>
-                      </ImageView>
-                  </children>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
               </HBox>
           </children>
       </VBox>
       <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="15.0" layoutY="662.0" pickOnBounds="true" preserveRatio="true">
           <image>
-              <Image url="@../pictures/settings.png" />
+              <Image url="@img/settings.png" />
           </image>
       </ImageView>
   </children>

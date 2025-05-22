@@ -1,12 +1,19 @@
 package controller;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.User;
 import utils.DBUtils;
 
@@ -28,7 +35,7 @@ public class loginController implements Initializable {
     private TextField tf_userpassword;
     @FXML
     private TextField tf_username;
-private int userId;
+    private int userId;
 
 
 
@@ -47,6 +54,8 @@ private int userId;
                 } else {
                     try {
                          userId = DBUtils.loginUser(event, tf_username.getText(), tf_userpassword.getText());
+                         System.out.println("user_id in login: "+ userId);
+                         switchToHomePage(userId, event);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
@@ -75,6 +84,29 @@ private int userId;
                 }
             }
         });
+    }
+
+    private void switchToHomePage(int userId, Event event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Home.fxml"));
+            Parent root = loader.load();
+
+            HomePageController controller = loader.getController();
+            System.out.println("user_id in switching: " + userId);
+            controller.setUserInfo(userId); // This should now work
+
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Close the current window (the one that triggered the event)
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setUserInfo(int userId, String username, String userPassword) {

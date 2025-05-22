@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -25,13 +26,13 @@
                             <children>
                                 <ImageView fitHeight="67.0" fitWidth="50.0" layoutX="3.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@/view/img/LOGOLIGHT.png" />
+                                        <Image url="@img/logo.png" />
                                     </image></ImageView>
                             </children>
                         </Pane>
-                        <VBox layoutX="10.0" layoutY="208.0" spacing="10.0">
+                        <VBox layoutX="10.0" layoutY="208.0" spacing="10.0" AnchorPane.topAnchor="250.0">
                             <children>
-                                <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+                                <HBox fx:id="home" alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="sidebar-selected">
                                     <children>
                                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -39,26 +40,11 @@
                                             </image>
                                         </ImageView>
                                     </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                                 </HBox>
-                                <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="sidebar-selected">
-                                    <children>
-                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@img/book.png" />
-                                            </image>
-                                        </ImageView>
-                                    </children>
-                                </HBox>
-                                <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
-                                    <children>
-                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@img/chat.png" />
-                                            </image>
-                                        </ImageView>
-                                    </children>
-                                </HBox>
-                                <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+                                <HBox fx:id="profile" alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
                                     <children>
                                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -66,8 +52,11 @@
                                             </image>
                                         </ImageView>
                                     </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                                 </HBox>
-                                <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+                                <HBox fx:id="library" alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
                                     <children>
                                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -75,6 +64,9 @@
                                             </image>
                                         </ImageView>
                                     </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                                 </HBox>
                             </children>
                         </VBox>
@@ -108,6 +100,9 @@
                                             <padding>
                                                 <Insets left="30.0" />
                                             </padding>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                                         </TextField>
                                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true">
                                             <StackPane.margin>
