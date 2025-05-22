@@ -40,25 +40,7 @@
                                         </ImageView>
                                     </children>
                                 </HBox>
-                                <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="sidebar-selected">
-                                    <children>
-                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@img/book.png" />
-                                            </image>
-                                        </ImageView>
-                                    </children>
-                                </HBox>
-                                <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
-                                    <children>
-                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@img/chat.png" />
-                                            </image>
-                                        </ImageView>
-                                    </children>
-                                </HBox>
-                                <HBox alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
+                                <HBox fx:id="profile" alignment="CENTER" prefHeight="34.0" prefWidth="34.0" styleClass="mouse-mouved">
                                     <children>
                                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
