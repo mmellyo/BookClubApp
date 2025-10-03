@@ -10,5 +10,7 @@ It allows users to explore books, share their thoughts, and connect with others 
 - **Club Chats:** Discuss books and exchange ideas in real time
 
 ## Tech Stack
-- **Java (JavaFX)** – User interface and application logic  
-- **MySQL** – Database for storing users, books, and club data  
+- ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white) Java – Core application
+- ![JavaFX](https://img.shields.io/badge/JavaFX-007396?style=for-the-badge&logo=java&logoColor=white) JavaFX – User interface
+- ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white) MySQL – Database for storing users, books, and club data
+
